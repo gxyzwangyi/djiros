@@ -197,13 +197,13 @@ int main(int argc, char **argv)
 
 
 	ros::NodeHandle nh_private("~");
-	nh_private.param("gray_or_rgb", gray_or_rgb, 1);
+	nh_private.param("gray_or_rgb", gray_or_rgb, 0);
 	nh_private.param("to_mobile", to_mobile, 0);
 
 
 		cv::VideoWriter writer("/home/ubuntu/VideoTest.avi", CV_FOURCC('M','J','P','G'), VIDEO_FPS, cvSize(IMAGE_W, IMAGE_H),1);
 
-	printf("%d\nhehe:",gray_or_rgb);
+	printf("%d\n",gray_or_rgb);
 	if(gray_or_rgb){
 		pRawImg = cvCreateImage(cvSize(IMAGE_W, IMAGE_H),IPL_DEPTH_8U,3);
 		pImg = cvCreateImage(cvSize(640, 480),IPL_DEPTH_8U,3);
