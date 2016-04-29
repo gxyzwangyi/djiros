@@ -214,6 +214,49 @@ void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
     
 }
 
+//ADD 
+
+void gacr(const std_msgs::Int16::ConstPtr& msg) {
+	
+	ROS_INFO("gimbal_angle_control_roll(-350,350)0.1°");
+
+	drone->gimbal_angle_control(msg->data,0,0,20);
+	sleep(2);
+
+}
+
+void gacp(const std_msgs::Int16::ConstPtr& msg) {
+	
+	ROS_INFO("gimbal_angle_control_pitch(-900,300)0.1°");
+
+	drone->gimbal_angle_control(0,msg->data,0,20);
+	sleep(2);
+
+}
+
+
+void gacy(const std_msgs::Int16::ConstPtr& msg) {
+	
+	ROS_INFO("gimbal_angle_control_yam(-3200,3200)0.1°");
+
+	drone->gimbal_angle_control(0,0,msg->data,20);
+	sleep(2);
+}
+
+void yrp(const std_msgs::Bool::ConstPtr& msg) {
+	if(msg->data)
+        ROS_INFO("test good");
+		ROS_INFO("test yrp");
+		drone->gimbal_angle_control(100,0,0,20);
+		sleep(2);
+    else
+        ROS_INFO("test bad");
+}
+
+
+
+
+
 int main(int argc, char* argv[]) {
     ros::init(argc, argv, "map_nav_srv");
     ros::NodeHandle nh;
@@ -229,6 +272,14 @@ int main(int argc, char* argv[]) {
     //command subscribers
     ros::Subscriber sub1 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/cmd", 1, cmdCB);
     ros::Subscriber sub2 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/ctrl", 1, ctrlCB);
+
+    ros::Subscriber sub3 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yam", 1, gacy);
+    ros::Subscriber sub4 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/roll", 1, gacr);
+    ros::Subscriber sub5 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/pitch", 1, gacp);
+    ros::Subscriber sub6 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yrp", 1, yrp);
+
+
+
 
     asPtr_->registerGoalCallback(&goalCB);
     asPtr_->registerPreemptCallback(&preemptCB);

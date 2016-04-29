@@ -30,3 +30,9 @@ body, html {
 	width: 50%;
 	background-color:#EEEEEE;
 }
+#watch {
+	margin-left:auto; 
+	height:auto;
+	width:auto;
+	float:right;
+}

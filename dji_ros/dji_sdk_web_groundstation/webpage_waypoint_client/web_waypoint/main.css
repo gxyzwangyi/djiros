@@ -40,3 +40,10 @@ body, html {
 	width:200px;
 	float:left;
 }
+
+#watch {
+	margin-left:auto; 
+	height:auto;
+	width:auto;
+	float:right;
+}

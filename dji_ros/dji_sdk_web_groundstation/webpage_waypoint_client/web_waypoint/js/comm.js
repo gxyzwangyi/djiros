@@ -45,7 +45,37 @@ function Communicator(socket) {
         name : 'dji_sdk_web_groundstation/map_nav_srv/cmd',
         messageType : 'dji_sdk_web_groundstation/MapNavSrvCmd'
     });
-
+    
+    
+  
+	//ADD publisher
+    this.yamTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/yam',
+        messageType : 'std_msgs/Int16'
+    });	
+	
+    this.rollTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/roll',
+        messageType : 'std_msgs/Int16'
+    });	
+	
+    this.pitchTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/pitch',
+        messageType : 'std_msgs/Int16'
+    });	
+	
+    this.yrpTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/yrp',
+        messageType : 'std_msgs/Bool'
+    });	
+		    
+    
+   
+   
     //subscriber
     this.rosListener = new ROSLIB.Topic({
         ros : this.ros,
@@ -58,6 +88,7 @@ function Communicator(socket) {
         home_hei = msg.height;
     });
 }
+
 Communicator.prototype.setNavigationMode = function() {
 
     var _msg = new ROSLIB.Message({
@@ -214,3 +245,53 @@ Communicator.prototype.continueWayline = function() {
     this.cmdTopic.publish(_msg);
 
 };
+
+
+
+//ADD Function
+Communicator.prototype.setGimbalControlYam = function() {
+
+    var _msg = new ROSLIB.Message({
+        data : 100
+    });
+
+    console.log('setGimbalControlYam');
+    this.yamTopic.publish(_msg);
+
+};
+
+Communicator.prototype.setGimbalControlRoll = function() {
+
+    var _msg = new ROSLIB.Message({
+        data : 100
+    });
+
+    console.log('setGimbalControlRoll');
+    this.rollTopic.publish(_msg);
+
+};
+
+Communicator.prototype.setGimbalControlPitch = function() {
+
+    var _msg = new ROSLIB.Message({
+        data : 100
+    });
+
+    console.log('setGimbalControlPitch');
+    this.pitchTopic.publish(_msg);
+
+};
+
+
+Communicator.prototype.setYRP = function() {
+
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('yrp');
+    this.yrpTopic.publish(_msg);
+
+};
+
+

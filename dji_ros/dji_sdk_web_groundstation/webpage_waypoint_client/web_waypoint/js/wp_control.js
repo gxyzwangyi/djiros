@@ -43,9 +43,9 @@ $( document ).ready(function() {
 		my_planner.confirmMission();
 	});
 
-        $("#reset-mission").bind("click", function() {
+    $("#reset-mission").bind("click", function() {
 		my_planner.reset();
-                $("#monitor").empty();
+        $("#monitor").empty();
 	});
 
 	$("#upload-mission").bind("click", function() {
@@ -85,5 +85,44 @@ $( document ).ready(function() {
 			my_Communicator.stopNavigationMode();
 
 	});
+//ADD function
+
+		$("#gimbal-angel-yam").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setGimbalControlYam();
+
+	});
+	
+		$("#gimbal-angel-roll").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setGimbalControlRoll();
+
+	});
+	
+		$("#gimbal-angel-pitch").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setGimbalControlPitch();
+
+	});
+	
+		$("#yrp-test").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setYRP();
+
+	});	
+	
+	
+	
+	
+	
+	
 });
 
