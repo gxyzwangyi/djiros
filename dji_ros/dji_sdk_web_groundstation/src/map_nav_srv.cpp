@@ -245,11 +245,12 @@ void gacy(const std_msgs::Int16::ConstPtr& msg) {
 }
 
 void yrp(const std_msgs::Bool::ConstPtr& msg) {
-	if(msg->data)
+	if(msg->data){
         ROS_INFO("test good");
 		ROS_INFO("test yrp");
 		drone->gimbal_angle_control(100,0,0,20);
 		sleep(2);
+        }
     else
         ROS_INFO("test bad");
 }
