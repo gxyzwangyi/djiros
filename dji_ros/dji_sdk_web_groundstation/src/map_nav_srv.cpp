@@ -2,6 +2,7 @@
 #include <actionlib/server/simple_action_server.h>
 #include <actionlib/client/simple_action_client.h>
 #include <std_msgs/Bool.h>
+#include <std_msgs/Int16.h>
 #include <dji_sdk/dji_drone.h>
 #include <dji_sdk_web_groundstation/WebWaypointReceiveAction.h>
 #include <dji_sdk_web_groundstation/MapNavSrvCmd.h>
