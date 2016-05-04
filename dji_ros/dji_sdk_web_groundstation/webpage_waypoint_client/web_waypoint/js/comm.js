@@ -47,8 +47,8 @@ function Communicator(socket) {
     });
     
     
-  
-	//ADD publisher
+    
+	//Add Video Topic
     this.yamTopic = new ROSLIB.Topic({
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/yam',
@@ -73,6 +73,90 @@ function Communicator(socket) {
         messageType : 'std_msgs/Bool'
     });	
 		    
+    //Add Control Topic
+    
+    this.upTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/up',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.downTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/down',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.rightTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/right',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.leftTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/left',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.frontTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/front',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.backTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/back',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.circleTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/circle',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.squareTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/square',
+        messageType : 'std_msgs/Int16'
+    });
+    
+
+    this.takeoffTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/takeoff',
+        messageType : 'std_msgs/Bool'
+    });
+    
+
+    this.landTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/land',
+        messageType : 'std_msgs/Bool'
+    });
+    
+
+    this.gohomeTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/gohome',
+        messageType : 'std_msgs/Bool'
+    });
+    
+    
+    
+    
+    
+    
+    
     
    
    
@@ -248,7 +332,7 @@ Communicator.prototype.continueWayline = function() {
 
 
 
-//ADD Function
+//Add Video
 Communicator.prototype.setGimbalControlYam = function() {
 
     var _msg = new ROSLIB.Message({
@@ -294,4 +378,104 @@ Communicator.prototype.setYRP = function() {
 
 };
 
+// Add Control
+
+Communicator.prototype.setup = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('up');
+    this.upTopic.publish(_msg);
+};
+
+Communicator.prototype.setdown = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('down');
+    this.downTopic.publish(_msg);
+};
+
+Communicator.prototype.setright = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('right');
+    this.rightTopic.publish(_msg);
+};
+
+Communicator.prototype.setleft = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('left');
+    this.leftTopic.publish(_msg);
+};
+
+Communicator.prototype.setfront = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('front');
+    this.frontTopic.publish(_msg);
+};
+
+Communicator.prototype.setback = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('back');
+    this.backTopic.publish(_msg);
+};
+
+Communicator.prototype.setcircle = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('circle');
+    this.circleTopic.publish(_msg);
+};
+
+Communicator.prototype.setsquare = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('square');
+    this.squareTopic.publish(_msg);
+};
+
+Communicator.prototype.settakeoff = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('takeoff');
+    this.takeoffTopic.publish(_msg);
+};
+
+Communicator.prototype.setland = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('land');
+    this.landTopic.publish(_msg);
+};
+
+Communicator.prototype.setgohome = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('gohome');
+    this.gohomeTopic.publish(_msg);
+};
 

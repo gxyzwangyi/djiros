@@ -120,6 +120,103 @@ $( document ).ready(function() {
 	});	
 	
 	
+		$("#takeoff").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.settakeoff();
+
+	});	
+	
+		$("#land").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setland();
+
+	});
+	
+	
+		$("#gohome").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setgohome();
+
+	});	
+	
+		$("#up").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setup();
+
+	});	
+	
+	
+		$("#down").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setdown();
+
+	});	
+	
+		$("#right").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setright();
+
+	});			
+        $("#left").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setleft();
+
+    });	
+
+        $("#front").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setfront();
+
+    });	
+
+        $("#back").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setback();
+
+    });	
+
+        $("#circle").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setcircle();
+
+    });	
+
+        $("#square").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setsquare();
+
+    });	
+
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

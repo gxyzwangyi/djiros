@@ -215,7 +215,7 @@ void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
     
 }
 
-//ADD 
+//Add Video Function
 
 void gacr(const std_msgs::Int16::ConstPtr& msg) {
 	
@@ -258,6 +258,232 @@ void yrp(const std_msgs::Bool::ConstPtr& msg) {
 
 
 
+//Add Control Function
+
+void up(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" up   ");
+    int x = msg->data
+
+    for(int i = 0; i < 50*x; i ++)
+    {
+        if(i < 50*x-10)
+            drone->attitude_control(0x40, 0, 0, 1, 0);
+        else
+            drone->attitude_control(0x40, 0, 0, 0, 0);
+        usleep(20000);
+    }
+        
+    sleep(2);
+
+}
+
+void down(const std_msgs::Int16::ConstPtr&  msg) {
+
+    ROS_INFO(" down   ");
+    int x = msg->data
+
+    for(int i = 0; i < 50*x; i ++)
+    {
+        if(i < 50*x-10)
+            drone->attitude_control(0x40, 0, 0, -1, 0);
+        else
+            drone->attitude_control(0x40, 0, 0, 0, 0);
+        usleep(20000);
+    }
+
+    sleep(2);
+
+}
+
+void right(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" right   ");
+    int x = msg->data
+
+
+    for(int i = 0; i < 25*x; i ++)
+    {
+        if(i < 25*x-10)
+            drone->attitude_control(0x40, 0, 2, 0, 0);
+        else
+            drone->attitude_control(0x40, 0, 0, 0, 0);
+        usleep(20000);
+    }
+    
+    sleep(2);
+
+}
+
+void left(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" left   ");
+    int x = msg->data
+
+    for(int i = 0; i < 25*x; i ++)
+    {
+        if(i < 25*x-10)
+            drone->attitude_control(0x40, 0, -2, 0, 0);
+        else
+            drone->attitude_control(0x40, 0, 0, 0, 0);
+        usleep(20000);
+    }
+    
+    sleep(2);
+
+}
+
+void front(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" front   ");
+    int x = msg->data
+
+
+    for(int i = 0; i < 25*x; i ++)
+    {
+        if(i < 25*x-10)
+            drone->attitude_control(0x40, 2, 0, 0, 0);
+        else
+            drone->attitude_control(0x40, 0, 0, 0, 0);
+        usleep(20000);
+    }
+    
+    sleep(2);
+
+}
+
+void back(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" back  ");
+    int x = msg->data
+
+    for(int i = 0; i < 25*x; i ++)
+    {
+        if(i < 25*x-10)
+            drone->attitude_control(0x40, -2, 0, 0, 0);
+        else
+            drone->attitude_control(0x40, 0, 0, 0, 0);
+        usleep(20000);
+    }
+
+    sleep(2);
+
+}
+
+
+
+void circle(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" circle   ");
+    
+    static float time = 0;
+    static float R = msg->data;
+    static float V = msg->data;
+    static float vx;
+    static float vy;
+    /* start to draw circle */
+    for(int i = 0; i < 300; i ++)
+    {
+        vx = V * sin((V/R)*time/50.0f);
+        vy = V * cos((V/R)*time/50.0f);
+
+        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
+                Flight::VerticalLogic::VERTICAL_VELOCITY |
+                Flight::YawLogic::YAW_ANGLE |
+                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
+                Flight::SmoothMode::SMOOTH_ENABLE,
+                vx, vy, 0, 0 );
+        usleep(20000);
+        time++;
+    }
+
+    sleep(2);
+
+}
+
+void square(const std_msgs::Int16::ConstPtr& msg) {
+
+    //TODO
+    msg->data
+
+    ROS_INFO("   square ");
+    /*draw square sample*/
+    for(int i = 0;i < 60;i++)
+    {
+        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
+                Flight::VerticalLogic::VERTICAL_VELOCITY |
+                Flight::YawLogic::YAW_ANGLE |
+                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
+                Flight::SmoothMode::SMOOTH_ENABLE,
+                3, 3, 0, 0 );
+        usleep(20000);
+    }
+    for(int i = 0;i < 60;i++)
+    {
+        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
+                Flight::VerticalLogic::VERTICAL_VELOCITY |
+                Flight::YawLogic::YAW_ANGLE |
+                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
+                Flight::SmoothMode::SMOOTH_ENABLE,
+                -3, 3, 0, 0);
+        usleep(20000);
+    }
+    for(int i = 0;i < 60;i++)
+    {
+        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
+                Flight::VerticalLogic::VERTICAL_VELOCITY |
+                Flight::YawLogic::YAW_ANGLE |
+                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
+                Flight::SmoothMode::SMOOTH_ENABLE,
+                -3, -3, 0, 0);
+        usleep(20000);
+    }
+    for(int i = 0;i < 60;i++)
+    {
+        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
+                Flight::VerticalLogic::VERTICAL_VELOCITY |
+                Flight::YawLogic::YAW_ANGLE |
+                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
+                Flight::SmoothMode::SMOOTH_ENABLE,
+                3, -3, 0, 0);
+        usleep(20000);
+    }
+    
+    sleep(2);
+
+}
+
+void takeoff(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" takeoff   ");
+    drone->takeoff() ;
+    sleep(2);
+
+}
+
+void land(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" land   ");
+    drone->landing() ;
+    sleep(2);
+
+}
+
+void gohome(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO("  gohome  ");
+    drone->gohome() ;
+    sleep(2);
+
+}
+
+
+
+
+
+
+
+
 
 int main(int argc, char* argv[]) {
     ros::init(argc, argv, "map_nav_srv");
@@ -279,6 +505,20 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub4 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/roll", 1, gacr);
     ros::Subscriber sub5 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/pitch", 1, gacp);
     ros::Subscriber sub6 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yrp", 1, yrp);
+
+
+    ros::Subscriber sub_up = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/up", 1, up);
+    ros::Subscriber sub_down = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/down", 1, down);
+    ros::Subscriber sub_right = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/right", 1, right);
+    ros::Subscriber sub_left = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/left", 1, left);
+    ros::Subscriber sub_front = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/front", 1, front);
+    ros::Subscriber sub_back = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/back", 1, back);
+    ros::Subscriber sub_circle = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/circle", 1, circle);
+    ros::Subscriber sub_square = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, square);
+    ros::Subscriber sub_takeoff = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, takeoff);
+    ros::Subscriber sub_land = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/land", 1, land);
+    ros::Subscriber sub_gohome = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/gohome", 1, gohome);
+
 
 
 
