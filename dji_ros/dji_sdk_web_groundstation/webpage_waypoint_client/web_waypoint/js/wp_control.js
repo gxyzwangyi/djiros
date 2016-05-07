@@ -152,10 +152,9 @@ $( document ).ready(function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
+		   	console.log(document.getElementById("up_value").value);
 			my_Communicator.setup(document.getElementById("up_value").value);
-			
-   			console.log(document.getElementById("up_value").value);
-
+		
 	});	
 	
 	
