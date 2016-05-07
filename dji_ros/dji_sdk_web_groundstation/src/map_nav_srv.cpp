@@ -262,7 +262,7 @@ void yrp(const std_msgs::Bool::ConstPtr& msg) {
 
 void up(const std_msgs::Int16::ConstPtr& msg) {
 
-    ROS_INFO(" up   ");
+    ROS_INFO("up");
     int x = msg->data
 
     for(int i = 0; i < 50*x; i ++)
@@ -277,6 +277,8 @@ void up(const std_msgs::Int16::ConstPtr& msg) {
     sleep(2);
 
 }
+
+
 
 void down(const std_msgs::Int16::ConstPtr&  msg) {
 
@@ -513,6 +515,7 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_left = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/left", 1, left);
     ros::Subscriber sub_front = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/front", 1, front);
     ros::Subscriber sub_back = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/back", 1, back);
+    
     ros::Subscriber sub_circle = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/circle", 1, circle);
     ros::Subscriber sub_square = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, square);
     ros::Subscriber sub_takeoff = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, takeoff);

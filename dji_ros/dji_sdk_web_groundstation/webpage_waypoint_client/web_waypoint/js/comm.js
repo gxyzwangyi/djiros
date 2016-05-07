@@ -336,7 +336,7 @@ Communicator.prototype.continueWayline = function() {
 Communicator.prototype.setGimbalControlYam = function() {
 
     var _msg = new ROSLIB.Message({
-        data : 100
+        data : 500
     });
 
     console.log('setGimbalControlYam');
@@ -347,7 +347,7 @@ Communicator.prototype.setGimbalControlYam = function() {
 Communicator.prototype.setGimbalControlRoll = function() {
 
     var _msg = new ROSLIB.Message({
-        data : 100
+        data : 500
     });
 
     console.log('setGimbalControlRoll');
@@ -358,7 +358,7 @@ Communicator.prototype.setGimbalControlRoll = function() {
 Communicator.prototype.setGimbalControlPitch = function() {
 
     var _msg = new ROSLIB.Message({
-        data : 100
+        data : 500
     });
 
     console.log('setGimbalControlPitch');
@@ -380,9 +380,9 @@ Communicator.prototype.setYRP = function() {
 
 // Add Control
 
-Communicator.prototype.setup = function() {
+Communicator.prototype.setup = function(value) {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : value
     });
 
     console.log('up');
@@ -391,7 +391,7 @@ Communicator.prototype.setup = function() {
 
 Communicator.prototype.setdown = function() {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : 2
     });
 
     console.log('down');

@@ -85,7 +85,7 @@ $( document ).ready(function() {
 			my_Communicator.stopNavigationMode();
 
 	});
-//ADD function
+//Add Video function
 
 		$("#gimbal-angel-yam").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
@@ -120,6 +120,9 @@ $( document ).ready(function() {
 	});	
 	
 	
+	//Add Control function
+	
+	
 		$("#takeoff").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
@@ -149,7 +152,7 @@ $( document ).ready(function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
-			my_Communicator.setup();
+			my_Communicator.setup(document.getElementById("up_value").value);
 
 	});	
 	
