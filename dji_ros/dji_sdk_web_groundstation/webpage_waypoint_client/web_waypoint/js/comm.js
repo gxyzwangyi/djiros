@@ -382,7 +382,7 @@ Communicator.prototype.setYRP = function() {
 
 Communicator.prototype.setup = function(value) {
     var _msg = new ROSLIB.Message({
-        data : value
+        data : parseInt(value)
     });
 
     console.log('up');
