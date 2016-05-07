@@ -153,6 +153,8 @@ $( document ).ready(function() {
 			alert("Drone not Connected!");
 		else
 			my_Communicator.setup(document.getElementById("up_value").value);
+			
+   			console.log(document.getElementById("up_value").value);
 
 	});	
 	

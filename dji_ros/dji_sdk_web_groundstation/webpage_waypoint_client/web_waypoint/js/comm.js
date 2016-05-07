@@ -385,7 +385,7 @@ Communicator.prototype.setup = function(value) {
         data : parseInt(value)
     });
 
-    console.log('up');
+    console.log('up'+parseInt(value));
     this.upTopic.publish(_msg);
 };
 
