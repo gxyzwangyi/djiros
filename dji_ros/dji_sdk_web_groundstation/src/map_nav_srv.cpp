@@ -267,7 +267,7 @@ void up(const std_msgs::Int16::ConstPtr& msg) {
 
     for(int i = 0; i < 50*x; i ++)
     {
-        if(i < 50*x-10)
+        if(i < 33*x)
             drone->attitude_control(0x40, 0, 0, 1, 0);
         else
             drone->attitude_control(0x40, 0, 0, 0, 0);
