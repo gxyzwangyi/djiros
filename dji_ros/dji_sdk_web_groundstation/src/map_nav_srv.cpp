@@ -263,7 +263,7 @@ void yrp(const std_msgs::Bool::ConstPtr& msg) {
 void up(const std_msgs::Int16::ConstPtr& msg) {
 
     ROS_INFO("up");
-    int x = msg->data
+    int x = msg->data;
 
     for(int i = 0; i < 50*x; i ++)
     {
@@ -301,7 +301,7 @@ void down(const std_msgs::Int16::ConstPtr&  msg) {
 void right(const std_msgs::Int16::ConstPtr& msg) {
 
     ROS_INFO(" right   ");
-    int x = msg->data
+    int x = msg->data;
 
 
     for(int i = 0; i < 25*x; i ++)
@@ -320,7 +320,7 @@ void right(const std_msgs::Int16::ConstPtr& msg) {
 void left(const std_msgs::Int16::ConstPtr& msg) {
 
     ROS_INFO(" left   ");
-    int x = msg->data
+    int x = msg->data;
 
     for(int i = 0; i < 25*x; i ++)
     {
@@ -338,7 +338,7 @@ void left(const std_msgs::Int16::ConstPtr& msg) {
 void front(const std_msgs::Int16::ConstPtr& msg) {
 
     ROS_INFO(" front   ");
-    int x = msg->data
+    int x = msg->data;
 
 
     for(int i = 0; i < 25*x; i ++)
@@ -357,7 +357,7 @@ void front(const std_msgs::Int16::ConstPtr& msg) {
 void back(const std_msgs::Int16::ConstPtr& msg) {
 
     ROS_INFO(" back  ");
-    int x = msg->data
+    int x = msg->data;
 
     for(int i = 0; i < 25*x; i ++)
     {
@@ -389,12 +389,8 @@ void circle(const std_msgs::Int16::ConstPtr& msg) {
         vx = V * sin((V/R)*time/50.0f);
         vy = V * cos((V/R)*time/50.0f);
 
-        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
-                Flight::VerticalLogic::VERTICAL_VELOCITY |
-                Flight::YawLogic::YAW_ANGLE |
-                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
-                Flight::SmoothMode::SMOOTH_ENABLE,
-                vx, vy, 0, 0 );
+        drone->attitude_control( 0x83, vx,  vy, 0, 0 );
+
         usleep(20000);
         time++;
     }
@@ -406,48 +402,32 @@ void circle(const std_msgs::Int16::ConstPtr& msg) {
 void square(const std_msgs::Int16::ConstPtr& msg) {
 
     //TODO
-    msg->data
+   // msg->data
 
     ROS_INFO("   square ");
     /*draw square sample*/
     for(int i = 0;i < 60;i++)
     {
-        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
-                Flight::VerticalLogic::VERTICAL_VELOCITY |
-                Flight::YawLogic::YAW_ANGLE |
-                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
-                Flight::SmoothMode::SMOOTH_ENABLE,
-                3, 3, 0, 0 );
+        drone->attitude_control(0x83,3,  3, 0, 0 );
+        
         usleep(20000);
     }
     for(int i = 0;i < 60;i++)
     {
-        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
-                Flight::VerticalLogic::VERTICAL_VELOCITY |
-                Flight::YawLogic::YAW_ANGLE |
-                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
-                Flight::SmoothMode::SMOOTH_ENABLE,
-                -3, 3, 0, 0);
+        drone->attitude_control(0x83, -3, 3, 0, 0 );
+
         usleep(20000);
     }
     for(int i = 0;i < 60;i++)
     {
-        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
-                Flight::VerticalLogic::VERTICAL_VELOCITY |
-                Flight::YawLogic::YAW_ANGLE |
-                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
-                Flight::SmoothMode::SMOOTH_ENABLE,
-                -3, -3, 0, 0);
+        drone->attitude_control(0x83, -3, -3, 0, 0 );
+
         usleep(20000);
     }
     for(int i = 0;i < 60;i++)
     {
-        drone->attitude_control( Flight::HorizontalLogic::HORIZONTAL_POSITION |
-                Flight::VerticalLogic::VERTICAL_VELOCITY |
-                Flight::YawLogic::YAW_ANGLE |
-                Flight::HorizontalCoordinate::HORIZONTAL_BODY |
-                Flight::SmoothMode::SMOOTH_ENABLE,
-                3, -3, 0, 0);
+        drone->attitude_control(0x83, 3, -3, 0, 0 );
+
         usleep(20000);
     }
     
