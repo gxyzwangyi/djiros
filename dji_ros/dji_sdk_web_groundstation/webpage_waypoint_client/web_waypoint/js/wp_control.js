@@ -87,41 +87,62 @@ $( document ).ready(function() {
 	});
 //Add Video function
 
-		$("#gimbal-angel-yam").bind("click",function() {
+		$("#yam").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
-			my_Communicator.setGimbalControlYam();
+			my_Communicator.setGimbalControlYam(document.getElementById("yaw_value").value);
 
 	});
 	
-		$("#gimbal-angel-roll").bind("click",function() {
+		$("#roll").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
-			my_Communicator.setGimbalControlRoll();
+			my_Communicator.setGimbalControlRoll(document.getElementById("roll_value").value);
 
 	});
 	
-		$("#gimbal-angel-pitch").bind("click",function() {
+		$("#pitch").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
-			my_Communicator.setGimbalControlPitch();
+			my_Communicator.setGimbalControlPitch(document.getElementById("pitch_value").value);
 
 	});
 	
-		$("#yrp-test").bind("click",function() {
+		$("#yrp").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
-			my_Communicator.setYRP();
+			var yaw = document.getElementById("yaw_value").value
+            var roll = document.getElementById("roll_value").value
+			var pitch = document.getElementById("pitch_value").value
+			var duration = document.getElementById("duration_value").value
+
+			my_Communicator.setYRP(yaw,roll,pitch,duration);
 
 	});	
 	
 	
 	//Add Control function
 	
+	
+		$("#request").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setrequest();
+
+	});		
+	
+		$("#release").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setrelease();
+
+	});		
 	
 		$("#takeoff").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
@@ -148,36 +169,43 @@ $( document ).ready(function() {
 
 	});	
 	
-		$("#up").bind("click",function() {
-		if (typeof(my_Communicator) == 'undefined')
-			alert("Drone not Connected!");
-		else
-		   	console.log(document.getElementById("up_value").value);
-			my_Communicator.setup(document.getElementById("up_value").value);
-		
-	});	
 	
 	
-		$("#down").bind("click",function() {
-		if (typeof(my_Communicator) == 'undefined')
-			alert("Drone not Connected!");
-		else
-			my_Communicator.setdown();
+	
+	
+	
 
-	});	
 	
-		$("#right").bind("click",function() {
-		if (typeof(my_Communicator) == 'undefined')
-			alert("Drone not Connected!");
-		else
-			my_Communicator.setright();
+	
+	 	$("#up").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setup(document.getElementById("up_value").value);
 
-	});			
+    });	
+
+        $("#down").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setdown(document.getElementById("down_value").value);
+
+    });	
+
+        $("#right").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setright(document.getElementById("right_value").value);
+
+    });	
+
         $("#left").bind("click",function() {
         if (typeof(my_Communicator) == 'undefined')
             alert("Drone not Connected!");
         else
-            my_Communicator.setleft();
+            my_Communicator.setleft(document.getElementById("left_value").value);
 
     });	
 
@@ -185,7 +213,7 @@ $( document ).ready(function() {
         if (typeof(my_Communicator) == 'undefined')
             alert("Drone not Connected!");
         else
-            my_Communicator.setfront();
+            my_Communicator.setfront(document.getElementById("front_value").value);
 
     });	
 
@@ -193,7 +221,7 @@ $( document ).ready(function() {
         if (typeof(my_Communicator) == 'undefined')
             alert("Drone not Connected!");
         else
-            my_Communicator.setback();
+            my_Communicator.setback(document.getElementById("back_value").value);
 
     });	
 
@@ -201,7 +229,7 @@ $( document ).ready(function() {
         if (typeof(my_Communicator) == 'undefined')
             alert("Drone not Connected!");
         else
-            my_Communicator.setcircle();
+            my_Communicator.setcircle(document.getElementById("circle_value").value);
 
     });	
 
@@ -209,14 +237,35 @@ $( document ).ready(function() {
         if (typeof(my_Communicator) == 'undefined')
             alert("Drone not Connected!");
         else
-            my_Communicator.setsquare();
+            my_Communicator.setsquare(document.getElementById("square_value").value);
 
     });	
 
 
+
+        $("#local").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+			var x = document.getElementById("x_value").value
+            var y = document.getElementById("y_value").value
+			var z=  document.getElementById("z_value").value
+			my_Communicator.setlocal(x,y,z);
+
+    });	
+
 	
-	
-	
+        $("#global").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+			var lati = document.getElementById("lati_value").value
+            var longi = document.getElementById("longi_value").value
+			var alti=  document.getElementById("alti_value").value
+			my_Communicator.setglobal(lati,longi,alti);
+
+    });	
+
 	
 	
 	

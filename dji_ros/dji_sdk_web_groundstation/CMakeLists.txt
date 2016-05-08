@@ -51,6 +51,8 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
  add_message_files(
    FILES
    MapNavSrvCmd.msg
+   Local.msg
+   Global.msg
 #   Message1.msg
 #   Message2.msg
  )
@@ -65,7 +67,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 ## Generate actions in the 'action' folder
 add_action_files(
    FILES
-   WebWaypointReceive.action
+    WebWaypointReceive.action
 #   Action1.action
 #   Action2.action
 )

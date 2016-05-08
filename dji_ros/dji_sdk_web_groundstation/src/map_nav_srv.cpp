@@ -3,9 +3,14 @@
 #include <actionlib/client/simple_action_client.h>
 #include <std_msgs/Bool.h>
 #include <std_msgs/Int16.h>
+#include <std_msgs/Float32.h>
 #include <dji_sdk/dji_drone.h>
 #include <dji_sdk_web_groundstation/WebWaypointReceiveAction.h>
 #include <dji_sdk_web_groundstation/MapNavSrvCmd.h>
+#include <dji_sdk_web_groundstation/Local.h>
+#include <dji_sdk_web_groundstation/Global.h>
+
+
 #include <dji_sdk/WaypointNavigationAction.h>
 
 using namespace actionlib;
@@ -217,6 +222,15 @@ void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
 
 //Add Video Function
 
+void gacy(const std_msgs::Int16::ConstPtr& msg) {
+	
+	ROS_INFO("gimbal_angle_control_yam(-3200,3200)0.1°");
+
+	drone->gimbal_angle_control(0,0,msg->data,20);
+	sleep(2);
+}
+
+
 void gacr(const std_msgs::Int16::ConstPtr& msg) {
 	
 	ROS_INFO("gimbal_angle_control_roll(-350,350)0.1°");
@@ -236,23 +250,20 @@ void gacp(const std_msgs::Int16::ConstPtr& msg) {
 }
 
 
-void gacy(const std_msgs::Int16::ConstPtr& msg) {
-	
-	ROS_INFO("gimbal_angle_control_yam(-3200,3200)0.1°");
 
-	drone->gimbal_angle_control(0,0,msg->data,20);
-	sleep(2);
-}
 
-void yrp(const std_msgs::Bool::ConstPtr& msg) {
-	if(msg->data){
-        ROS_INFO("test good");
-		ROS_INFO("test yrp");
-		drone->gimbal_angle_control(100,0,0,20);
-		sleep(2);
-        }
-    else
-        ROS_INFO("test bad");
+void yrp(const dji_sdk_web_groundstation::YrpConstPtr& msg) {
+    
+    ROS_INFO("test yrp");
+    
+    int yaw =  msg->yaw_value;
+    int roll =  msg->roll_value;
+    int pitch =  msg->pitch_value;        
+    int duration = msg->duration_value;
+            
+    drone->gimbal_angle_control(yaw, roll, pitch, duration);
+    sleep(2);
+
 }
 
 
@@ -267,7 +278,7 @@ void up(const std_msgs::Int16::ConstPtr& msg) {
 
     for(int i = 0; i < 50*x; i ++)
     {
-        if(i < 33*x)
+        if(i < 32*x)
             drone->attitude_control(0x40, 0, 0, 1, 0);
         else
             drone->attitude_control(0x40, 0, 0, 0, 0);
@@ -280,14 +291,14 @@ void up(const std_msgs::Int16::ConstPtr& msg) {
 
 
 
-void down(const std_msgs::Int16::ConstPtr&  msg) {
+void down(const std_msgs::Int16::ConstPtr& msg) {
 
     ROS_INFO(" down   ");
     int x = msg->data;
 
     for(int i = 0; i < 50*x; i ++)
     {
-        if(i < 50*x-10)
+        if(i < 32*x)
             drone->attitude_control(0x40, 0, 0, -1, 0);
         else
             drone->attitude_control(0x40, 0, 0, 0, 0);
@@ -306,7 +317,7 @@ void right(const std_msgs::Int16::ConstPtr& msg) {
 
     for(int i = 0; i < 25*x; i ++)
     {
-        if(i < 25*x-10)
+        if(i < 16*x)
             drone->attitude_control(0x40, 0, 2, 0, 0);
         else
             drone->attitude_control(0x40, 0, 0, 0, 0);
@@ -324,7 +335,7 @@ void left(const std_msgs::Int16::ConstPtr& msg) {
 
     for(int i = 0; i < 25*x; i ++)
     {
-        if(i < 25*x-10)
+        if(i < 16*x)
             drone->attitude_control(0x40, 0, -2, 0, 0);
         else
             drone->attitude_control(0x40, 0, 0, 0, 0);
@@ -343,7 +354,7 @@ void front(const std_msgs::Int16::ConstPtr& msg) {
 
     for(int i = 0; i < 25*x; i ++)
     {
-        if(i < 25*x-10)
+        if(i < 16*x)
             drone->attitude_control(0x40, 2, 0, 0, 0);
         else
             drone->attitude_control(0x40, 0, 0, 0, 0);
@@ -361,7 +372,7 @@ void back(const std_msgs::Int16::ConstPtr& msg) {
 
     for(int i = 0; i < 25*x; i ++)
     {
-        if(i < 25*x-10)
+        if(i < 16*x)
             drone->attitude_control(0x40, -2, 0, 0, 0);
         else
             drone->attitude_control(0x40, 0, 0, 0, 0);
@@ -374,10 +385,11 @@ void back(const std_msgs::Int16::ConstPtr& msg) {
 
 
 
-void circle(const std_msgs::Int16::ConstPtr& msg) {
+void circle(const std_msgs::Float32::ConstPtr& msg) {
 
     ROS_INFO(" circle   ");
-    
+    int x = msg->data;
+
     static float time = 0;
     static float R = msg->data;
     static float V = msg->data;
@@ -435,6 +447,47 @@ void square(const std_msgs::Int16::ConstPtr& msg) {
 
 }
 
+void local(const dji_sdk_web_groundstation::LocalConstPtr& msg) {
+    ROS_INFO("%f,%f,%f", msg->x_value, msg->y_value,msg->z_value);
+    float x =  msg->x_value;
+    float y =  msg->y_value;
+    float z =  msg->z_value;
+    drone->local_position_navigation_send_request(x, y, z);
+    
+    sleep(2);
+
+}
+
+
+void global(const dji_sdk_web_groundstation::GlobalConstPtr& msg) {
+    ROS_INFO("%f,%f,%f", msg->lati_value, msg->longi_value,msg->alti_value);
+    double lati =  msg->lati_value;
+    double longi =  msg->longi_value;
+    float alti =  msg->alti_value;
+    drone->global_position_navigation_send_request(lati, longi, alti);
+    
+    sleep(2);
+
+}
+
+
+
+void request(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" takeoff   ");
+    drone->request_sdk_permission_control();
+    sleep(2);
+
+}
+
+void release(const std_msgs::Int16::ConstPtr& msg) {
+
+    ROS_INFO(" takeoff   ");
+    drone->release_sdk_permission_control();
+    sleep(2);
+
+}
+
 void takeoff(const std_msgs::Int16::ConstPtr& msg) {
 
     ROS_INFO(" takeoff   ");
@@ -458,11 +511,6 @@ void gohome(const std_msgs::Int16::ConstPtr& msg) {
     sleep(2);
 
 }
-
-
-
-
-
 
 
 
@@ -495,9 +543,14 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_left = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/left", 1, left);
     ros::Subscriber sub_front = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/front", 1, front);
     ros::Subscriber sub_back = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/back", 1, back);
-    
     ros::Subscriber sub_circle = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/circle", 1, circle);
     ros::Subscriber sub_square = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, square);
+    ros::Subscriber sub_local = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, local);
+    ros::Subscriber sub_global = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, global);
+
+   
+    ros::Subscriber sub_request = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, request);
+    ros::Subscriber sub_release = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, release);
     ros::Subscriber sub_takeoff = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, takeoff);
     ros::Subscriber sub_land = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/land", 1, land);
     ros::Subscriber sub_gohome = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/gohome", 1, gohome);

@@ -2,8 +2,15 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no,width=device-width" />
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">	
+    <link rel="stylesheet" href="css/marketing.css">
+
+
 
 	<!-- add rosbridge lib -->
 	<script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
@@ -18,88 +25,213 @@
 	<title>Waypoint Test</title>
 </head>
 <body>
+	
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">DJI</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">doc</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">other</a></li>
+        </ul>
+    </div>
+</div>
+
+	
+	
+	<div class="splash-container">
 	<div id="allmap"></div>
-	<div id="bottom" >
-		<div id="control">
+   </div>
+
+
+
+
+<div class="content-wrapper">
+    <div class="content">
+        <h2 class="content-head is-center">操作指南</h2>
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-rocket"></i>
+                    動力與視頻
+                </h3>
+                <p>
+					
+					<form>
+					<input id="up_value" type="text" value=2 >
+					<input id="up" type="button" value="up">
+					</form>
+
+					<form>
+					<input id="down_value" type="text" value=2 >
+					<input id="down" type="button" value="down">
+					</form>
+
+					<form>
+					<input id="right_value" type="text" value=2 >
+					<input id="right" type="button" value="right">
+					</form>
+
+					<form>
+					<input id="left_value" type="text" value=2 >
+					<input id="left" type="button" value="left">
+					</form>
+
+					<form>
+					<input id="front_value" type="text" value=2 >
+					<input id="front" type="button" value="front">
+					</form>
+
+					<form>
+					<input id="back_value" type="text" value=2 >
+					<input id="back" type="button" value="back" >
+					</form>
+					
+					<form>
+					<input id="circle_value" type="text" value=2 >
+					<input id="circle" type="button" value="circle">
+					</form>
+					
+
+					<form>
+					<input id="square_value" type="text" value=2 >
+					<input id="square" type="button" value="square">
+					</form>
+					
+					
+									
+					<form>
+					<input id="yaw_value" type="text" value= >
+					<input id="yaw" type="button" value="yaw(-320,320)">
+					</form>
+					
+
+					<form>
+					<input id="roll_value" type="text" value= >
+					<input id="roll" type="button" value="roll(-35,35)">
+					</form>
+					
+
+					<form>
+					<input id="pitch_value" type="text" value= >
+					<input id="pitch" type="button" value="pitch(-90,30)">
+					</form>
+					
+                </p>
+            </div>
 			
-			<!--Add button -->
-			<button id="yrp-test">yrp-test</button><br><br>
-			<button id="gimbal-angel-yam">gimbal-angel-yam</button><br><br>
-			<button id="gimbal-angel-roll">gimbal-angel-roll</button><br><br>
-			<button id="gimbal-angel-pitch">gimbal-angel-pitch</button><br><br>
-	
-			
-			
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-mobile"></i>
+                    高級動力
+                </h3>
+                <p>
+
 			<form>
-			<input id="up_value" type="text" value=5 >
-			<input id="up" type="button" value="up">
+			<input id="x_value" type="text" value=2 >
+			<input id="y_value" type="text" value=2 >
+			<input id="z_value" type="text" value=2 >
+			<br>
+			<input id="local" type="button" value="local">
 			</form>
-			
-			
-			<button id="down">down</button><br><br>
-			
-			
-			<button id="right">right</button><br><br>
-			<button id="left">left</button><br><br>
-			<button id="front">front</button><br><br>
-			<button id="back">back</button><br><br>
-			
-			
-			
-			
-			<button id="circle">circle</button><br><br>
-			<button id="square">square</button><br><br>
-
-
-			<button id="takeoff">takeoff</button><br><br>
-			<button id="land">landing</button><br><br>
-			<button id="gohome">gohome</button><br><br>
-
-			
-			
-			
-
-
 	
 	
+			<form>
+			<input id="lati_value" type="text" value= >
+			<input id="longi_value" type="text" value= >
+			<input id="alti_value" type="text" value= >
+			<br>
+			<input id="global" type="button" value="global">
+			</form>
 	
-			<button id="start-plan">Start Planning</button><br><br>
-			<button id="confirm-mission">Confirm Mission</button><br><br>
-			<button id="reset-mission">Reset Mission</button><br><br>
-			<button id="open-navmode">Open Navigation Mode</button><br><br>
-			<button id="upload-mission">Upload Mission</button><br><br>
-			<button id="start-mission">Start Mission</button><br><br>
-                        <!--
-			<button id="pause-mission">Pause Mission</button><br><br>
-			<button id="resume-mission">Resume Mission</button><br><br>
-                        -->
-			<button id="cancel-mission">Abort Mission</button><br><br>
-			<button id="close-navmode">Close Navigation Mode</button><br><br>
-			<!-- following is for testing, not a proper way -->
-                        <!--
-			<button id="download-mission">Download Mission</button><br><br>
-			<button id="download-waypoint">Download Waypoint</button><br><br>
-			<button id="set-idle">Set Idle Speed into 5</button><br><br>
-			<button id="get-idle">Get Idle Speed</button><br><br>
-                        -->
-		</div>
-		<div id="monitor">
+	
+			<form>
+			<input id="yaw_value" type="text" value=2 >
+			<input id="roll_value" type="text" value=2 >
+			<input id="pitch_value" type="text" value=2 >
+			<input id="duration_value" type="text" value=2 >
+			<br>
+			<input id="yrp" type="button" value="local">
+			</form>
 
-		</div>
-
-		<div id = "state-update">
-
+	
+             </p>
+            </div>
+			
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-th-large"></i>
+                    控制基礎
+                </h3>
+                <p>
+					<button id="request">request</button>
+					<button id="release">release</button>
+					<br>
+					<button id="takeoff">takeoff</button>
+					<button id="land">landing</button>
+					<button id="gohome">gohome</button>      
+				</p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-check-square-o"></i>
+                    定點飛行
+                </h3>
+                <p>
+					<button id="start-plan">Start Planning</button> 
+					<button id="confirm-mission">Confirm Mission</button> 
+					<button id="reset-mission">Reset Mission</button> 
+					<button id="open-navmode">Open Navigation Mode</button> 
+					<button id="upload-mission">Upload Mission</button> 
+					<button id="start-mission">Start Mission</button> 
+								<!--
+					<button id="pause-mission">Pause Mission</button> 
+					<button id="resume-mission">Resume Mission</button> 
+								-->
+					<button id="cancel-mission">Abort Mission</button> 
+					<button id="close-navmode">Close Navigation Mode</button> 
+					<!-- following is for testing, not a proper way -->
+								<!--
+					<button id="download-mission">Download Mission</button> 
+					<button id="download-waypoint">Download Waypoint</button> 
+					<button id="set-idle">Set Idle Speed into 5</button> 
+					<button id="get-idle">Get Idle Speed</button> 
+								-->
+				</p>
+            </div>
         </div>
+    </div>
 
-		<br><br>
 
-		<div id = "event-update">
 
+
+    <div class="ribbon l-box-lrg pure-g">
+        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+            <!--img class="pure-img-responsive" alt="File Icons" width="300" src="img/common/file-icons.png"-->
+			<img class="pure-img-responsive" width="300" src="http://192.168.99.120:8080/stream?topic=/dji_sdk/image_raw">
+
+			
         </div>
-		
-		<div id = "watch">
-		<img src="http://192.168.99.120:8080/stream?topic=/dji_sdk/image_raw">
-		</div>
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+            <p>
+			<div id="bottom" >
+				<div id="monitor"></div>
+				<div id = "state-update"> </div>
+				<div id = "event-update"></div>
+			</div>
+
+            </p>
+        </div>
+    </div>
+
+
+	
+	
+
 		
 			<!--p style = "color:red">ERROR MESSAGE:</p> <p id = "error-msg" style = "color:red" ></p>
 
@@ -115,6 +247,5 @@
 			<button id="setSpeed">Update Idle Speed</button><br>
 			<br>
 		</div-->
-	</div>
 </body>
 </html>

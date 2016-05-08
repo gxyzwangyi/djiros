@@ -1,0 +1,4 @@
+Int16 yaw_value
+Int16 roll_value
+Int16 pitch_value
+Int16 duration_value

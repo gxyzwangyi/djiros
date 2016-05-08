@@ -70,7 +70,7 @@ function Communicator(socket) {
     this.yrpTopic = new ROSLIB.Topic({
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/yrp',
-        messageType : 'std_msgs/Bool'
+        messageType : 'std_msgs/Yrp'
     });	
 		    
     //Add Control Topic
@@ -120,7 +120,7 @@ function Communicator(socket) {
     this.circleTopic = new ROSLIB.Topic({
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/circle',
-        messageType : 'std_msgs/Int16'
+        messageType : 'std_msgs/Float32'
     });
     
 
@@ -130,14 +130,42 @@ function Communicator(socket) {
         messageType : 'std_msgs/Int16'
     });
     
+    
+    this.localTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/local',
+        messageType : 'dji_sdk_web_groundstation/Local'
+    });
 
+    this.globalTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/global',
+        messageType : 'dji_sdk_web_groundstation/Global'
+    });
+
+
+
+
+
+//bool
+    this.requestTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/request',
+        messageType : 'std_msgs/Bool'
+    });
+
+    this.releaseTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/release',
+        messageType : 'std_msgs/Bool'
+    });
+    
     this.takeoffTopic = new ROSLIB.Topic({
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/takeoff',
         messageType : 'std_msgs/Bool'
     });
     
-
     this.landTopic = new ROSLIB.Topic({
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/land',
@@ -333,10 +361,10 @@ Communicator.prototype.continueWayline = function() {
 
 
 //Add Video
-Communicator.prototype.setGimbalControlYam = function() {
+Communicator.prototype.setGimbalControlYam = function(value) {
 
     var _msg = new ROSLIB.Message({
-        data : 500
+        data : parseInt(value)*10
     });
 
     console.log('setGimbalControlYam');
@@ -344,10 +372,10 @@ Communicator.prototype.setGimbalControlYam = function() {
 
 };
 
-Communicator.prototype.setGimbalControlRoll = function() {
+Communicator.prototype.setGimbalControlRoll = function(value) {
 
     var _msg = new ROSLIB.Message({
-        data : 500
+        data : parseInt(value)*10
     });
 
     console.log('setGimbalControlRoll');
@@ -355,10 +383,10 @@ Communicator.prototype.setGimbalControlRoll = function() {
 
 };
 
-Communicator.prototype.setGimbalControlPitch = function() {
+Communicator.prototype.setGimbalControlPitch = function(value) {
 
     var _msg = new ROSLIB.Message({
-        data : 500
+        data : parseInt(value)*10
     });
 
     console.log('setGimbalControlPitch');
@@ -367,10 +395,13 @@ Communicator.prototype.setGimbalControlPitch = function() {
 };
 
 
-Communicator.prototype.setYRP = function() {
+Communicator.prototype.setYRP = function(yaw,roll,pitch,duration) {
 
     var _msg = new ROSLIB.Message({
-        data : true
+        yaw_value : yaw ,
+        roll_value : roll ,
+        pitch_value : pitch ,
+        duration_value : duration
     });
 
     console.log('yrp');
@@ -379,78 +410,127 @@ Communicator.prototype.setYRP = function() {
 };
 
 // Add Control
+//value
 
 Communicator.prototype.setup = function(value) {
     var _msg = new ROSLIB.Message({
         data : parseInt(value)
     });
 
-    console.log('up'+parseInt(value));
+    console.log('up');
     this.upTopic.publish(_msg);
 };
 
-Communicator.prototype.setdown = function() {
+Communicator.prototype.setdown = function(value) {
     var _msg = new ROSLIB.Message({
-        data : 2
+        data : parseInt(value)
     });
 
     console.log('down');
     this.downTopic.publish(_msg);
 };
 
-Communicator.prototype.setright = function() {
+Communicator.prototype.setright = function(value) {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : parseInt(value)
     });
 
     console.log('right');
     this.rightTopic.publish(_msg);
 };
 
-Communicator.prototype.setleft = function() {
+Communicator.prototype.setleft = function(value) {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : parseInt(value)
     });
 
     console.log('left');
     this.leftTopic.publish(_msg);
 };
 
-Communicator.prototype.setfront = function() {
+Communicator.prototype.setfront = function(value) {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : parseInt(value)
     });
 
     console.log('front');
     this.frontTopic.publish(_msg);
 };
 
-Communicator.prototype.setback = function() {
+Communicator.prototype.setback = function(value) {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : parseInt(value)
     });
 
     console.log('back');
     this.backTopic.publish(_msg);
 };
 
-Communicator.prototype.setcircle = function() {
+Communicator.prototype.setcircle = function(value) {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : parseFloat(value)
     });
 
     console.log('circle');
     this.circleTopic.publish(_msg);
 };
 
-Communicator.prototype.setsquare = function() {
+Communicator.prototype.setsquare = function(value) {
     var _msg = new ROSLIB.Message({
-        data : true
+        data : parseInt(value)
     });
 
     console.log('square');
     this.squareTopic.publish(_msg);
 };
+
+Communicator.prototype.setlocal = function(x,y,z) {
+    var _msg = new ROSLIB.Message({
+        x_value : x ,
+        y_value : y ,
+        z_value : z
+    });
+
+    console.log('local');
+    this.localTopic.publish(_msg);
+};
+
+
+Communicator.prototype.setglobal = function(lati,longi,alti) {
+    var _msg = new ROSLIB.Message({
+        lati_value : lati ,
+        longi_value : longi ,
+        alti_value : alti
+    });
+
+    console.log('global');
+    this.globalTopic.publish(_msg);
+};
+
+
+
+//bool 
+
+
+Communicator.prototype.setrequest = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('request');
+    this.requestTopic.publish(_msg);
+};
+
+
+Communicator.prototype.setrelease = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('release');
+    this.releaseTopic.publish(_msg);
+};
+
 
 Communicator.prototype.settakeoff = function() {
     var _msg = new ROSLIB.Message({

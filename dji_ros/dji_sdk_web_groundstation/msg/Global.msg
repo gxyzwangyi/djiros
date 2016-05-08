@@ -1,0 +1,3 @@
+Float64 lati_value
+Float64 longi_value
+Float32 alti_value
