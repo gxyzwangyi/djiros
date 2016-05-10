@@ -226,7 +226,7 @@ void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
 
 void gacy(const std_msgs::Int16::ConstPtr& msg) {
 	
-	ROS_INFO("gimbal_angle_control_yam(-3200,3200)0.1°");
+	ROS_INFO("gimbal_angle_control_yaw(-3200,3200)0.1°");
 
 	drone->gimbal_angle_control(0,0,msg->data,20);
 	sleep(2);
@@ -533,7 +533,7 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub1 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/cmd", 1, cmdCB);
     ros::Subscriber sub2 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/ctrl", 1, ctrlCB);
 
-    ros::Subscriber sub3 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yam", 1, gacy);
+    ros::Subscriber sub3 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yaw", 1, gacy);
     ros::Subscriber sub4 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/roll", 1, gacr);
     ros::Subscriber sub5 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/pitch", 1, gacp);
     ros::Subscriber sub6 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yrp", 1, yrp);

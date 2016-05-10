@@ -87,13 +87,17 @@ $( document ).ready(function() {
 	});
 //Add Video function
 
-		$("#yam").bind("click",function() {
+		$("#yaw").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
-			alert("Drone not Connected!");
+			alert("Drone not Connected!");		
 		else
-			my_Communicator.setGimbalControlYam(document.getElementById("yaw_value").value);
-
+			my_Communicator.setGimbalControlYaw(document.getElementById("yaw_value").value);
+	
 	});
+	
+
+	
+	
 	
 		$("#roll").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')

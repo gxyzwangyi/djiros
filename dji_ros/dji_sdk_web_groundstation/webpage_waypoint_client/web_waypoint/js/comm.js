@@ -49,9 +49,9 @@ function Communicator(socket) {
     
     
 	//Add Video Topic
-    this.yamTopic = new ROSLIB.Topic({
+    this.yawTopic = new ROSLIB.Topic({
         ros : this.ros,
-        name : 'dji_sdk_web_groundstation/map_nav_srv/yam',
+        name : 'dji_sdk_web_groundstation/map_nav_srv/yaw',
         messageType : 'std_msgs/Int16'
     });	
 	
@@ -361,14 +361,14 @@ Communicator.prototype.continueWayline = function() {
 
 
 //Add Video
-Communicator.prototype.setGimbalControlYam = function(value) {
+Communicator.prototype.setGimbalControlYaw = function(value) {
 
     var _msg = new ROSLIB.Message({
         data : parseInt(value)*10
     });
 
-    console.log('setGimbalControlYam');
-    this.yamTopic.publish(_msg);
+    console.log('setGimbalControlYaw');
+    this.yawTopic.publish(_msg);
 
 };
 
