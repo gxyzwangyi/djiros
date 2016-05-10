@@ -475,16 +475,6 @@ void global(const dji_sdk_web_groundstation::GlobalConstPtr& msg) {
 
 
 
-void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
-    if(msg->data)
-        ROS_INFO("Request to obtain control");
-    else
-        ROS_INFO("Release control");
-
-    drone->sdk_permission_control(msg->data);
-    
-}
-
 
 
 
