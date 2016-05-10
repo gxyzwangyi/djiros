@@ -474,7 +474,21 @@ void global(const dji_sdk_web_groundstation::GlobalConstPtr& msg) {
 
 
 
-void request(const std_msgs::Int16::ConstPtr& msg) {
+
+void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data)
+        ROS_INFO("Request to obtain control");
+    else
+        ROS_INFO("Release control");
+
+    drone->sdk_permission_control(msg->data);
+    
+}
+
+
+
+
+void request(const std_msgs::Bool::ConstPtr& msg) {
 
     ROS_INFO(" takeoff   ");
     drone->request_sdk_permission_control();
@@ -482,7 +496,7 @@ void request(const std_msgs::Int16::ConstPtr& msg) {
 
 }
 
-void release(const std_msgs::Int16::ConstPtr& msg) {
+void release(const std_msgs::Bool::ConstPtr& msg) {
 
     ROS_INFO(" takeoff   ");
     drone->release_sdk_permission_control();
@@ -490,7 +504,7 @@ void release(const std_msgs::Int16::ConstPtr& msg) {
 
 }
 
-void takeoff(const std_msgs::Int16::ConstPtr& msg) {
+void takeoff(const std_msgs::Bool::ConstPtr& msg) {
 
     ROS_INFO(" takeoff   ");
     drone->takeoff() ;
@@ -498,7 +512,7 @@ void takeoff(const std_msgs::Int16::ConstPtr& msg) {
 
 }
 
-void land(const std_msgs::Int16::ConstPtr& msg) {
+void land(const std_msgs::Bool::ConstPtr& msg) {
 
     ROS_INFO(" land   ");
     drone->landing() ;
@@ -506,7 +520,7 @@ void land(const std_msgs::Int16::ConstPtr& msg) {
 
 }
 
-void gohome(const std_msgs::Int16::ConstPtr& msg) {
+void gohome(const std_msgs::Bool::ConstPtr& msg) {
 
     ROS_INFO("  gohome  ");
     drone->gohome() ;
