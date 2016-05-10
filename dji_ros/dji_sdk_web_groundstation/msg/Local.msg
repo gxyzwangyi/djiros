@@ -1,3 +1,3 @@
-Float32 x_value
-Float32 y_value
-Float32 z_value
+float32 x_value
+float32 y_value
+float32 z_value

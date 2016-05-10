@@ -9,6 +9,8 @@
 #include <dji_sdk_web_groundstation/MapNavSrvCmd.h>
 #include <dji_sdk_web_groundstation/Local.h>
 #include <dji_sdk_web_groundstation/Global.h>
+#include <dji_sdk_web_groundstation/Yrp.h>
+
 
 
 #include <dji_sdk/WaypointNavigationAction.h>

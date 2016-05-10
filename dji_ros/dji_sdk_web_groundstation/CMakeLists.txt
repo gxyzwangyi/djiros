@@ -53,6 +53,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
    MapNavSrvCmd.msg
    Local.msg
    Global.msg
+   Yrp.msg
 #   Message1.msg
 #   Message2.msg
  )

@@ -1,3 +1,3 @@
-Float64 lati_value
-Float64 longi_value
-Float32 alti_value
+float64 lati_value
+float64 longi_value
+float32 alti_value
