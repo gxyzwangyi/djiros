@@ -547,12 +547,12 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_back = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/back", 1, back);
     ros::Subscriber sub_circle = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/circle", 1, circle);
     ros::Subscriber sub_square = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, square);
-    ros::Subscriber sub_local = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, local);
-    ros::Subscriber sub_global = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/square", 1, global);
+    ros::Subscriber sub_local = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/local", 1, local);
+    ros::Subscriber sub_global = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/global", 1, global);
 
    
-    ros::Subscriber sub_request = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, request);
-    ros::Subscriber sub_release = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, release);
+    ros::Subscriber sub_request = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/request", 1, request);
+    ros::Subscriber sub_release = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/release", 1, release);
     ros::Subscriber sub_takeoff = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, takeoff);
     ros::Subscriber sub_land = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/land", 1, land);
     ros::Subscriber sub_gohome = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/gohome", 1, gohome);
