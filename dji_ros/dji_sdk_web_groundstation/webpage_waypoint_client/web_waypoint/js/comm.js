@@ -486,9 +486,9 @@ Communicator.prototype.setsquare = function(value) {
 
 Communicator.prototype.setlocal = function(x,y,z) {
     var _msg = new ROSLIB.Message({
-        x_value : x ,
-        y_value : y ,
-        z_value : z
+        x_value : parseFloat(x) ,
+        y_value : parseFloat(y) ,
+        z_value : parseFloat(z)
     });
 
     console.log('local');
@@ -498,9 +498,9 @@ Communicator.prototype.setlocal = function(x,y,z) {
 
 Communicator.prototype.setglobal = function(lati,longi,alti) {
     var _msg = new ROSLIB.Message({
-        lati_value : lati ,
-        longi_value : longi ,
-        alti_value : alti
+        lati_value : parseFloat(lati) ,
+        longi_value : parseFloat(longi) ,
+        alti_value : parseFloat(alti)
     });
 
     console.log('global');
