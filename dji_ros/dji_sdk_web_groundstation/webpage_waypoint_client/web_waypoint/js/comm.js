@@ -70,7 +70,7 @@ function Communicator(socket) {
     this.yrpTopic = new ROSLIB.Topic({
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/yrp',
-        messageType : 'std_msgs/Yrp'
+        messageType : 'dji_sdk_web_groundstation/Yrp'
     });	
 		    
     //Add Control Topic

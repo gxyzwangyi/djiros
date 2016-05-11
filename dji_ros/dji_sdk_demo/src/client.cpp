@@ -330,17 +330,17 @@ int main(int argc, char **argv)
                 break;
             case 'n':
                 /* Local Navi Test */
-                drone->local_position_navigation_send_request(-100, -100, 100);
+                drone->local_position_navigation_send_request(-10, -10, 10);
                 break;
             case 'o':
                 /* GPS Navi Test */
-                drone->global_position_navigation_send_request(22.535, 113.95, 100);
+                drone->global_position_navigation_send_request(0.0001, 0.0001, 10);
                 break;
             case 'p':
                 /* Waypoint List Navi Test */
                 {
-                    waypoint0.latitude = 22.535;
-                    waypoint0.longitude = 113.95;
+                    waypoint0.latitude = 0.0001;
+                    waypoint0.longitude = 0.0001;
                     waypoint0.altitude = 100;
                     waypoint0.staytime = 5;
                     waypoint0.heading = 0;
@@ -348,8 +348,8 @@ int main(int argc, char **argv)
                 newWaypointList.waypoint_list.push_back(waypoint0);
 
                 {
-                    waypoint1.latitude = 22.535;
-                    waypoint1.longitude = 113.96;
+                    waypoint1.latitude = 0.0002;
+                    waypoint1.longitude = 0.0002;
                     waypoint1.altitude = 100;
                     waypoint1.staytime = 0;
                     waypoint1.heading = 90;
@@ -357,8 +357,8 @@ int main(int argc, char **argv)
                 newWaypointList.waypoint_list.push_back(waypoint1);
 
                 {
-                    waypoint2.latitude = 22.545;
-                    waypoint2.longitude = 113.96;
+                    waypoint2.latitude = 0.0003;
+                    waypoint2.longitude = 0.0003;
                     waypoint2.altitude = 100;
                     waypoint2.staytime = 4;
                     waypoint2.heading = -90;
@@ -366,8 +366,8 @@ int main(int argc, char **argv)
                 newWaypointList.waypoint_list.push_back(waypoint2);
 
                 {
-                    waypoint3.latitude = 22.545;
-                    waypoint3.longitude = 113.96;
+                    waypoint3.latitude = 0.0004;
+                    waypoint3.longitude = 0.0004;
                     waypoint3.altitude = 10;
                     waypoint3.staytime = 2;
                     waypoint3.heading = 180;
@@ -375,8 +375,8 @@ int main(int argc, char **argv)
                 newWaypointList.waypoint_list.push_back(waypoint3);
 
                 {
-                    waypoint4.latitude = 22.525;
-                    waypoint4.longitude = 113.93;
+                    waypoint4.latitude = 0.0005;
+                    waypoint4.longitude = 0.0005;
                     waypoint4.altitude = 50;
                     waypoint4.staytime = 0;
                     waypoint4.heading = -180;
@@ -445,8 +445,8 @@ int main(int argc, char **argv)
 				waypoint_task.action_on_rc_lost = 0;
 				waypoint_task.gimbal_pitch_mode = 0;
 
-				waypoint.latitude = 22.540091;
-				waypoint.longitude = 113.946593;
+				waypoint.latitude = 0.0001;
+				waypoint.longitude = 0.0001;
 				waypoint.altitude = 100;
 				waypoint.damping_distance = 0;
 				waypoint.target_yaw = 0;
@@ -462,8 +462,8 @@ int main(int argc, char **argv)
 
 				waypoint_task.mission_waypoint.push_back(waypoint);
 
-				waypoint.latitude = 22.540015;
-				waypoint.longitude = 113.94659;
+				waypoint.latitude = 0.0001;
+				waypoint.longitude = 0.0001;
 				waypoint.altitude = 120;
 				waypoint.damping_distance = 2;
 				waypoint.target_yaw = 180;
@@ -485,8 +485,8 @@ int main(int argc, char **argv)
 				break;
 			case 'w':
 				//mission hotpoint upload
-				hotpoint_task.latitude = 22.540091;
-				hotpoint_task.longitude = 113.946593;
+				hotpoint_task.latitude = 0.0002;
+				hotpoint_task.longitude = 0.0002;
 				hotpoint_task.altitude = 20;
 				hotpoint_task.radius = 10;
 				hotpoint_task.angular_speed = 10;
@@ -500,8 +500,8 @@ int main(int argc, char **argv)
 				//mission followme upload
 				followme_task.mode = 0;
 				followme_task.yaw_mode = 0;
-				followme_task.initial_latitude = 23.540091;
-				followme_task.initial_longitude = 113.946593;
+				followme_task.initial_latitude = 0.0001;
+				followme_task.initial_longitude = 0.0001;
 				followme_task.initial_altitude = 10;
 				followme_task.sensitivity = 1;
 
@@ -551,8 +551,8 @@ int main(int argc, char **argv)
 				//mission followme update target
 				for (int i = 0; i < 20; i++)
 				{
-					followme_target.latitude = 22.540091 + i*0.000001;
-					followme_target.longitude = 113.946593 + i*0.000001;
+					followme_target.latitude = 0.0001 + i*0.000001;
+					followme_target.longitude = 0.0001 + i*0.000001;
 					followme_target.altitude = 100;
 					drone->mission_followme_update_target(followme_target);
 					usleep(20000);

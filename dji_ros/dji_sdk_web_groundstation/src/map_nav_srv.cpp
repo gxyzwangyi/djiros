@@ -480,7 +480,7 @@ void global(const dji_sdk_web_groundstation::GlobalConstPtr& msg) {
 
 void request(const std_msgs::Bool::ConstPtr& msg) {
 
-    ROS_INFO(" takeoff   ");
+    ROS_INFO(" request   ");
     drone->request_sdk_permission_control();
     sleep(2);
 
@@ -488,7 +488,7 @@ void request(const std_msgs::Bool::ConstPtr& msg) {
 
 void release(const std_msgs::Bool::ConstPtr& msg) {
 
-    ROS_INFO(" takeoff   ");
+    ROS_INFO(" release   ");
     drone->release_sdk_permission_control();
     sleep(2);
 
