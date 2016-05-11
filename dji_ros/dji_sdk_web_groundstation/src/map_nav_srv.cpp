@@ -295,7 +295,7 @@ void up(const std_msgs::Int16::ConstPtr& msg) {
 
 void down(const std_msgs::Int16::ConstPtr& msg) {
 
-    ROS_INFO(" down   ");
+    ROS_INFO(" down");
     int x = msg->data;
 
     for(int i = 0; i < 50*x; i ++)
@@ -313,7 +313,7 @@ void down(const std_msgs::Int16::ConstPtr& msg) {
 
 void right(const std_msgs::Int16::ConstPtr& msg) {
 
-    ROS_INFO(" right   ");
+    ROS_INFO(" right");
     int x = msg->data;
 
 

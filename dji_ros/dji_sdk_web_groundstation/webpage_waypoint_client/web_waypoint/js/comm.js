@@ -398,10 +398,10 @@ Communicator.prototype.setGimbalControlPitch = function(value) {
 Communicator.prototype.setYRP = function(yaw,roll,pitch,duration) {
 
     var _msg = new ROSLIB.Message({
-        yaw_value : yaw ,
-        roll_value : roll ,
-        pitch_value : pitch ,
-        duration_value : duration
+        yaw_value : parseInt(yaw) ,
+        roll_value : parseInt(roll) ,
+        pitch_value : parseInt(pitch) ,
+        duration_value : parseInt(duration)
     });
 
     console.log('yrp');
