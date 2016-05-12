@@ -119,10 +119,10 @@ $( document ).ready(function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
-			var yaw = document.getElementById("yaw_value").value
-            var roll = document.getElementById("roll_value").value
-			var pitch = document.getElementById("pitch_value").value
-			var duration = document.getElementById("duration_value").value
+			var yaw = document.getElementById("y_value").value
+            var roll = document.getElementById("r_value").value
+			var pitch = document.getElementById("p_value").value
+			var duration = document.getElementById("d_value").value
 
 			my_Communicator.setYRP(yaw,roll,pitch,duration);
 

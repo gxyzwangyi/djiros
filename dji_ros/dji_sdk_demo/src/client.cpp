@@ -341,7 +341,7 @@ int main(int argc, char **argv)
                 {
                     waypoint0.latitude = 0.0001;
                     waypoint0.longitude = 0.0001;
-                    waypoint0.altitude = 100;
+                    waypoint0.altitude = 10;
                     waypoint0.staytime = 5;
                     waypoint0.heading = 0;
                 }
@@ -350,7 +350,7 @@ int main(int argc, char **argv)
                 {
                     waypoint1.latitude = 0.0002;
                     waypoint1.longitude = 0.0002;
-                    waypoint1.altitude = 100;
+                    waypoint1.altitude = 10;
                     waypoint1.staytime = 0;
                     waypoint1.heading = 90;
                 }
@@ -359,7 +359,7 @@ int main(int argc, char **argv)
                 {
                     waypoint2.latitude = 0.0003;
                     waypoint2.longitude = 0.0003;
-                    waypoint2.altitude = 100;
+                    waypoint2.altitude = 10;
                     waypoint2.staytime = 4;
                     waypoint2.heading = -90;
                 }
@@ -447,7 +447,7 @@ int main(int argc, char **argv)
 
 				waypoint.latitude = 0.0001;
 				waypoint.longitude = 0.0001;
-				waypoint.altitude = 100;
+				waypoint.altitude = 10;
 				waypoint.damping_distance = 0;
 				waypoint.target_yaw = 0;
 				waypoint.target_gimbal_pitch = 0;
@@ -462,9 +462,9 @@ int main(int argc, char **argv)
 
 				waypoint_task.mission_waypoint.push_back(waypoint);
 
-				waypoint.latitude = 0.0001;
-				waypoint.longitude = 0.0001;
-				waypoint.altitude = 120;
+				waypoint.latitude = 0.0002;
+				waypoint.longitude = 0.0002;
+				waypoint.altitude = 12;
 				waypoint.damping_distance = 2;
 				waypoint.target_yaw = 180;
 				waypoint.target_gimbal_pitch = 0;
@@ -553,7 +553,7 @@ int main(int argc, char **argv)
 				{
 					followme_target.latitude = 0.0001 + i*0.000001;
 					followme_target.longitude = 0.0001 + i*0.000001;
-					followme_target.altitude = 100;
+					followme_target.altitude = 10;
 					drone->mission_followme_update_target(followme_target);
 					usleep(20000);
 				}
