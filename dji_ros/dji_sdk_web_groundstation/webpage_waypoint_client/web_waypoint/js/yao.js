@@ -14,7 +14,22 @@
 
         }
     };
+    var joysticks1 = {
+        semi: {
+            zone: s('.zone1.semi'),
+            mode: 'semi',
+            catchDistance: 150,
+            color: 'white',
+            fadeTime: 500 ,
+            threshold: 0.1
+
+        }
+    };
+    
+    
+    
     var joystick;
+    var joystick1;
 
     // Get debug elements and map them
     var elDebug = sId('debug');
@@ -52,7 +67,7 @@
     }
     
     function bindNipple1 () {
-        joystick
+        joystick1
             .on('move', function (evt, data) {
             debug(data);
         })
@@ -76,19 +91,19 @@
         function createNipple1 (evt) {
         var type = typeof evt === 'string' ?
             evt : evt.target.getAttribute('data-type');
-        if (joystick) {
-            joystick.destroy();
+        if (joystick1) {
+            joystick1.destroy();
         }
         removeClass(s('.zone1.active'), 'active');
         removeClass(s('.highlight1.active'), 'active');
         s('.highlight1.' + type).className += ' active';
         s('.zone1.' + type).className += ' active';
-        joystick = nipplejs.create(joysticks[type]);
+        joystick1 = nipplejs.create(joysticks1[type]);
         bindNipple1();
     }
     
     createNipple('semi');
-    createNipple1('semi');
+    //createNipple1('semi');
     
 
     // Print data into elements

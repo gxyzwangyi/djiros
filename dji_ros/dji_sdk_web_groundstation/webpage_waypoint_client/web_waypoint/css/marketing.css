@@ -180,9 +180,9 @@ a.pure-button-primary {
 .content-wrapper {
     /* These styles are required for the "scroll-over" effect */
     position: absolute;
-    top: 87%;
+    top: 95%;
     width: 100%;
-    min-height: 12%;
+    min-height: 4%;
     z-index: 2;
     background: white;
 

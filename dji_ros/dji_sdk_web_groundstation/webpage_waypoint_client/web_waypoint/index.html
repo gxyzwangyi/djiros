@@ -82,6 +82,9 @@
 	<script type="text/javascript" src="js/planner.js"></script>
 	<script type="text/javascript" src="js/wp_control.js"></script>
 	<script type="text/javascript" src="js/comm.js"></script>
+	
+	<script type="text/javascript" src="js/nipplejs.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/yao.js" charset="utf-8"></script>
 	<title>Waypoint Test</title>
 </head>
 <body>
@@ -160,26 +163,32 @@
 					<input id="square_value" type="text" value=2 >
 					<input id="square" type="button" value="square">
 					</form>
-					
-					
-									
-					<form>
-					<input id="yaw_value" type="text" value= >
-					<input id="yaw" type="button" value="yaw(-320,320)">
-					</form>
-					
-
-					<form>
-					<input id="roll_value" type="text" value= >
-					<input id="roll" type="button" value="roll(-35,35)">
-					</form>
-					
-
-					<form>
-					<input id="pitch_value" type="text" value= >
-					<input id="pitch" type="button" value="pitch(-90,30)">
-					</form>
-					
+				                    
+                    
+                    <form oninput="amount.value=rangeInput.value - 1000">
+                        <label for="yaw">Yaw</label>
+                        <input type='range' id="yaw" name="rangeInput" data-type="yaw" step='1' value='1000' max='1999' />
+                        <output for="yaw" name="amount">0</output>
+                        <input id="yaw" type="button" value="yaw">
+                    </form>
+                    
+                    <form oninput="amount.value=rangeInput.value - 1000">
+                        <label for="roll">Roll</label>
+                        <input type='range' id="roll" name="rangeInput" data-type="roll" step='1' value='1000' max='1999' />
+                        <output for="roll" name="amount">0</output>
+                        <input id="roll" type="button" value="roll">
+                    </form>          
+                    
+                    <form oninput="amount.value=rangeInput.value - 1000">
+                        <label for="pitch">Pitch</label>
+                        <input type='range' id="pitch" name="rangeInput" data-type="pitch" step='1' value='1000' max='1999' />
+                        <output for="pitch" name="amount">0</output>
+                        <input id="pitch" type="button" value="pitch">
+                    </form> 
+                                           
+          
+                 
+                    
                 </p>
             </div>
 			
@@ -208,16 +217,40 @@
 			</form>
 	
 	
-			<form>
-			<input id="y_value" type="text" value=2 >
-			<input id="r_value" type="text" value=2 >
-			<input id="p_value" type="text" value=2 >
-			<input id="d_value" type="text" value=2 >
-			<br>
-			<input id="yrp" type="button" value="yrp">
-			</form>
 
 	
+                  
+            <form oninput="amount.value=rangeInput.value - 1000">
+                <label for="y_value">Yaw</label>
+                <input type='range' id="y_value" name="rangeInput" data-type="y_value" step='1' value='1000' max='1999' />
+                <output for="y_value" name="amount">0</output>
+            </form>
+            
+            <form oninput="amount.value=rangeInput.value - 1000">
+                <label for="r_value">roll</label>
+                <input type='range' id="r_value" name="rangeInput" data-type="r_value" step='1' value='1000' max='1999' />
+                <output for="r_value" name="amount">0</output>
+            </form>          
+            
+            <form oninput="amount.value=rangeInput.value - 1000">
+                <label for="p_value">pitch</label>
+                <input type='range' id="p_value" name="rangeInput" data-type="p_value" step='1' value='1000' max='1999' />
+                <output for="p_value" name="amount">0</output>
+            </form> 
+            <input id="d_value" type="text" value=2 >
+                <br>
+            <input id="yrp" type="button" value="yrp">
+            
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
              </p>
             </div>
 			
@@ -268,9 +301,158 @@
 
 
 
+<div class="content-wrapper">
+    <div class="content">
+        <h2 class="content-head is-center">操作指南</h2>
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-rocket"></i>
+                    多點飛行
+                </h3>
+                <p>
+
+
+
+                </p>
+            </div>
+			
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-mobile"></i>
+                    高級動力
+                </h3>
+                <p>
+
+
+	
+                 </p>
+            </div>
+			
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-th-large"></i>
+                    控制基礎
+                </h3>
+                <p>
+<table class="pure-table pure-table-horizontal">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>经度</th>
+            <th>纬度</th>
+            <th>高度</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><input id="way1_lati" type="text" value= ></td>
+            <td><input id="way1_longi" type="text" value= > </td>
+            <td><input id="way1_alti" type="text" value= ></td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td><input id="way2_lati" type="text" value= ></td>
+            <td><input id="way2_longi" type="text" value= ></td>
+            <td><input id="way2_alti" type="text" value= > <td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td><input id="way3_lati" type="text" value= ></td>
+            <td><input id="way3_longi" type="text" value= ></td>
+            <td><input id="way3_alti" type="text" value= ></td>
+        </tr>
+    </tbody>
+</table>
+<button class="way_upload">waypoint_upload</button>
+
+<table class="pure-table pure-table-horizontal">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>经度</th>
+            <th>纬度</th>
+            <th>高度</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><input id="hot_lati" type="text" value= ></td>
+            <td><input id="hot_longi" type="text" value= > </td>
+            <td><input id="hot_alti" type="text" value= ></td>
+        </tr>
+
+    </tbody>
+</table>
+
+            <div class="pure-u-1 pure-u-md-1-4">
+                <label for="hot_radius">半徑</label>
+                <input id="hot_radius" class="pure-u-23-24" type="text">
+            </div>
+
+            <div class="pure-u-1 pure-u-md-1-4">
+                <label for="hot_speed">角速度</label>
+                <input id="hot_speed" class="pure-u-23-24" type="text">
+            </div>
+            
+            <div class="pure-u-1 pure-u-md-1-4">
+                <label for="clockwise">轉向</label>
+                <select id="clockwise" class="pure-input-1-2">
+                    <option>順</option>
+                    <option>逆</option>
+                </select>
+            </div>
+            <button class="hot_upload">hot_upload</button>
+
+  
+   
+			</p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-check-square-o"></i>
+                    定點飛行
+                </h3>
+                <p>
+
+
+				</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="ribbon l-box-lrg pure-g">
         <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-            <!--img class="pure-img-responsive" alt="File Icons" width="300" src="img/common/file-icons.png"-->
 			<img class="pure-img-responsive" width="300" src="http://192.168.99.121:8080/stream?topic=/dji_sdk/image_raw">
 
 			
@@ -319,7 +501,7 @@
    
             </div>
 
-            <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <!--div class="l-box-lrg pure-u-1 pure-u-md-1-2">
 				<div class="semi active highlight highlight-javascript"></div>
 
 
@@ -338,19 +520,20 @@
 						<div class="dump1"></div>
 					</div>
 
-					<div class="zone1 semi active"></div>
+					<div class="zone1 semi1 active1"></div>
 
 				</div>
 
 
-            </div>
+            </div-->
+			
+			
         </div>
 
     </div>
 	
 	
-	<script src="js/nipplejs.min.js" charset="utf-8"></script>
-<script src="js/yao.js" charset="utf-8"></script>
+
 
 	
 	
