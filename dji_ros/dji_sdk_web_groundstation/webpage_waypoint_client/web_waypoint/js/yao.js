@@ -22,13 +22,11 @@
 
     // Get debug elements and map them
     var elDebug = sId('debug');
-    var elDump = elDebug.querySelector('.dump');
     var els = {
         distance: elDebug.querySelector('.distance .data'),
         angle: {
             degree: elDebug.querySelector('.angle .degree .data')
         }
-
     };
 
 
@@ -88,20 +86,5 @@
     
     
 
-    var nbEvents = 0;
-
-    // Dump data
-    function dump (evt) {
-        setTimeout(function () {
-            if (elDump.children.length > 4) {
-                elDump.removeChild(elDump.firstChild);
-            }
-            var newEvent = document.createElement('div');
-            newEvent.innerHTML = '#' + nbEvents + ' : <span class="data">' +
-                evt + '</span>';
-            elDump.appendChild(newEvent);
-            nbEvents += 1;
-        }, 0);
-    }    
     
     
