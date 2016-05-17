@@ -289,8 +289,6 @@ $( document ).ready(function() {
             var way3_longi = document.getElementById("way3_longi").value
 			var way3_alti=  document.getElementById("way3_alti").value	
 		
-		
-		
 			var way_list=new Array();
 			way_list[0] = new Array(way1_lati,way1_longi,way1_alti);
 			way_list[1] = new Array(way2_lati,way2_longi,way2_alti);
@@ -331,7 +329,37 @@ $( document ).ready(function() {
 	
 	
 	
-	
+	    $("#start").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setstart();
+
+    });	
+
+        $("#pause").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setpause();
+
+    });	
+
+        $("#resume").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setresume();
+
+    });	
+
+        $("#cancel").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setcancel();
+
+    });	
 	
 	
 	

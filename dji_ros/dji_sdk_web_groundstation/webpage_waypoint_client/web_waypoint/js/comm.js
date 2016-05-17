@@ -192,6 +192,45 @@ function Communicator(socket) {
         messageType : 'dji_sdk_web_groundstation/Hot'
     });    
        
+//point
+    Communicator.prototype.setstart = function() {
+        var _msg = new ROSLIB.Message({
+            data : true
+        });
+
+        console.log('start');
+        this.startTopic.publish(_msg);
+    };
+
+    Communicator.prototype.setpause = function() {
+        var _msg = new ROSLIB.Message({
+            data : true
+        });
+
+        console.log('pause');
+        this.pauseTopic.publish(_msg);
+    };
+
+    Communicator.prototype.setresume = function() {
+        var _msg = new ROSLIB.Message({
+            data : true
+        });
+
+        console.log('resume');
+        this.resumeTopic.publish(_msg);
+    };
+
+    Communicator.prototype.setcancel = function() {
+        var _msg = new ROSLIB.Message({
+            data : true
+        });
+
+        console.log('cancel');
+        this.cancelTopic.publish(_msg);
+    };
+
+
+
     
     
     
@@ -606,3 +645,42 @@ Communicator.prototype.sethot = function(lati,longi,alti,speed,radius,clockwise)
     console.log('hot');
     this.hotTopic.publish(_msg);
 };
+
+
+Communicator.prototype.setstart = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('start');
+    this.startTopic.publish(_msg);
+};
+
+Communicator.prototype.setpause = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('pause');
+    this.pauseTopic.publish(_msg);
+};
+
+Communicator.prototype.setresume = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('resume');
+    this.resumeTopic.publish(_msg);
+};
+
+Communicator.prototype.setcancel = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('cancel');
+    this.cancelTopic.publish(_msg);
+};
+
+

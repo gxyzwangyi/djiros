@@ -529,66 +529,50 @@ void gohome(const std_msgs::Bool::ConstPtr& msg) {
 
 void way(const dji_sdk_web_groundstation::WayPtr& msg) {
 
-				waypoint_task.velocity_range = 10;
-				waypoint_task.idle_velocity = 3;
-				waypoint_task.action_on_finish = 0;
-				waypoint_task.mission_exec_times = 1;
-				waypoint_task.yaw_mode = 4;
-				waypoint_task.trace_mode = 0;
-				waypoint_task.action_on_rc_lost = 0;
-				waypoint_task.gimbal_pitch_mode = 0;
+    waypoint_task.velocity_range = 10;
+    waypoint_task.idle_velocity = 3;
+    waypoint_task.action_on_finish = 0;
+    waypoint_task.mission_exec_times = 1;
+    waypoint_task.yaw_mode = 4;
+    waypoint_task.trace_mode = 0;
+    waypoint_task.action_on_rc_lost = 0;
+    waypoint_task.gimbal_pitch_mode = 0;
 
+    waypoint.latitude = msg->way1_lati;
+    waypoint.longitude = msg->way1_longi;
+    waypoint.altitude = msg->way1_alti;
+    waypoint.damping_distance = 0;
+    waypoint.target_yaw = 0;
+    waypoint.target_gimbal_pitch = 0;
+    waypoint.turn_mode = 0;
+    waypoint.has_action = 0;
 
+    waypoint_task.mission_waypoint.push_back(waypoint);
 
-				waypoint.latitude = msg->way1_lati;
-				waypoint.longitude = msg->way1_longi;
-				waypoint.altitude = msg->way1_alti;
-				waypoint.damping_distance = 0;
-				waypoint.target_yaw = 0;
-				waypoint.target_gimbal_pitch = 0;
-				waypoint.turn_mode = 0;
-				waypoint.has_action = 0;
-	
-    
+    waypoint.latitude = msg->way2_lati;
+    waypoint.longitude = msg->way2_longi;
+    waypoint.altitude = msg->way2_alti;
+    waypoint.damping_distance = 0;
+    waypoint.target_yaw = 0;
+    waypoint.target_gimbal_pitch = 0;
+    waypoint.turn_mode = 0;
+    waypoint.has_action = 0;
 
-				waypoint_task.mission_waypoint.push_back(waypoint);
+    waypoint_task.mission_waypoint.push_back(waypoint);
 
-				waypoint.latitude = msg->way2_lati;
-				waypoint.longitude = msg->way2_longi;
-				waypoint.altitude = msg->way2_alti;
-				waypoint.damping_distance = 0;
-				waypoint.target_yaw = 0;
-				waypoint.target_gimbal_pitch = 0;
-				waypoint.turn_mode = 0;
-				waypoint.has_action = 0;
+    waypoint.latitude = msg->way3_lati;
+    waypoint.longitude = msg->way3_longi;
+    waypoint.altitude = msg->way3_alti;
+    waypoint.damping_distance = 0;
+    waypoint.target_yaw = 0;
+    waypoint.target_gimbal_pitch = 0;
+    waypoint.turn_mode = 0;
+    waypoint.has_action = 0;
 
+    waypoint_task.mission_waypoint.push_back(waypoint);
 
+    drone->mission_waypoint_upload(waypoint_task);
 
-				waypoint_task.mission_waypoint.push_back(waypoint);
-
-				waypoint.latitude = msg->way3_lati;
-				waypoint.longitude = msg->way3_longi;
-				waypoint.altitude = msg->way3_alti;
-				waypoint.damping_distance = 0;
-				waypoint.target_yaw = 0;
-				waypoint.target_gimbal_pitch = 0;
-				waypoint.turn_mode = 0;
-				waypoint.has_action = 0;
-
-
-
-				waypoint_task.mission_waypoint.push_back(waypoint);
-
-
-
-				drone->mission_waypoint_upload(waypoint_task);
-
-
-
-
-
-    
-    
     sleep(2);
 
 }
@@ -596,7 +580,6 @@ void way(const dji_sdk_web_groundstation::WayPtr& msg) {
 
 
 void hot(const dji_sdk_web_groundstation::HotPtr& msg) {
-
 
     hotpoint_task.latitude = msg->hot_lati;
     hotpoint_task.longitude = msg->hot_longi;
@@ -609,10 +592,62 @@ void hot(const dji_sdk_web_groundstation::HotPtr& msg) {
 
     drone->mission_hotpoint_upload(hotpoint_task);
 
-
     sleep(2);
 
 }
+
+
+
+
+void start(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data){
+    ROS_INFO(" start   ");
+    drone->mission_start();
+    sleep(2);
+    }
+    else
+    ROS_INFO(" error  ");
+}
+
+void pause(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data){
+    ROS_INFO("  pause  ");
+	drone->mission_pause();
+    sleep(2);
+    }
+    else
+    ROS_INFO(" error  ");
+}
+
+void resume(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data){
+    ROS_INFO(" resume   ");
+	drone->mission_resume();
+    sleep(2);
+     }   
+    else
+    ROS_INFO(" error  ");
+}
+
+void cancel(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data){
+    ROS_INFO("  cancel  ");
+	drone->mission_cancel();
+    sleep(2);
+    }
+    else
+    ROS_INFO(" error  ");
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -663,6 +698,10 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_hot = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/hot", 1, hot);
 
 
+    ros::Subscriber sub_start = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/start", 1, start);
+    ros::Subscriber sub_pause = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/pause", 1, pause);
+    ros::Subscriber sub_resume = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/resume", 1, resume);
+    ros::Subscriber sub_cancel = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/cancel", 1, cancel);
 
 
 
