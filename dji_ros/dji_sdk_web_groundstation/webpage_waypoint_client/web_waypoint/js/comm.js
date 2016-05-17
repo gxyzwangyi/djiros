@@ -179,10 +179,19 @@ function Communicator(socket) {
         messageType : 'std_msgs/Bool'
     });
     
+ //Bigger   
+    this.wayTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/way',
+        messageType : 'dji_sdk_web_groundstation/Way'
+    });    
     
-    
-    
-    
+     this.hotTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/hot',
+        messageType : 'dji_sdk_web_groundstation/Hot'
+    });    
+       
     
     
     
@@ -559,3 +568,41 @@ Communicator.prototype.setgohome = function() {
     this.gohomeTopic.publish(_msg);
 };
 
+
+
+
+Communicator.prototype.setway = function(way) {
+    var _msg = new ROSLIB.Message({
+        way1_lati : parseFloat(way[0][0]),
+        way1_longi : parseFloat(way[0][1]),
+        way1_alti : parseFloat(way[0][2]),
+        
+        way2_lati : parseFloat(way[1][0]),
+        way2_longi : parseFloat(way[1][1]),
+        way2_alti : parseFloat(way[1][2]),
+
+        way3_lati : parseFloat(way[2][0]),
+        way3_longi : parseFloat(way[2][1]),
+        way3_alti : parseFloat(way[2][2])
+    });
+
+    console.log('way');
+    this.wayTopic.publish(_msg);
+};
+
+
+Communicator.prototype.sethot = function(lati,longi,alti,speed,radius,clockwise) {
+    var _msg = new ROSLIB.Message({
+     hot_lati :parseFloat(lati),
+      hot_longi : parseFloat(longi),
+      hot_alti : parseFloat(alti),
+      hot_speed :parseFloat(speed),
+      hot_radius :parseFloat(radius),
+      hot_clockwise :parseInt(clockwise)
+           
+
+    });
+
+    console.log('hot');
+    this.hotTopic.publish(_msg);
+};

@@ -272,6 +272,71 @@ $( document ).ready(function() {
 
 	
 	
+	    $("#way_upload").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+		
+			var way1_lati = document.getElementById("way1_lati").value
+            var way1_longi = document.getElementById("way1_longi").value
+			var way1_alti=  document.getElementById("way1_alti").value		
+		
+			var way2_lati = document.getElementById("way2_lati").value
+            var way2_longi = document.getElementById("way2_longi").value
+			var way2_alti=  document.getElementById("way2_alti").value		
+
+			var way3_lati = document.getElementById("way3_lati").value
+            var way3_longi = document.getElementById("way3_longi").value
+			var way3_alti=  document.getElementById("way3_alti").value	
+		
+		
+		
+			var way_list=new Array();
+			way_list[0] = new Array(way1_lati,way1_longi,way1_alti);
+			way_list[1] = new Array(way2_lati,way2_longi,way2_alti);
+			way_list[2] = new Array(way3_lati,way3_longi,way3_alti);
+
+		
+
+			my_Communicator.setway(way_list);
+
+    });	
+	
+	
+	
+	
+	
+	
+	    $("#hot_upload").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+		
+		
+			var lati = document.getElementById("hot_lati").value
+            var longi = document.getElementById("hot_longi").value
+			var alti=  document.getElementById("hot_alti").value
+			var speed=  document.getElementById("hot_speed").value
+			var radius=  document.getElementById("hot_radius").value
+			if (document.getElementById("clockwise").value="顺")
+				var clockwise = 1 
+			else
+				var clockwise = 0
+
+			
+			
+			my_Communicator.sethot(lati,longi,alti,speed,radius,clockwise);
+
+    });	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

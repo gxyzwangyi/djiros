@@ -10,6 +10,8 @@
 #include <dji_sdk_web_groundstation/Local.h>
 #include <dji_sdk_web_groundstation/Global.h>
 #include <dji_sdk_web_groundstation/Yrp.h>
+#include <dji_sdk_web_groundstation/Way.h>
+#include <dji_sdk_web_groundstation/Hot.h>
 
 
 
@@ -28,6 +30,10 @@ typedef dji_sdk::WaypointNavigationAction WPAction_t;
 SimpleActionServer<Action_t>* asPtr_;
 
 DJIDrone* drone;
+
+dji_sdk::MissionWaypointTask waypoint_task;
+dji_sdk::MissionWaypoint 	 waypoint;
+dji_sdk::MissionHotpointTask hotpoint_task;
 
 uint8_t cmdCode_ = 0;
 uint8_t stage_ = 0;
@@ -521,6 +527,98 @@ void gohome(const std_msgs::Bool::ConstPtr& msg) {
 
 
 
+void way(const dji_sdk_web_groundstation::WayPtr& msg) {
+
+				waypoint_task.velocity_range = 10;
+				waypoint_task.idle_velocity = 3;
+				waypoint_task.action_on_finish = 0;
+				waypoint_task.mission_exec_times = 1;
+				waypoint_task.yaw_mode = 4;
+				waypoint_task.trace_mode = 0;
+				waypoint_task.action_on_rc_lost = 0;
+				waypoint_task.gimbal_pitch_mode = 0;
+
+
+
+				waypoint.latitude = msg->way1_lati;
+				waypoint.longitude = msg->way1_longi;
+				waypoint.altitude = msg->way1_alti;
+				waypoint.damping_distance = 0;
+				waypoint.target_yaw = 0;
+				waypoint.target_gimbal_pitch = 0;
+				waypoint.turn_mode = 0;
+				waypoint.has_action = 0;
+	
+    
+
+				waypoint_task.mission_waypoint.push_back(waypoint);
+
+				waypoint.latitude = msg->way2_lati;
+				waypoint.longitude = msg->way2_longi;
+				waypoint.altitude = msg->way2_alti;
+				waypoint.damping_distance = 0;
+				waypoint.target_yaw = 0;
+				waypoint.target_gimbal_pitch = 0;
+				waypoint.turn_mode = 0;
+				waypoint.has_action = 0;
+
+
+
+				waypoint_task.mission_waypoint.push_back(waypoint);
+
+				waypoint.latitude = msg->way3_lati;
+				waypoint.longitude = msg->way3_longi;
+				waypoint.altitude = msg->way3_alti;
+				waypoint.damping_distance = 0;
+				waypoint.target_yaw = 0;
+				waypoint.target_gimbal_pitch = 0;
+				waypoint.turn_mode = 0;
+				waypoint.has_action = 0;
+
+
+
+				waypoint_task.mission_waypoint.push_back(waypoint);
+
+
+
+				drone->mission_waypoint_upload(waypoint_task);
+
+
+
+
+
+    
+    
+    sleep(2);
+
+}
+
+
+
+void hot(const dji_sdk_web_groundstation::HotPtr& msg) {
+
+
+    hotpoint_task.latitude = msg->hot_lati;
+    hotpoint_task.longitude = msg->hot_longi;
+    hotpoint_task.altitude = msg->hot_alti;
+    hotpoint_task.radius = msg->hot_radius;
+    hotpoint_task.angular_speed = msg->hot_speed;
+    hotpoint_task.is_clockwise = msg->hot_clockwise;
+    hotpoint_task.start_point = 0;
+    hotpoint_task.yaw_mode = 0;
+
+    drone->mission_hotpoint_upload(hotpoint_task);
+
+
+    sleep(2);
+
+}
+
+
+
+
+
+
 int main(int argc, char* argv[]) {
     ros::init(argc, argv, "map_nav_srv");
     ros::NodeHandle nh;
@@ -560,6 +658,9 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_takeoff = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, takeoff);
     ros::Subscriber sub_land = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/land", 1, land);
     ros::Subscriber sub_gohome = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/gohome", 1, gohome);
+
+    ros::Subscriber sub_way = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/way", 1, way);
+    ros::Subscriber sub_hot = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/hot", 1, hot);
 
 
 
