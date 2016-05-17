@@ -36,3 +36,64 @@ body, html {
 	width:auto;
 	float:right;
 }
+
+
+
+#zone_joystick {
+    position: relative;
+    background: silver;
+    box-sizing: content-box;
+    height: 450px;
+}
+#debug {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 0 5px 0;
+    width: 300px;
+    height: 450px;
+    box-sizing: padding-box;
+    color: white;
+}
+#debug1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 0 5px 0;
+    width: 300px;
+    height: 450px;
+    box-sizing: padding-box;
+    color: white;
+}
+#debug ul {
+    list-style: none;
+}
+#debug1 ul {
+    list-style: none;
+}
+#debug>ul {
+    padding-left: 0;
+}
+#debug1>ul {
+    padding-left: 0;
+}
+#debug .data {
+    color: #333333;
+    font-weight: 800;
+}
+#debug1 .data1 {
+    color: #333333;
+    font-weight: 800;
+}
+#zone_joystick {
+    position: relative;
+    background: silver;
+    box-sizing: content-box;
+    height: 450px;
+}
+#zone_joystick1 {
+    position: relative;
+    background: silver;
+    box-sizing: content-box;
+    height: 450px;
+}

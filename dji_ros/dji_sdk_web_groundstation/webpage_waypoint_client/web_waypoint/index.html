@@ -13,12 +13,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .highlight {
-            display: none;
-        }
-        .highlight.active {
-            display: block;
-        }
         .zone {
             display: none;
             position: absolute;
@@ -32,13 +26,6 @@
         .zone.semi {
             background: rgba(0, 0, 255, 0.1);
         }
-		
-		.highlight1 {
-            display: none;
-        }
-        .highlight1.active {
-            display: block;
-        }
         .zone1 {
             display: none;
             position: absolute;
@@ -46,10 +33,10 @@
             height: 100%;
             left: 0;
         }
-        .zone1.active {
+        .zone1.active1 {
             display: block;
         }
-        .zone1.semi {
+        .zone1.semi1 {
             background: rgba(0, 0, 255, 0.1);
         }
 		
@@ -68,8 +55,8 @@
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">	
     <link rel="stylesheet" href="css/marketing.css">
 
-    <link rel="stylesheet" href="http://yoannmoinet.github.io/nipplejs/stylesheets/styles.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="http://yoannmoinet.github.io/nipplejs/stylesheets/github-light.css" media="screen" title="no title" charset="utf-8">
+    <!--link rel="stylesheet" href="http://yoannmoinet.github.io/nipplejs/stylesheets/styles.css" media="screen" title="no title" charset="utf-8"-->
+    <!--link rel="stylesheet" href="http://yoannmoinet.github.io/nipplejs/stylesheets/github-light.css" media="screen" title="no title" charset="utf-8"-->
 
 
 	<!-- add rosbridge lib -->
@@ -83,8 +70,7 @@
 	<script type="text/javascript" src="js/wp_control.js"></script>
 	<script type="text/javascript" src="js/comm.js"></script>
 	
-	<script type="text/javascript" src="js/nipplejs.min.js" charset="utf-8"></script>
-	<script type="text/javascript" src="js/yao.js" charset="utf-8"></script>
+
 	<title>Waypoint Test</title>
 </head>
 <body>
@@ -166,24 +152,24 @@
 				                    
                     
                     <form oninput="amount.value=rangeInput.value - 1000">
-                        <label for="yaw">Yaw</label>
-                        <input type='range' id="yaw" name="rangeInput" data-type="yaw" step='1' value='1000' max='1999' />
-                        <output for="yaw" name="amount">0</output>
-                        <input id="yaw" type="button" value="yaw">
+                        <label for="yaw_value">Yaw</label>
+                        <input type='range' id="yaw_value" name="rangeInput" data-type="yaw_value" step='1' value='1000' max='1999' />
+                        <output for="yaw_value" name="amount">0</output>
+                        <input id="yaw_value" type="button" value="yaw_value">
                     </form>
                     
                     <form oninput="amount.value=rangeInput.value - 1000">
-                        <label for="roll">Roll</label>
-                        <input type='range' id="roll" name="rangeInput" data-type="roll" step='1' value='1000' max='1999' />
-                        <output for="roll" name="amount">0</output>
-                        <input id="roll" type="button" value="roll">
+                        <label for="roll_value">Roll</label>
+                        <input type='range' id="roll_value" name="rangeInput" data-type="roll_value" step='1' value='1000' max='1999' />
+                        <output for="roll_value" name="amount">0</output>
+                        <input id="roll_value" type="button" value="roll_value">
                     </form>          
                     
                     <form oninput="amount.value=rangeInput.value - 1000">
-                        <label for="pitch">Pitch</label>
-                        <input type='range' id="pitch" name="rangeInput" data-type="pitch" step='1' value='1000' max='1999' />
-                        <output for="pitch" name="amount">0</output>
-                        <input id="pitch" type="button" value="pitch">
+                        <label for="pitch_value">Pitch</label>
+                        <input type='range' id="pitch_value" name="rangeInput" data-type="pitch_value" step='1' value='1000' max='1999' />
+                        <output for="pitch_value" name="amount">0</output>
+                        <input id="pitch_value" type="button" value="pitch_value">
                     </form> 
                                            
           
@@ -472,13 +458,10 @@
 
 
 	    <div class="content">
-        <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
+        <h2 class="content-head is-center">虚拟摇杆</h2>
 
         <div class="pure-g">
-            <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
-				<div class="semi active highlight highlight-javascript"></div>
-
-
+            <!--div class="l-box-lrg pure-u-1 pure-u-md-1-2">
 				<div id="zone_joystick">
 					<div id="debug">
 						<ul>
@@ -489,53 +472,37 @@
 									<li class="degree">degree : <span class='data'></span></li>
 								</ul>
 							</li>
-
 						</ul>
 						<div class="dump"></div>
 					</div>
-
 					<div class="zone semi active"></div>
+			   </div>
+            </div-->
 
 
-				</div>
-   
-            </div>
 
-            <!--div class="l-box-lrg pure-u-1 pure-u-md-1-2">
-				<div class="semi active highlight highlight-javascript"></div>
-
-
-				<div id="zone_joystick1">
+            <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+					<div id="zone_joystick1">
 					<div id="debug1">
 						<ul>
-							<li class="distance1">distance : <span class='data1'></span></li>
+							<li class="distance1">distance1 : <span class='data1'></span></li>
 							<li class="angle1">
-								angle :
+								angle1 :
 								<ul>
-									<li class="degree1">degree : <span class='data1'></span></li>
+									<li class="degree1">degree1 : <span class='data1'></span></li>
 								</ul>
 							</li>
-
 						</ul>
 						<div class="dump1"></div>
 					</div>
-
 					<div class="zone1 semi1 active1"></div>
-
 				</div>
-
-
-            </div-->
-			
-			
+          </div>
         </div>
-
-    </div>
-	
-	
-
-
-	
+        
+        
+        
+   </div>
 	
 	
 
@@ -554,5 +521,11 @@
 			<button id="setSpeed">Update Idle Speed</button><br>
 			<br>
 		</div-->
+        
+        
+        <script type="text/javascript" src="js/nipplejs.min.js"  ></script>
+        <!--script type="text/javascript" src="js/yao.js" ></script-->
+        <script type="text/javascript" src="js/yao1.js" ></script>
+
 </body>
 </html>

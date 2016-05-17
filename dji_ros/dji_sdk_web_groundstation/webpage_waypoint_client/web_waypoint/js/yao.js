@@ -14,22 +14,11 @@
 
         }
     };
-    var joysticks1 = {
-        semi: {
-            zone: s('.zone1.semi'),
-            mode: 'semi',
-            catchDistance: 150,
-            color: 'white',
-            fadeTime: 500 ,
-            threshold: 0.1
 
-        }
-    };
     
     
     
     var joystick;
-    var joystick1;
 
     // Get debug elements and map them
     var elDebug = sId('debug');
@@ -43,15 +32,6 @@
     };
 
 
-    var elDebug1 = sId('debug1');
-    var elDump1 = elDebug1.querySelector('.dump1');
-    var els1 = {
-        distance: elDebug1.querySelector('.distance1 .data1'),
-        angle: {
-            degree: elDebug1.querySelector('.angle1 .degree1 .data1')
-        }
-
-    };
 
 
 
@@ -66,13 +46,7 @@
 
     }
     
-    function bindNipple1 () {
-        joystick1
-            .on('move', function (evt, data) {
-            debug(data);
-        })
 
-    }
 
     function createNipple (evt) {
         var type = typeof evt === 'string' ?
@@ -81,29 +55,14 @@
             joystick.destroy();
         }
         removeClass(s('.zone.active'), 'active');
-        removeClass(s('.highlight.active'), 'active');
-        s('.highlight.' + type).className += ' active';
-        s('.zone.' + type).className += ' active';
+         s('.zone.' + type).className += ' active';
         joystick = nipplejs.create(joysticks[type]);
         bindNipple();
     }
     
-        function createNipple1 (evt) {
-        var type = typeof evt === 'string' ?
-            evt : evt.target.getAttribute('data-type');
-        if (joystick1) {
-            joystick1.destroy();
-        }
-        removeClass(s('.zone1.active'), 'active');
-        removeClass(s('.highlight1.active'), 'active');
-        s('.highlight1.' + type).className += ' active';
-        s('.zone1.' + type).className += ' active';
-        joystick1 = nipplejs.create(joysticks1[type]);
-        bindNipple1();
-    }
+
     
     createNipple('semi');
-    //createNipple1('semi');
     
 
     // Print data into elements
@@ -123,6 +82,11 @@
             parseObj(obj, els);
         }, 0);
     }
+    
+
+    
+    
+    
 
     var nbEvents = 0;
 
@@ -141,16 +105,3 @@
     }    
     
     
-    var nbEvents1 = 0;
-    function dump1 (evt) {
-        setTimeout(function () {
-            if (elDump1.children.length > 4) {
-                elDump1.removeChild(elDump1.firstChild);
-            }
-            var newEvent = document.createElement('div');
-            newEvent.innerHTML = '#' + nbEvents1 + ' : <span class="data1">' +
-                evt + '</span>';
-            elDump1.appendChild(newEvent1);
-            nbEvents1 += 1;
-        }, 0);
-    }
