@@ -655,6 +655,23 @@ void rc(const std_msgs::Bool::ConstPtr& msg) {
     }
 }
 
+void yt(const dji_sdk_web_groundstation::YtPtr& msg) {
+
+    ROS_INFO("  yt run ");
+
+    virtual_rc_data[0] = 1024;	//0-> roll     	[1024-660,1024+660] 
+    virtual_rc_data[1] = 1024;	//1-> pitch    	[1024-660,1024+660]
+    virtual_rc_data[2] = msg->rc_yaw;	//2-> throttle 	[1024-660,1024+660]
+    virtual_rc_data[3] = msg->rc_throttle;	//3-> yaw      	[1024-660,1024+660]
+    virtual_rc_data[4] = 1684;	 	//4-> gear		{1684(UP), 1324(DOWN)}
+    virtual_rc_data[6] = 1552;    	//6-> mode     	{1552(P), 1024(A), 496(F)}
+
+    for (int i = 0; i < 10; i++){
+        drone->virtual_rc_control(virtual_rc_data);
+        usleep(20000);
+    }
+
+}
 
 
 
@@ -715,6 +732,7 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_cancel = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/cancel", 1, cancel);
 
     ros::Subscriber sub_rc = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/rc", 1, rc);
+    ros::Subscriber sub_yt = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yt", 1, yt);
 
 
     asPtr_->registerGoalCallback(&goalCB);

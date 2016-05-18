@@ -373,18 +373,18 @@ $( document ).ready(function() {
 	
 	
 	
-        $(".distance.data").bind("move",function() {
-        if (typeof(my_Communicator) == 'undefined')
-            alert("Drone not Connected!");
-        else
-			console.log(document.getElementById("is_rc").value)
-            //my_Communicator.setrc(document.getElementById("is_rc").checked);
 
-    });		
 	
 	
 	
+		$(".distance .data").change(function(){
+		if (typeof(my_Communicator) == 'undefined')
+          alert("Drone not Connected!");
+        else
+			console.log("1");
+            //my_Communicator.setrc(document.getElementById("is_rc").checked);
 	
+});
 	
 	
 	

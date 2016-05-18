@@ -76,7 +76,8 @@
            el["distance"].innerHTML = yaw;
            el["degree"].innerHTML = throttle;
 
-        
+           my_Communicator.setyt(yaw,throttle);
+
         
         }
         setTimeout(function () {
