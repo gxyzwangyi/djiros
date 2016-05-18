@@ -687,8 +687,8 @@ void rp(const dji_sdk_web_groundstation::RpPtr& msg) {
     drone->virtual_rc_enable();
 
     uint32_t virtual_rc_data[16];
-    virtual_rc_data[0] = msg->rc_yaw;	//0-> roll     	[1024-660,1024+660] 
-    virtual_rc_data[1] = msg->rc_throttle;	//1-> pitch    	[1024-660,1024+660]
+    virtual_rc_data[0] = msg->rc_roll;	//0-> roll     	[1024-660,1024+660] 
+    virtual_rc_data[1] = msg->rc_pitch;	//1-> pitch    	[1024-660,1024+660]
     virtual_rc_data[2] = 1024;	//2-> throttle 	[1024-660,1024+660]
     virtual_rc_data[3] = 1024;	//3-> yaw      	[1024-660,1024+660]
     virtual_rc_data[4] = 1684;	 	//4-> gear		{1684(UP), 1324(DOWN)}
