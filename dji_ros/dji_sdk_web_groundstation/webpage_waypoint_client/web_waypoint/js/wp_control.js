@@ -119,7 +119,8 @@ $( document ).ready(function() {
             var roll = document.getElementById("r_yrp").value-35
 			var pitch = document.getElementById("p_yrp").value-90
 			var duration = document.getElementById("d_yrp").value
-			
+
+
 
 			my_Communicator.setYRP(yaw,roll,pitch,duration);
 

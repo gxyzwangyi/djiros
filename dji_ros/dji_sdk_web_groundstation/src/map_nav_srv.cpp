@@ -267,10 +267,10 @@ void yrp(const dji_sdk_web_groundstation::YrpConstPtr& msg) {
     
     ROS_INFO("test yrp");
     
-    int yaw =  msg->yaw_value;
-    int roll =  msg->roll_value;
-    int pitch =  msg->pitch_value;        
-    int duration = msg->duration_value;
+    int yaw =  msg->yaw_yrp;
+    int roll =  msg->roll_yrp;
+    int pitch =  msg->pitch_yrp;        
+    int duration = msg->duration_yrp;
             
     drone->gimbal_angle_control(yaw, roll, pitch, duration);
     sleep(2);
@@ -669,7 +669,7 @@ void yt(const dji_sdk_web_groundstation::YtPtr& msg) {
     virtual_rc_data[4] = 1684;	 	//4-> gear		{1684(UP), 1324(DOWN)}
     virtual_rc_data[6] = 1552;    	//6-> mode     	{1552(P), 1024(A), 496(F)}
 
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < 20; i++){
         drone->virtual_rc_control(virtual_rc_data);
         usleep(20000);
     }

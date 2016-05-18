@@ -190,7 +190,35 @@ function Communicator(socket) {
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/hot',
         messageType : 'dji_sdk_web_groundstation/Hot'
-    });    
+    }); 
+    this.startTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/start',
+        messageType : 'std_msgs/Bool'
+    });
+    
+
+    this.pauseTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/pause',
+        messageType : 'std_msgs/Bool'
+    });
+    
+
+    this.resumeTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/resume',
+        messageType : 'std_msgs/Bool'
+    });
+    
+
+    this.cancelTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/cancel',
+        messageType : 'std_msgs/Bool'
+    });
+    
+   
        
 //rc       
     this.rcTopic = new ROSLIB.Topic({
@@ -427,10 +455,10 @@ Communicator.prototype.setGimbalControlPitch = function(value) {
 Communicator.prototype.setYRP = function(yaw,roll,pitch,duration) {
 
     var _msg = new ROSLIB.Message({
-        yaw_value : parseInt(yaw) ,
-        roll_value : parseInt(roll) ,
-        pitch_value : parseInt(pitch) ,
-        duration_value : parseInt(duration)
+        yaw_yrp : parseInt(yaw)*10 ,
+        roll_yrp : parseInt(roll)*10 ,
+        pitch_yrp : parseInt(pitch)*10 ,
+        duration_yrp : parseInt(duration)
     });
 
     console.log('yrp');
