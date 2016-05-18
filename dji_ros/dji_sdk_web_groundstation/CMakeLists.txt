@@ -57,6 +57,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
    Way.msg
    Hot.msg
    Yt.msg
+   Rp.msg
 #   Message1.msg
 #   Message2.msg
  )
