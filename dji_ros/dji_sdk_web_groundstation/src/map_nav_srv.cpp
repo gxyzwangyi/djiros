@@ -667,8 +667,8 @@ void yt(const dji_sdk_web_groundstation::YtPtr& msg) {
 
     virtual_rc_data[0] = 1024;	//0-> roll     	[1024-660,1024+660] 
     virtual_rc_data[1] = 1024;	//1-> pitch    	[1024-660,1024+660]
-    virtual_rc_data[2] = msg->rc_yaw;	//2-> throttle 	[1024-660,1024+660]
-    virtual_rc_data[3] = msg->rc_throttle;	//3-> yaw      	[1024-660,1024+660]
+    virtual_rc_data[2] = msg->rc_throttle;	//2-> throttle 	[1024-660,1024+660]
+    virtual_rc_data[3] = msg->rc_yaw;	//3-> yaw      	[1024-660,1024+660]
     virtual_rc_data[4] = 1684;	 	//4-> gear		{1684(UP), 1324(DOWN)}
     virtual_rc_data[6] = 1552;    	//6-> mode     	{1552(P), 1024(A), 496(F)}
 
