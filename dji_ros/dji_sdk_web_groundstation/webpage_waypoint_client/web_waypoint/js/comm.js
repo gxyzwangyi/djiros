@@ -234,7 +234,13 @@ function Communicator(socket) {
         messageType : 'dji_sdk_web_groundstation/Yt'
     });       
        
-       
+   
+    this.rpTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/rp',
+        messageType : 'dji_sdk_web_groundstation/Rp'
+    });       
+              
        
 
 
@@ -458,7 +464,7 @@ Communicator.prototype.setYRP = function(yaw,roll,pitch,duration) {
         yaw_yrp : parseInt(yaw)*10 ,
         roll_yrp : parseInt(roll)*10 ,
         pitch_yrp : parseInt(pitch)*10 ,
-        duration_yrp : parseInt(duration)
+        duration_yrp : parseInt(duration)*10
     });
 
     console.log('yrp');
@@ -704,10 +710,21 @@ Communicator.prototype.setrc = function(value) {
 //yaw and throttle
 Communicator.prototype.setyt = function(y,t) {
     var _msg = new ROSLIB.Message({
-        rc_yaw : y,
-        rc_throttle : t 
+        rc_yaw : parseInt(y),
+        rc_throttle : parseInt(t) 
     });
 
     console.log('yt');
     this.ytTopic.publish(_msg);
+};
+
+
+Communicator.prototype.setrp = function(r,p) {
+    var _msg = new ROSLIB.Message({
+        rc_roll : parseInt(r),
+        rc_pitch : parseInt(p) 
+    });
+
+    console.log('rp');
+    this.rpTopic.publish(_msg);
 };

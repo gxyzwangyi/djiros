@@ -63,7 +63,8 @@
            el["distance"].innerHTML = roll;
            el["degree"].innerHTML = pitch;
 
-        
+           my_Communicator.setrp(roll,pitch);
+
         
         }
         setTimeout(function () {
