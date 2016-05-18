@@ -647,7 +647,6 @@ void cancel(const std_msgs::Bool::ConstPtr& msg) {
 void rc(const std_msgs::Bool::ConstPtr& msg) {
     if(msg->data){
     ROS_INFO("  rc enable  ");
-	drone->mission_cancel();
     drone->virtual_rc_enable();
     sleep(2);
     }

@@ -91,13 +91,10 @@ $( document ).ready(function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");		
 		else
+					console.log(document.getElementById("yaw_value").value)
 			my_Communicator.setGimbalControlYaw(document.getElementById("yaw_value").value);
 	
 	});
-	
-
-	
-	
 	
 		$("#roll").bind("click",function() {
 		if (typeof(my_Communicator) == 'undefined')
@@ -119,10 +116,11 @@ $( document ).ready(function() {
 		if (typeof(my_Communicator) == 'undefined')
 			alert("Drone not Connected!");
 		else
-			var yaw = document.getElementById("y_value").value
-            var roll = document.getElementById("r_value").value
-			var pitch = document.getElementById("p_value").value
-			var duration = document.getElementById("d_value").value
+			var yaw = document.getElementById("y_yrp").value
+            var roll = document.getElementById("r_yrp").value
+			var pitch = document.getElementById("p_yrp").value
+			var duration = document.getElementById("d_yrp").value
+			
 
 			my_Communicator.setYRP(yaw,roll,pitch,duration);
 
@@ -251,9 +249,9 @@ $( document ).ready(function() {
         if (typeof(my_Communicator) == 'undefined')
             alert("Drone not Connected!");
         else
-			var x = document.getElementById("x_value").value
-            var y = document.getElementById("y_value").value
-			var z=  document.getElementById("z_value").value
+			var x = document.getElementById("x_local").value
+            var y = document.getElementById("y_local").value
+			var z=  document.getElementById("z_local").value
 			my_Communicator.setlocal(x,y,z);
 
     });	

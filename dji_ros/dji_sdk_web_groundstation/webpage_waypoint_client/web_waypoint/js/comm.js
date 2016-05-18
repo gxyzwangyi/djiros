@@ -202,7 +202,7 @@ function Communicator(socket) {
    
     this.ytTopic = new ROSLIB.Topic({
         ros : this.ros,
-        name : 'dji_sdk_web_groundstation/map_nav_srv/rc',
+        name : 'dji_sdk_web_groundstation/map_nav_srv/yt',
         messageType : 'dji_sdk_web_groundstation/Yt'
     });       
        

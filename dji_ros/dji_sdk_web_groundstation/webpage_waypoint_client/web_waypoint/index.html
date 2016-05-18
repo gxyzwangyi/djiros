@@ -151,25 +151,25 @@
 					</form>
 				                    
                     
-                    <form oninput="amount.value=rangeInput.value - 1000">
+                    <form oninput="amount.value=rangeInput.value">
                         <label for="yaw_value">Yaw</label>
-                        <input type='range' id="yaw_value" name="rangeInput" data-type="yaw_value" step='1' value='1000' max='1999' />
+                        <input type='range' id="yaw_value" name="rangeInput" data-type="yaw_value" step='1' value='0' max='100' />
                         <output for="yaw_value" name="amount">0</output>
-                        <input id="yaw_value" type="button" value="yaw_value">
+                        <input id="yaw" type="button" value="yaw控制">
                     </form>
                     
-                    <form oninput="amount.value=rangeInput.value - 1000">
+                    <form oninput="amount.value=rangeInput.value">
                         <label for="roll_value">Roll</label>
-                        <input type='range' id="roll_value" name="rangeInput" data-type="roll_value" step='1' value='1000' max='1999' />
+                        <input type='range' id="roll_value" name="rangeInput" data-type="roll_value" step='1' value='0' max='100' />
                         <output for="roll_value" name="amount">0</output>
-                        <input id="roll_value" type="button" value="roll_value">
+                        <input id="roll" type="button" value="roll控制">
                     </form>          
                     
-                    <form oninput="amount.value=rangeInput.value - 1000">
+                    <form oninput="amount.value=rangeInput.value">
                         <label for="pitch_value">Pitch</label>
-                        <input type='range' id="pitch_value" name="rangeInput" data-type="pitch_value" step='1' value='1000' max='1999' />
+                        <input type='range' id="pitch_value" name="rangeInput" data-type="pitch_value" step='1' value='0' max='100' />
                         <output for="pitch_value" name="amount">0</output>
-                        <input id="pitch_value" type="button" value="pitch_value">
+                        <input id="pitch" type="button" value="pitch控制">
                     </form> 
                                            
           
@@ -186,9 +186,9 @@
                 <p>
 
 			<form>
-			<input id="x_value" type="text" value=2 >
-			<input id="y_value" type="text" value=2 >
-			<input id="z_value" type="text" value=2 >
+			<input id="x_local" type="text" value=2 >
+			<input id="y_local" type="text" value=2 >
+			<input id="z_local" type="text" value=2 >
 			<br>
 			<input id="local" type="button" value="local">
 			</form>
@@ -207,23 +207,23 @@
 	
                   
             <form oninput="amount.value=rangeInput.value - 1000">
-                <label for="y_value">Yaw</label>
-                <input type='range' id="y_value" name="rangeInput" data-type="y_value" step='1' value='1000' max='1999' />
-                <output for="y_value" name="amount">0</output>
+                <label for="y_yrp">Yaw</label>
+                <input type='range' id="y_yrp" name="rangeInput" data-type="y_yrp" step='1' value='1000' max='1999' />
+                <output for="y_yrp" name="amount">0</output>
             </form>
             
             <form oninput="amount.value=rangeInput.value - 1000">
-                <label for="r_value">roll</label>
-                <input type='range' id="r_value" name="rangeInput" data-type="r_value" step='1' value='1000' max='1999' />
-                <output for="r_value" name="amount">0</output>
+                <label for="r_yrp">roll</label>
+                <input type='range' id="r_yrp" name="rangeInput" data-type="r_yrp" step='1' value='1000' max='1999' />
+                <output for="r_yrp" name="amount">0</output>
             </form>          
             
             <form oninput="amount.value=rangeInput.value - 1000">
-                <label for="p_value">pitch</label>
-                <input type='range' id="p_value" name="rangeInput" data-type="p_value" step='1' value='1000' max='1999' />
-                <output for="p_value" name="amount">0</output>
+                <label for="p_yrp">pitch</label>
+                <input type='range' id="p_yrp" name="rangeInput" data-type="p_yrp" step='1' value='1000' max='1999' />
+                <output for="p_yrp" name="amount">0</output>
             </form> 
-            <input id="d_value" type="text" value=2 >
+            <input id="d_yrp" type="text" value=2 >
                 <br>
             <input id="yrp" type="button" value="yrp">
             
