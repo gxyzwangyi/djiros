@@ -641,8 +641,19 @@ void cancel(const std_msgs::Bool::ConstPtr& msg) {
 
 
 
-
-
+void rc(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data){
+    ROS_INFO("  rc enable  ");
+	drone->mission_cancel();
+    drone->virtual_rc_enable();
+    sleep(2);
+    }
+    else{
+    drone->virtual_rc_disable();    
+    ROS_INFO(" rc disable  ");
+    sleep(2);
+    }
+}
 
 
 
@@ -703,6 +714,7 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_resume = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/resume", 1, resume);
     ros::Subscriber sub_cancel = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/cancel", 1, cancel);
 
+    ros::Subscriber sub_rc = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/rc", 1, rc);
 
 
     asPtr_->registerGoalCallback(&goalCB);

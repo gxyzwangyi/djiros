@@ -192,42 +192,16 @@ function Communicator(socket) {
         messageType : 'dji_sdk_web_groundstation/Hot'
     });    
        
-//point
-    Communicator.prototype.setstart = function() {
-        var _msg = new ROSLIB.Message({
-            data : true
-        });
+    this.rcTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/rc',
+        messageType : 'std_msgs/Bool'
+    });    
+       
+       
+       
+       
 
-        console.log('start');
-        this.startTopic.publish(_msg);
-    };
-
-    Communicator.prototype.setpause = function() {
-        var _msg = new ROSLIB.Message({
-            data : true
-        });
-
-        console.log('pause');
-        this.pauseTopic.publish(_msg);
-    };
-
-    Communicator.prototype.setresume = function() {
-        var _msg = new ROSLIB.Message({
-            data : true
-        });
-
-        console.log('resume');
-        this.resumeTopic.publish(_msg);
-    };
-
-    Communicator.prototype.setcancel = function() {
-        var _msg = new ROSLIB.Message({
-            data : true
-        });
-
-        console.log('cancel');
-        this.cancelTopic.publish(_msg);
-    };
 
 
 
@@ -684,3 +658,11 @@ Communicator.prototype.setcancel = function() {
 };
 
 
+Communicator.prototype.setrc = function(value) {
+    var _msg = new ROSLIB.Message({
+        data : value
+    });
+
+    console.log('rc');
+    this.rcTopic.publish(_msg);
+};

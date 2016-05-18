@@ -24,9 +24,8 @@
     var elDebug = sId('debug');
     var els = {
         distance: elDebug.querySelector('.distance .data'),
-        angle: {
-            degree: elDebug.querySelector('.angle .degree .data')
-        }
+           degree : elDebug.querySelector('.degree .data')
+        
     };
 
 
@@ -39,7 +38,8 @@
     function bindNipple () {
         joystick
             .on('move', function (evt, data) {
-            debug(data);
+            //debug(data);
+            run(data);
         })
 
     }
@@ -64,27 +64,30 @@
     
 
     // Print data into elements
-    function debug (obj) {
-        function parseObj(sub, el) {
-            for (var i in sub) {
-                if (typeof sub[i] === 'object' && el) {
-                    parseObj(sub[i], el[i]);
-                } else if (el && el[i]) {
-                    console.log(sub[i])
 
-                    el[i].innerHTML = sub[i];
-                }
-            }
+
+        function run (obj) {
+        function push(sub,el) {           
+
+           var distance = sub["distance"];
+           var degree =  sub["angle"]["degree"]*2*3.14159/360;
+           var yaw = 1024+Math.cos(degree)*distance*66/5 ;
+           var throttle = 1024+Math.sin(degree)*distance*66/5 ;
+           el["distance"].innerHTML = yaw;
+           el["degree"].innerHTML = throttle;
+
+        
+        
         }
         setTimeout(function () {
-            parseObj(obj, els);
+            push(obj,els);
         }, 0);
     }
     
-
-    
-    
     
 
     
-    
+
+
+
+

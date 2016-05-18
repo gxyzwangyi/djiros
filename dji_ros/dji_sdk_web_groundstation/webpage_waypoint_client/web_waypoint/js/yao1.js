@@ -21,9 +21,7 @@
     var elDebug1 = sId('debug1');
     var els1 = {
         distance: elDebug1.querySelector('.distance1 .data1'),
-        angle: {
-            degree: elDebug1.querySelector('.angle1 .degree1 .data1')
-        }
+        degree: elDebug1.querySelector('.degree1 .data1')
 
     };
     
@@ -32,7 +30,7 @@
 
         joystick1
             .on('move', function (evt1, data1) {
-            debug1(data1);
+            run1(data1);
         })
 
 
@@ -55,24 +53,21 @@
         createNipple1('semi1');
 
 
-    function debug1 (obj1) {
+        function run1 (obj) {
+        function push(sub,el) {           
 
-        function parseObj(sub1, el1) {
-            for (var i in sub1) {
-                if (typeof sub1[i] === 'object' && el1) {
-                   console.log(sub1);
-                   console.log(el1);
+           var distance = sub["distance"];
+           var degree =  sub["angle"]["degree"]*2*3.14159/360;
+           var roll = 1024+Math.cos(degree)*distance*66/5 ;
+           var pitch = 1024+Math.sin(degree)*distance*66/5 ;
+           el["distance"].innerHTML = roll;
+           el["degree"].innerHTML = pitch;
 
-                    parseObj(sub1[i], el1[i]);
-                } else if (el1 && el1[i]) {
-
-                    console.log(sub1[i])
-                    el1[i].innerHTML = sub1[i];
-                }
-            }
+        
+        
         }
         setTimeout(function () {
-            parseObj(obj1, els1);
+            push(obj,els1);
         }, 0);
     }
     
