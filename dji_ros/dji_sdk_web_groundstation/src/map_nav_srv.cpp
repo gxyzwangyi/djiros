@@ -28,6 +28,8 @@ typedef dji_sdk_web_groundstation::WebWaypointReceiveResult Result_t;
 
 typedef dji_sdk::WaypointNavigationAction WPAction_t;
 
+
+
 SimpleActionServer<Action_t>* asPtr_;
 
 DJIDrone* drone;
@@ -658,7 +660,8 @@ void rc(const std_msgs::Bool::ConstPtr& msg) {
 
 void yt(const dji_sdk_web_groundstation::YtPtr& msg) {
 
-    ROS_INFO("  yt run ");
+    ROS_INFO("  yt run ");  
+    uint32_t virtual_rc_data[16];
 
     virtual_rc_data[0] = 1024;	//0-> roll     	[1024-660,1024+660] 
     virtual_rc_data[1] = 1024;	//1-> pitch    	[1024-660,1024+660]
