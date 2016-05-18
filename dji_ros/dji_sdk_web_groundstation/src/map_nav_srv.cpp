@@ -12,6 +12,7 @@
 #include <dji_sdk_web_groundstation/Yrp.h>
 #include <dji_sdk_web_groundstation/Way.h>
 #include <dji_sdk_web_groundstation/Hot.h>
+#include <dji_sdk_web_groundstation/Yt.h>
 
 
 
