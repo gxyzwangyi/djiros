@@ -233,7 +233,7 @@ a.pure-button-primary {
     }
     /* We want to give the content area some more padding */
     .content {
-        padding: 1em;
+        padding: 0em;
     }
 
     /* We can align the menu header to the left, but float the
