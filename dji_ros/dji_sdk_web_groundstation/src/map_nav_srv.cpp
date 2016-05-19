@@ -716,7 +716,7 @@ int main(int argc, char* argv[]) {
     drone = new DJIDrone(nh);
     
     
-     ROS_INFO(drone->power_status);   
+     ROS_INFO("dianci: %d",drone->power_status);   
      
      
     //web_waypoint_receive action server
