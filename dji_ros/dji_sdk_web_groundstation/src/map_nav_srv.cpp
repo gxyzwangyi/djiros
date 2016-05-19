@@ -703,7 +703,7 @@ void rp(const dji_sdk_web_groundstation::RpPtr& msg) {
 }
 
 void print(){
-     ROS_INFO(drone.power_status);   
+     ROS_INFO(drone->power_status);   
 }
 
 
