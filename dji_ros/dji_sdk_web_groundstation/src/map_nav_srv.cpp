@@ -718,7 +718,7 @@ int main(int argc, char* argv[]) {
     
      ROS_INFO("dianci: %d",drone->power_status);   
      ROS_INFO("local: %d",drone->flight_status);   
-     ROS_INFO("gimbal: %f",drone->gimbal.pitch)
+     ROS_INFO("gimbal: %f",drone->gimbal.pitch);
 
     //web_waypoint_receive action server
     asPtr_ = new SimpleActionServer<Action_t>(
