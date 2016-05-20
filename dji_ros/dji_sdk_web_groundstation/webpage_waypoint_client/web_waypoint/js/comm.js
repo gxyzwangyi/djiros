@@ -242,7 +242,11 @@ function Communicator(socket) {
     });       
               
        
-
+    this.refreshTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/refresh',
+        messageType : 'std_msgs/Bool'
+    });  
 
 
 
@@ -262,6 +266,8 @@ function Communicator(socket) {
         home_lon = msg.longitude;
         home_hei = msg.height;
     });
+    
+    
 }
 
 Communicator.prototype.setNavigationMode = function() {
@@ -727,4 +733,46 @@ Communicator.prototype.setrp = function(r,p) {
 
     console.log('rp');
     this.rpTopic.publish(_msg);
+};
+
+
+Communicator.prototype.setrefresh = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('refresh');
+    this.refreshTopic.publish(_msg);
+};
+
+Communicator.prototype.setrefresh = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+    console.log('refresh');
+    this.refreshTopic.publish(_msg);
+
+    var goal = new ROSLIB.Goal({
+        actionClient : this.web_wp_client,
+        goalMessage : {
+            waypoint_list : goal_waypointList,
+            tid : this.tid
+        }
+    });
+
+    goal.on('feedback', function(feedback) {
+        //console.log('Feedback: current stage ' + feedback.stage);
+
+        var str = '<div>Feedback: current stage ' + feedback.stage + '</div>'
+            + '<div>Latitude progress: ' + feedback.latitude_progress + '%</div>'
+            + '<div>Longitude progress: ' + feedback.longitude_progress + '%</div>'
+            + '<div>Altitude progress: ' + feedback.altitude_progress + '%</div>'
+            + '<div>Index progress: ' + feedback.index_progress + '</div>';
+        $("#state-update").empty();
+        $( str ).appendTo("#state-update");
+    });
+
+
+
+    goal.send();
 };

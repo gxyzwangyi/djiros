@@ -137,7 +137,7 @@ a.pure-button-primary {
     overflow: hidden;
     /* The following styles are required for the "scroll-over" effect */
     width: 100%;
-    height: 100%;
+    height: 50%;
     top: 0;
     left: 0;
     position: fixed !important;
@@ -180,7 +180,7 @@ a.pure-button-primary {
 .content-wrapper {
     /* These styles are required for the "scroll-over" effect */
     position: absolute;
-    top: 100%;
+    top: 50%;
     width: 100%;
     min-height: 4%;
     z-index: 2;
@@ -280,3 +280,33 @@ a.pure-button-primary {
         font-size: 300%;
     }
 }
+
+
+
+
+        .zone {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+        }
+        .zone.active {
+            display: block;
+        }
+        .zone.semi {
+            background: rgba(0, 0, 255, 0.1);
+        }
+        .zone1 {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+        }
+        .zone1.active1 {
+            display: block;
+        }
+        .zone1.semi1 {
+            background: rgba(0, 0, 255, 0.1);
+        }

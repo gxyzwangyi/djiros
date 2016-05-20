@@ -703,6 +703,13 @@ void rp(const dji_sdk_web_groundstation::RpPtr& msg) {
 }
 
 
+void refresh(const std_msgs::Bool::ConstPtr& msg) {
+
+    ROS_INFO("  gohome  ");
+    drone->gohome() ;
+    sleep(2);
+
+}
 
 
 
@@ -767,6 +774,8 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_rc = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/rc", 1, rc);
     ros::Subscriber sub_yt = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/yt", 1, yt);
     ros::Subscriber sub_rp = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/rp", 1, rp);
+
+    ros::Subscriber sub_refresh = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/refresh", 1, refresh);
 
 
     asPtr_->registerGoalCallback(&goalCB);

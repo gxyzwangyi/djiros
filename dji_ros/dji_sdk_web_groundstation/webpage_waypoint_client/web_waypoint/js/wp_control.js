@@ -372,7 +372,12 @@ $( document ).ready(function() {
 	
 	
 
-	
+		$("#refresh").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
 	
 
 	
