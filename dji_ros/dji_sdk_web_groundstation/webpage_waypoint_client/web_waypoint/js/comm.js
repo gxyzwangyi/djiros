@@ -754,7 +754,7 @@ Communicator.prototype.setrefresh = function() {
     var goal = new ROSLIB.Goal({
         actionClient : this.drone_status_client,
         goalMessage : {
-        display : 1
+        display : true
 
         }
     });
