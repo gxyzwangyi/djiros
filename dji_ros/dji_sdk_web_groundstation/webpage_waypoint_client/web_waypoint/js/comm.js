@@ -787,7 +787,7 @@ Communicator.prototype.setrefresh = function() {
            
            '<div> : gp=: ' + feedback.odometry + '</div>'+
            
-           '<div> : gp\: ' + feedback.time_stamp + '</div>'+
+           '<div> : gp: ' + feedback.time_stamp + '</div>'+
            bianli(feedback.gimbal);
 
         $("#drone-status").empty();
@@ -804,7 +804,7 @@ function bianli(fb)
 {
     var all = "" 
     for(value in fb){
-        all += '<div>' + fb[value] +'</div>' ;
+        all += '<div>'+String(value) + fb[value] +'</div>' ;
 }
     return all
 }
