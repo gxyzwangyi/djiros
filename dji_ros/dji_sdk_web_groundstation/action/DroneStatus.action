@@ -3,4 +3,5 @@ bool display
 bool result
 ---
 dji_sdk/Gimbal gimbal
+dji_sdk/GlobalPosition global_position
 uint8  flight_status

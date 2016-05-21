@@ -747,6 +747,7 @@ void dsCB() {
  
     fb.flight_status = drone->flight_status;
     fb.gimbal = drone->gimbal;
+    fb.global_position = drone->global_position;
 
  
     dsPtr_->publishFeedback(fb);
