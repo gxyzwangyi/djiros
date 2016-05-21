@@ -761,8 +761,7 @@ Communicator.prototype.setrefresh = function() {
 
     goal.on('feedback', function(feedback) {
 
-        var str = '<div> : gimabal ' + feedback.gimbal.pitch + '</div>'
-            + '<div> : fs: ' + feedback.flight_status + '%</div>';
+        var str ='1'+ '<div> : gimabal ' + feedback.gimbal.pitch + '</div>'
            + '<div> : gp: ' + feedback.GlobalPosition.altitude + '%</div>';
 
         $("#drone-status").empty();
