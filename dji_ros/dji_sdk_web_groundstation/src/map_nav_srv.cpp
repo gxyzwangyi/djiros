@@ -793,7 +793,7 @@ int main(int argc, char* argv[]) {
     //web_waypoint_receive action server
     dsPtr_ = new SimpleActionServer<Action_d>(
         nh, 
-        "dji_sdk_web_groundstation/drone_status", 
+        "dji_sdk_web_groundstation/drone_status_action", 
         false
     );
 

@@ -253,12 +253,12 @@ function Communicator(socket) {
     //action client
     this.drone_status_client = new ROSLIB.ActionClient({
         ros : this.ros,
-        serverName : 'dji_sdk_web_groundstation/drone_status',
-        actionName : 'dji_sdk_web_groundstation/DroneStatus'
+        serverName : 'dji_sdk_web_groundstation/drone_status_action',
+        actionName : 'dji_sdk_web_groundstation/DroneStatusAction'
     });;
 
     
-    
+
     
    
    
@@ -755,6 +755,7 @@ Communicator.prototype.setrefresh = function() {
         actionClient : this.drone_status_client,
         goalMessage : {
         mes : 1
+
         }
     });
 
