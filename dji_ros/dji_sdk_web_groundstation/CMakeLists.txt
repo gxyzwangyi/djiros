@@ -73,6 +73,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 add_action_files(
    FILES
     WebWaypointReceive.action
+    DroneStatus.action
 #   Action1.action
 #   Action2.action
 )
