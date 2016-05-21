@@ -242,11 +242,11 @@ function Communicator(socket) {
     });       
               
        
-    // this.refreshTopic = new ROSLIB.Topic({
-    //     ros : this.ros,
-    //     name : 'dji_sdk_web_groundstation/map_nav_srv/refresh',
-    //     messageType : 'std_msgs/Bool'
-    // });  
+    this.refreshTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/refresh',
+        messageType : 'std_msgs/Bool'
+    });  
 
 
 
@@ -743,14 +743,6 @@ Communicator.prototype.setrp = function(r,p) {
 };
 
 
-Communicator.prototype.setrefresh = function() {
-    var _msg = new ROSLIB.Message({
-        data : true
-    });
-
-    console.log('refresh');
-    this.refreshTopic.publish(_msg);
-};
 
 Communicator.prototype.setrefresh = function() {
     var _msg = new ROSLIB.Message({

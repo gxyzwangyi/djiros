@@ -237,6 +237,13 @@ void cmdCB(const dji_sdk_web_groundstation::MapNavSrvCmdConstPtr& msg) {
     cmdTid_ = msg->tid;
 }
 
+void cmdCB(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data)
+        ROS_INFO("1");
+    else
+        ROS_INFO("2");
+}
+
 //TRUE for request control and FALSE for release control
 void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
     if(msg->data)
@@ -787,7 +794,7 @@ int main(int argc, char* argv[]) {
     );
     
     //web_waypoint_receive action server
-    asPtr_ = new SimpleActionServer<Action_t>(
+    dsPtr_ = new SimpleActionServer<Action_d>(
         nh, 
         'dji_sdk_web_groundstation/drone_status', 
         false
