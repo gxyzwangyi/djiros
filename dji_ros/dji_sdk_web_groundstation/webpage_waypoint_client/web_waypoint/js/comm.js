@@ -18,7 +18,7 @@ function Communicator(socket) {
     });
     this.ros.on('error', function(){
         console.log('Error connecting to websocket server: ', error);
-        $( '<div>Error connecting to websocket server: '+error+ ).appendTo("#monitor");
+        $( '<div>Error connecting to websocket server: '+error+'</div>' ).appendTo("#monitor");
     });
     this.ros.on('close', function(){
         console.log('Connection is closed!.');
@@ -356,11 +356,11 @@ Communicator.prototype.uploadWayline = function() {
         }
 
         var str = '<div>Feedback: current stage ' + feedback.stage + ' - '
-            + stageMsg + '</div> '
+            + stageMsg + '</div>'
             + '<div>Latitude progress: ' + feedback.latitude_progress + '%</div>'
             + '<div>Longitude progress: ' + feedback.longitude_progress + '%</div>'
             + '<div>Altitude progress: ' + feedback.altitude_progress + '%</div>'
-            + '<div>Index progress: ' + feedback.index_progress + '</div> ' ;
+            + '<div>Index progress: ' + feedback.index_progress + '</div>' ;
         $("#state-update").empty();
         $( str ).appendTo("#state-update");
     });
