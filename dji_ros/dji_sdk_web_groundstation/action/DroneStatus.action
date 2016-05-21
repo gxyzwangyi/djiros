@@ -5,3 +5,16 @@ bool result
 dji_sdk/Gimbal gimbal
 dji_sdk/GlobalPosition global_position
 uint8  flight_status
+dji_sdk/Acceleration acceleration 
+dji_sdk/AttitudeQuaternion attitude_quaternion 
+dji_sdk/Compass compass 
+dji_sdk/FlightControlInfo flight_control_info 
+uint8 flight_status 
+dji_sdk/Gimbal gimbal 
+dji_sdk/GlobalPosition global_position 
+dji_sdk/LocalPosition local_position 
+dji_sdk/PowerStatus power_status 
+dji_sdk/RCChannels rc_channels 
+dji_sdk/Velocity velocity 
+nav_msgs/Odometry odometry 
+dji_sdk/TimeStamp time_stamp 

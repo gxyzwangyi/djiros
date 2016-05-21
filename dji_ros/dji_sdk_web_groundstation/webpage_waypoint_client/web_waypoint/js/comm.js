@@ -360,7 +360,7 @@ Communicator.prototype.uploadWayline = function() {
             + '<div>Latitude progress: ' + feedback.latitude_progress + '%</div>'
             + '<div>Longitude progress: ' + feedback.longitude_progress + '%</div>'
             + '<div>Altitude progress: ' + feedback.altitude_progress + '%</div>'
-            + '<div>Index progress: ' + feedback.index_progress + '</div>';
+            + '<div>Index progress: ' + feedback.index_progress + '</div>' ;
         $("#state-update").empty();
         $( str ).appendTo("#state-update");
     });
@@ -760,12 +760,37 @@ Communicator.prototype.setrefresh = function() {
     });
 
     goal.on('feedback', function(feedback) {
-            console.log(feedback.gimbal.pitch);
 
         var str =
-         //'<div> : gimabal ' + feedback.gimbal.pitch + '</div>';
-           //  '<div> : fs: ' + feedback.flight_status + '</div>';
-           '<div> : gp: ' + feedback.GlobalPosition.altitude + '</div>';
+
+
+
+           '<div> : gp1: ' + feedback.Acceleration + '</div>'+
+           
+           '<div> : gp2: ' + feedback.attitude_quaternion + '</div>'+
+           
+           '<div> : gp3: ' + feedback.compass + '</div>'+
+           
+           '<div> : gp4: ' + feedback.flight_control_info + '</div>'+
+           
+           '<div> : gp5: ' + feedback.flight_status + '</div>'+
+           
+           '<div> : gp6: ' + feedback.gimbal + '</div>'+
+           
+           '<div> : gp7: ' + feedback.global_position + '</div>'+
+           
+           '<div> : gp8: ' + feedback.local_position + '</div>'+
+           
+           '<div> : gp9: ' + feedback.power_status + '</div>'+
+           
+           '<div> : gp0: ' + feedback.rc_channels + '</div>'+
+
+           '<div> : gp-: ' + feedback.velocity + '</div>'+
+           
+           '<div> : gp=: ' + feedback.odometry + '</div>'+
+           
+           '<div> : gp\: ' + feedback.time_stamp + '</div>'+
+           bianli(gimbal);
 
         $("#drone-status").empty();
         $( str ).appendTo("#drone-status");
@@ -775,3 +800,13 @@ Communicator.prototype.setrefresh = function() {
 
     goal.send();
 };
+
+
+function bianli(fb)
+{
+    var all = "" 
+    for(value in fb){
+        all += '<div>' + fb[value] +'</div>' ;
+}
+    return all
+}
