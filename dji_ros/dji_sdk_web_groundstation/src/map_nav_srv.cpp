@@ -60,6 +60,8 @@ uint8_t stage_ = 0;
 uint64_t tid_ = 0;
 uint64_t cmdTid_ = 1;
 
+
+
 uint8_t lat_p_; //latitude_progress
 uint8_t lon_p_; //longitude_progress
 uint8_t alt_p_; //altitude_progress
@@ -237,12 +239,7 @@ void cmdCB(const dji_sdk_web_groundstation::MapNavSrvCmdConstPtr& msg) {
     cmdTid_ = msg->tid;
 }
 
-void refresh(const std_msgs::Bool::ConstPtr& msg) {
-    if(msg->data)
-        ROS_INFO("1");
-    else
-        ROS_INFO("2");
-}
+
 
 //TRUE for request control and FALSE for release control
 void ctrlCB(const std_msgs::Bool::ConstPtr& msg) {
@@ -745,7 +742,7 @@ void dsCB() {
  
     rslt.result = true;
    
-    tid_ = newGoal.mes;
+ //   tid_ = newGoal.mes;
 
  
     fb.flight_status = drone->flight_status;
