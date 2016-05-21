@@ -237,7 +237,7 @@ void cmdCB(const dji_sdk_web_groundstation::MapNavSrvCmdConstPtr& msg) {
     cmdTid_ = msg->tid;
 }
 
-void cmdCB(const std_msgs::Bool::ConstPtr& msg) {
+void refresh(const std_msgs::Bool::ConstPtr& msg) {
     if(msg->data)
         ROS_INFO("1");
     else
