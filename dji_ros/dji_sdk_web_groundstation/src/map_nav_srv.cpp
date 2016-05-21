@@ -6,6 +6,9 @@
 #include <std_msgs/Float32.h>
 #include <dji_sdk/dji_drone.h>
 #include <dji_sdk_web_groundstation/WebWaypointReceiveAction.h>
+#include <dji_sdk_web_groundstation/DroneStatusAction.h>
+
+
 #include <dji_sdk_web_groundstation/MapNavSrvCmd.h>
 #include <dji_sdk_web_groundstation/Local.h>
 #include <dji_sdk_web_groundstation/Global.h>
@@ -17,6 +20,7 @@
 
 
 
+#include <dji_sdk/Gimbal.h>
 #include <dji_sdk/WaypointNavigationAction.h>
 
 using namespace actionlib;
@@ -29,9 +33,21 @@ typedef dji_sdk_web_groundstation::WebWaypointReceiveResult Result_t;
 
 typedef dji_sdk::WaypointNavigationAction WPAction_t;
 
+typedef dji_sdk_web_groundstation::DroneStatusAction Action_d;
+typedef dji_sdk_web_groundstation::DroneStatusGoal Goal_d;
+typedef dji_sdk_web_groundstation::DroneStatusGoalConstPtr GoalConstPtr_d;
+typedef dji_sdk_web_groundstation::DroneStatusFeedback Feedback_d;
+typedef dji_sdk_web_groundstation::DroneStatusResult Result_d;
+
+
 
 
 SimpleActionServer<Action_t>* asPtr_;
+
+SimpleActionServer<Action_d>* dsPtr_;
+
+
+
 
 DJIDrone* drone;
 
@@ -713,6 +729,45 @@ void refresh(const std_msgs::Bool::ConstPtr& msg) {
 
 
 
+void dsCB() {
+    Feedback_d fb;
+    Result_d rslt;
+
+    Goal_d newGoal = *( dsPtr_->acceptNewGoal() );
+ 
+ 
+    rslt.result = true;
+   
+    tid_ = newGoal.mes;
+
+ 
+    fb.flight_status = drone->flight_status;
+    fb.gimbal = drone->gimbal;
+
+ 
+    dsPtr_->publishFeedback(fb);
+             
+          
+    dsPtr_->setSucceeded(rslt);
+          
+          
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -723,9 +778,6 @@ int main(int argc, char* argv[]) {
     drone = new DJIDrone(nh);
     
     
-     ROS_INFO("dianci: %d",drone->power_status);   
-     ROS_INFO("local: %d",drone->flight_status);   
-     ROS_INFO("gimbal: %f",drone->gimbal.pitch);
 
     //web_waypoint_receive action server
     asPtr_ = new SimpleActionServer<Action_t>(
@@ -733,6 +785,15 @@ int main(int argc, char* argv[]) {
         "dji_sdk_web_groundstation/web_waypoint_receive_action", 
         false
     );
+    
+    //web_waypoint_receive action server
+    asPtr_ = new SimpleActionServer<Action_t>(
+        nh, 
+        'dji_sdk_web_groundstation/drone_status', 
+        false
+    );
+
+
 
     //command subscribers
     ros::Subscriber sub1 = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/cmd", 1, cmdCB);
@@ -777,6 +838,11 @@ int main(int argc, char* argv[]) {
 
     ros::Subscriber sub_refresh = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/refresh", 1, refresh);
 
+
+    dsPtr_->registerGoalCallback(&dsCB);
+    dsPtr_->start();
+
+    
 
     asPtr_->registerGoalCallback(&goalCB);
     asPtr_->registerPreemptCallback(&preemptCB);

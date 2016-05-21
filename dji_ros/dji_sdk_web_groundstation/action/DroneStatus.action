@@ -1,0 +1,6 @@
+bool display
+---
+bool result
+---
+dji_sdk/Gimbal gimbal
+uint8  flight_status

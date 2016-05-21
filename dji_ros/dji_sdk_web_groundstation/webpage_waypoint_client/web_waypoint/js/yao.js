@@ -15,9 +15,6 @@
         }
     };
 
-    
-    
-    
     var joystick;
 
     // Get debug elements and map them
@@ -27,12 +24,6 @@
            degree : elDebug.querySelector('.degree .data')
         
     };
-
-
-
-
-
-
 
 
     function bindNipple () {
@@ -63,10 +54,9 @@
     createNipple('semi');
     
 
-    // Print data into elements
 
 
-        function run (obj) {
+    function run (obj) {
         function push(sub,el) {           
 
            var distance = sub["distance"];

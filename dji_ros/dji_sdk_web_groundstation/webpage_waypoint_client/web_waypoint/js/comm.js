@@ -242,13 +242,20 @@ function Communicator(socket) {
     });       
               
        
-    this.refreshTopic = new ROSLIB.Topic({
+    // this.refreshTopic = new ROSLIB.Topic({
+    //     ros : this.ros,
+    //     name : 'dji_sdk_web_groundstation/map_nav_srv/refresh',
+    //     messageType : 'std_msgs/Bool'
+    // });  
+
+
+
+    //action client
+    this.drone_status_client = new ROSLIB.ActionClient({
         ros : this.ros,
-        name : 'dji_sdk_web_groundstation/map_nav_srv/refresh',
-        messageType : 'std_msgs/Bool'
-    });  
-
-
+        serverName : 'dji_sdk_web_groundstation/drone_status',
+        actionName : 'dji_sdk_web_groundstation/DroneStatus'
+    });;
 
     
     
@@ -755,21 +762,17 @@ Communicator.prototype.setrefresh = function() {
     var goal = new ROSLIB.Goal({
         actionClient : this.web_wp_client,
         goalMessage : {
-            waypoint_list : goal_waypointList,
-            tid : this.tid
+        mes : 1
+
         }
     });
 
     goal.on('feedback', function(feedback) {
-        //console.log('Feedback: current stage ' + feedback.stage);
 
-        var str = '<div>Feedback: current stage ' + feedback.stage + '</div>'
-            + '<div>Latitude progress: ' + feedback.latitude_progress + '%</div>'
-            + '<div>Longitude progress: ' + feedback.longitude_progress + '%</div>'
-            + '<div>Altitude progress: ' + feedback.altitude_progress + '%</div>'
-            + '<div>Index progress: ' + feedback.index_progress + '</div>';
-        $("#state-update").empty();
-        $( str ).appendTo("#state-update");
+        var str = '<div>Feedback: gimabal ' + feedback.gimbal + '</div>'
+            + '<div>Feedback: fs: ' + feedback.flight_status + '%</div>';
+        $("#drone-status").empty();
+        $( str ).appendTo("#drone-status");
     });
 
 
