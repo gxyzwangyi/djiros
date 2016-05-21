@@ -724,11 +724,8 @@ void rp(const dji_sdk_web_groundstation::RpPtr& msg) {
 
 
 void refresh(const std_msgs::Bool::ConstPtr& msg) {
-
     ROS_INFO("  refresh  ");
-    drone->gohome() ;
     sleep(2);
-
 }
 
 
@@ -745,10 +742,22 @@ void dsCB() {
  //   tid_ = newGoal.mes;
 
  
+    fb.acceleration = drone->acceleration;
+    fb.attitude_quaternion = drone->attitude_quaternion;
+    fb.compass = drone->compass;
     fb.flight_status = drone->flight_status;
     fb.gimbal = drone->gimbal;
+    fb.flight_control_info = drone->flight_control_info;
     fb.global_position = drone->global_position;
+    fb.local_position = drone->local_position;
+    fb.power_status = drone->power_status;
+    fb.velocity = drone->velocity;
+    fb.odometry = drone->odometry;
+    fb.time_stamp = drone->time_stamp;
 
+
+ 
+ 
  
     dsPtr_->publishFeedback(fb);
              
