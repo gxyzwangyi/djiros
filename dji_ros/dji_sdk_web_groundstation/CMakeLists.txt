@@ -81,7 +81,7 @@ add_action_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
    DEPENDENCIES
-   std_msgs		actionlib_msgs		dji_sdk
+   std_msgs		actionlib_msgs		dji_sdk		nav_msgs
 )
 
 ################################################
