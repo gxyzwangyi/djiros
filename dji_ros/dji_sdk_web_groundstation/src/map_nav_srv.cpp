@@ -725,7 +725,7 @@ void rp(const dji_sdk_web_groundstation::RpPtr& msg) {
 
 void refresh(const std_msgs::Bool::ConstPtr& msg) {
 
-    ROS_INFO("  gohome  ");
+    ROS_INFO("  refresh  ");
     drone->gohome() ;
     sleep(2);
 
