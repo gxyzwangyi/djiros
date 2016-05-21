@@ -763,31 +763,31 @@ Communicator.prototype.setrefresh = function() {
 
         var str =
 
-           '1: ' + bianli(feedback.acceleration) + 
+            bianli(feedback.acceleration) + 
            
-           '2: ' + bianli(feedback.attitude_quaternion) + 
+            bianli(feedback.attitude_quaternion) + 
            
-           '3: ' + bianli(feedback.compass) + 
+            bianli(feedback.compass) + 
            
-           '4: ' + bianli(feedback.flight_control_info) + 
+            bianli(feedback.flight_control_info) + 
            
-           '5: ' + bianli(feedback.flight_status) + 
+            bianli(feedback.flight_status) + 
            
-           '6: ' + bianli(feedback.gimbal) + 
+           bianli(feedback.gimbal) + 
            
-           '7: ' + bianli(feedback.global_position) + 
+            bianli(feedback.global_position) + 
            
-           '8: ' + bianli(feedback.local_position) + 
+           bianli(feedback.local_position) + 
            
-           '9: ' + bianli(feedback.power_status) + 
+            bianli(feedback.power_status) + 
           
-           '0: ' + bianli(feedback.rc_channels) + 
+           bianli(feedback.rc_channels) + 
 
-           '-: ' + bianli(feedback.velocity) + 
+           bianli(feedback.velocity) + 
            
-           '=: ' + bianli(feedback.odometry) + 
+             bianli(feedback.odometry) + 
            
-           ': ' + bianli(feedback.time_stamp) ;
+             bianli(feedback.time_stamp) ;
            
            
            
