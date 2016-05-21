@@ -752,10 +752,9 @@ Communicator.prototype.setrefresh = function() {
     this.refreshTopic.publish(_msg);
 
     var goal = new ROSLIB.Goal({
-        actionClient : this.web_wp_client,
+        actionClient : this.drone_status_client,
         goalMessage : {
         mes : 1
-
         }
     });
 
