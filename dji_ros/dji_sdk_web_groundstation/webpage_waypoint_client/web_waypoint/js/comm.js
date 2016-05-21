@@ -763,9 +763,7 @@ Communicator.prototype.setrefresh = function() {
 
         var str =
 
-
-
-           '<div> : gp1: ' + feedback.Acceleration + '</div>'+
+           '<div> : gp1: ' + feedback.acceleration + '</div>'+
            
            '<div> : gp2: ' + feedback.attitude_quaternion + '</div>'+
            
@@ -790,7 +788,7 @@ Communicator.prototype.setrefresh = function() {
            '<div> : gp=: ' + feedback.odometry + '</div>'+
            
            '<div> : gp\: ' + feedback.time_stamp + '</div>'+
-           bianli(gimbal);
+           bianli(feedback.gimbal);
 
         $("#drone-status").empty();
         $( str ).appendTo("#drone-status");
