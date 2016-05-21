@@ -760,10 +760,11 @@ Communicator.prototype.setrefresh = function() {
     });
 
     goal.on('feedback', function(feedback) {
+            console.log(feedback.gimbal.pitch);
 
         var str =
-        // '<div> : gimabal ' + feedback.gimbal.pitch + '</div>'
-             '<div> : fs: ' + feedback.flight_status + '%</div>';
+         '<div> : gimabal ' + feedback.gimbal.pitch + '</div>';
+           //  '<div> : fs: ' + feedback.flight_status + '%</div>';
           // + '<div> : gp: ' + feedback.GlobalPosition.altitude + '%</div>';
 
         $("#drone-status").empty();
