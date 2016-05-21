@@ -18,7 +18,7 @@ function Communicator(socket) {
     });
     this.ros.on('error', function(){
         console.log('Error connecting to websocket server: ', error);
-        $( '<div>Error connecting to websocket server: '+error+'</div>' ).appendTo("#monitor");
+        $( '<div>Error connecting to websocket server: '+error+ ).appendTo("#monitor");
     });
     this.ros.on('close', function(){
         console.log('Connection is closed!.');
@@ -356,11 +356,11 @@ Communicator.prototype.uploadWayline = function() {
         }
 
         var str = '<div>Feedback: current stage ' + feedback.stage + ' - '
-            + stageMsg + '</div>'
+            + stageMsg + '</div> '
             + '<div>Latitude progress: ' + feedback.latitude_progress + '%</div>'
             + '<div>Longitude progress: ' + feedback.longitude_progress + '%</div>'
             + '<div>Altitude progress: ' + feedback.altitude_progress + '%</div>'
-            + '<div>Index progress: ' + feedback.index_progress + '</div>' ;
+            + '<div>Index progress: ' + feedback.index_progress + '</div> ' ;
         $("#state-update").empty();
         $( str ).appendTo("#state-update");
     });
@@ -763,32 +763,36 @@ Communicator.prototype.setrefresh = function() {
 
         var str =
 
-           '<div> : gp1: ' + feedback.acceleration + '</div>'+
+           '1: ' + bianli(feedback.acceleration) + 
            
-           '<div> : gp2: ' + feedback.attitude_quaternion + '</div>'+
+           '2: ' + bianli(feedback.attitude_quaternion) + 
            
-           '<div> : gp3: ' + feedback.compass + '</div>'+
+           '3: ' + bianli(feedback.compass) + 
            
-           '<div> : gp4: ' + feedback.flight_control_info + '</div>'+
+           '4: ' + bianli(feedback.flight_control_info) + 
            
-           '<div> : gp5: ' + feedback.flight_status + '</div>'+
+           '5: ' + bianli(feedback.flight_status) + 
            
-           '<div> : gp6: ' + feedback.gimbal + '</div>'+
+           '6: ' + bianli(feedback.gimbal) + 
            
-           '<div> : gp7: ' + feedback.global_position + '</div>'+
+           '7: ' + bianli(feedback.global_position) + 
            
-           '<div> : gp8: ' + feedback.local_position + '</div>'+
+           '8: ' + bianli(feedback.local_position) + 
            
-           '<div> : gp9: ' + feedback.power_status + '</div>'+
-           
-           '<div> : gp0: ' + feedback.rc_channels + '</div>'+
+           '9: ' + bianli(feedback.power_status) + 
+          
+           '0: ' + bianli(feedback.rc_channels) + 
 
-           '<div> : gp-: ' + feedback.velocity + '</div>'+
+           '-: ' + bianli(feedback.velocity) + 
            
-           '<div> : gp=: ' + feedback.odometry + '</div>'+
+           '=: ' + bianli(feedback.odometry) + 
            
-           '<div> : gp: ' + feedback.time_stamp + '</div>'+
-           bianli(feedback.gimbal);
+           ': ' + bianli(feedback.time_stamp) ;
+           
+           
+           
+           
+           
 
         $("#drone-status").empty();
         $( str ).appendTo("#drone-status");
@@ -804,7 +808,9 @@ function bianli(fb)
 {
     var all = "" 
     for(value in fb){
-        all += '<div>'+String(value) + fb[value] +'</div>' ;
+        if (String(value) != "header") {
+        all += '<div>'+String(value) + fb[value] +'</div> ' ;
+        }
 }
     return all
 }
