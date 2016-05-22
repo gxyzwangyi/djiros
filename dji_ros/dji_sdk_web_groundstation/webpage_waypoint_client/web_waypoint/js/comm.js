@@ -179,6 +179,19 @@ function Communicator(socket) {
         messageType : 'std_msgs/Bool'
     });
     
+    
+    this.overTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/over',
+        messageType : 'std_msgs/Bool'
+    });
+    
+    this.armTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/arm',
+        messageType : 'std_msgs/Bool'
+    });
+    
  //Bigger   
     this.wayTopic = new ROSLIB.Topic({
         ros : this.ros,
@@ -221,11 +234,7 @@ function Communicator(socket) {
    
        
 //rc       
-    this.rcTopic = new ROSLIB.Topic({
-        ros : this.ros,
-        name : 'dji_sdk_web_groundstation/map_nav_srv/rc',
-        messageType : 'std_msgs/Bool'
-    });    
+
    
    
     this.ytTopic = new ROSLIB.Topic({
@@ -636,6 +645,27 @@ Communicator.prototype.setgohome = function() {
 };
 
 
+Communicator.prototype.setover = function() {
+    var _msg = new ROSLIB.Message({
+        data : true
+    });
+
+    console.log('over the world');
+    this.overTopic.publish(_msg);
+};
+
+
+Communicator.prototype.setarm = function(value) {
+    var _msg = new ROSLIB.Message({
+        data : value
+    });
+
+    console.log('arm');
+    this.armTopic.publish(_msg);
+};
+
+
+
 
 
 Communicator.prototype.setway = function(way) {
@@ -712,19 +742,15 @@ Communicator.prototype.setcancel = function() {
 };
 
 
-Communicator.prototype.setrc = function(value) {
-    var _msg = new ROSLIB.Message({
-        data : value
-    });
-
-    console.log('rc');
-    this.rcTopic.publish(_msg);
-};
+ 
+ 
 //yaw and throttle
-Communicator.prototype.setyt = function(y,t) {
+Communicator.prototype.setyt = function(y,t,m) {
     var _msg = new ROSLIB.Message({
         rc_yaw : parseInt(y),
-        rc_throttle : parseInt(t) 
+        rc_throttle : parseInt(t) ,
+        rc_mode : parseInt(m) 
+
     });
 
     console.log('yt');
@@ -732,10 +758,12 @@ Communicator.prototype.setyt = function(y,t) {
 };
 
 
-Communicator.prototype.setrp = function(r,p) {
+Communicator.prototype.setrp = function(r,p,m) {
     var _msg = new ROSLIB.Message({
         rc_roll : parseInt(r),
-        rc_pitch : parseInt(p) 
+        rc_pitch : parseInt(p) ,
+        rc_mode : parseInt(m) 
+
     });
 
     console.log('rp');
@@ -760,7 +788,6 @@ Communicator.prototype.setrefresh = function() {
     });
 
     goal.on('feedback', function(feedback) {
-
         var str =
 
             bianli(feedback.acceleration) + 
@@ -773,27 +800,22 @@ Communicator.prototype.setrefresh = function() {
            
             bianli(feedback.flight_status) + 
            
-           bianli(feedback.gimbal) + 
+            bianli(feedback.gimbal) + 
            
             bianli(feedback.global_position) + 
            
-           bianli(feedback.local_position) + 
+            bianli(feedback.local_position) + 
            
             bianli(feedback.power_status) + 
           
-           bianli(feedback.rc_channels) + 
+            bianli(feedback.rc_channels) + 
 
-           bianli(feedback.velocity) + 
+            bianli(feedback.velocity) + 
            
-             bianli(feedback.odometry) + 
+            bianli(feedback.odometry) + 
            
-             bianli(feedback.time_stamp) ;
+            bianli(feedback.time_stamp) ;
            
-           
-           
-           
-           
-
         $("#drone-status").empty();
         $( str ).appendTo("#drone-status");
     });
@@ -809,7 +831,11 @@ function bianli(fb)
     var all = "" 
     for(value in fb){
         if (String(value) != "header") {
-        all += '<div>'+String(value) + fb[value] +'</div> ' ;
+            if (typeof fb[value] === 'object') 
+            {
+                all += bianli(fb[value])
+            }
+            else{all += '<div>'+String(value) +":"+ fb[value] +'</div> ' ;}
         }
 }
     return all

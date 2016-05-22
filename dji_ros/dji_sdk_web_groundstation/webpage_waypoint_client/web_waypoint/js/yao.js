@@ -55,25 +55,36 @@
     
 
 
-
     function run (obj) {
         function push(sub,el) {           
 
-           var distance = sub["distance"];
-           var degree =  sub["angle"]["degree"]*2*3.14159/360;
-           var yaw = 1024+Math.cos(degree)*distance*66/5 ;
-           var throttle = 1024+Math.sin(degree)*distance*66/5 ;
-           el["distance"].innerHTML = yaw;
-           el["degree"].innerHTML = throttle;
-
-           my_Communicator.setyt(yaw,throttle);
+            var distance = sub["distance"];
+            var degree =  sub["angle"]["degree"]*2*3.14159/360;
+            var yaw = 1024+Math.cos(degree)*distance*66/5 ;
+            var throttle = 1024+Math.sin(degree)*distance*66/5 ;
+            el["distance"].innerHTML = yaw;
+            el["degree"].innerHTML = throttle;
+            var mode = 496
+            if (document.getElementById("hot_radius").value == "A" )
+            {
+                mode = 1024
+            }
+            else if(document.getElementById("hot_radius").value == "P")
+            {
+                mode = 1552
+            }
+            else
+            {
+                mode = 496
+            }
+            my_Communicator.setyt(yaw,throttle,mode);
 
         
+            }
+            setTimeout(function () {
+                push(obj,els);
+            }, 0);
         }
-        setTimeout(function () {
-            push(obj,els);
-        }, 0);
-    }
     
     
 

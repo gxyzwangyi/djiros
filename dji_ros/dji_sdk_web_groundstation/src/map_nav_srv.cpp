@@ -571,6 +571,42 @@ void gohome(const std_msgs::Bool::ConstPtr& msg) {
 }
 
 
+void over(const std_msgs::Bool::ConstPtr& msg) {
+
+    ROS_INFO("  gohome  ");
+    drone->gimbal_angle_control(0, 0, 1800, 20);
+    sleep(2);
+    drone->gimbal_angle_control(0, 0, -1800, 20);
+    sleep(2);
+    drone->gimbal_angle_control(300, 0, 0, 20);
+    sleep(2);
+    drone->gimbal_angle_control(-300, 0, 0, 20);
+    sleep(2);
+    drone->gimbal_angle_control(0, 300, 0, 20);
+    sleep(2);
+    drone->gimbal_angle_control(0, -300, 0, 20);
+    sleep(2);
+    drone->gimbal_angle_control(0, 0, 0, 20);
+    sleep(2);
+
+}
+
+
+void arm(const std_msgs::Bool::ConstPtr& msg) {
+    if(msg->data){
+    ROS_INFO("  arm  ");
+    drone->drone_arm();
+    sleep(2);
+    }
+    else{
+    drone->drone_disarm();
+    ROS_INFO(" disarm ");
+    sleep(2);
+    }
+}
+
+
+
 
 
 void way(const dji_sdk_web_groundstation::WayPtr& msg) {
@@ -712,7 +748,7 @@ void yt(const dji_sdk_web_groundstation::YtPtr& msg) {
     virtual_rc_data[2] = msg->rc_throttle;	//2-> throttle 	[1024-660,1024+660]
     virtual_rc_data[3] = msg->rc_yaw;	//3-> yaw      	[1024-660,1024+660]
     virtual_rc_data[4] = 1684;	 	//4-> gear		{1684(UP), 1324(DOWN)}
-    virtual_rc_data[6] = 1552;    	//6-> mode     	{1552(P), 1024(A), 496(F)}
+    virtual_rc_data[6] = msg->rc_mode;    	//6-> mode     	{1552(P), 1024(A), 496(F)}
 
     for (int i = 0; i < 20; i++){
         drone->virtual_rc_control(virtual_rc_data);
@@ -734,7 +770,7 @@ void rp(const dji_sdk_web_groundstation::RpPtr& msg) {
     virtual_rc_data[2] = 1024;	//2-> throttle 	[1024-660,1024+660]
     virtual_rc_data[3] = 1024;	//3-> yaw      	[1024-660,1024+660]
     virtual_rc_data[4] = 1684;	 	//4-> gear		{1684(UP), 1324(DOWN)}
-    virtual_rc_data[6] = 1552;    	//6-> mode     	{1552(P), 1024(A), 496(F)}
+    virtual_rc_data[6] = msg->rc_mode;    	//6-> mode     	{1552(P), 1024(A), 496(F)}
 
     for (int i = 0; i < 20; i++){
         drone->virtual_rc_control(virtual_rc_data);
@@ -858,6 +894,10 @@ int main(int argc, char* argv[]) {
     ros::Subscriber sub_takeoff = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/takeoff", 1, takeoff);
     ros::Subscriber sub_land = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/land", 1, land);
     ros::Subscriber sub_gohome = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/gohome", 1, gohome);
+    ros::Subscriber sub_over = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/over", 1, over);
+    ros::Subscriber sub_arm = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/arm", 1, arm);
+
+
 
     ros::Subscriber sub_way = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/way", 1, way);
     ros::Subscriber sub_hot = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/hot", 1, hot);

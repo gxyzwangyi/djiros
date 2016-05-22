@@ -171,8 +171,30 @@ $( document ).ready(function() {
 
 	});	
 	
+		$("#over").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setover();
+
+	});	
+	
+		$("#arm").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setarm(true);
+
+	});	
 	
 	
+		$("#disarm").bind("click",function() {
+		if (typeof(my_Communicator) == 'undefined')
+			alert("Drone not Connected!");
+		else
+			my_Communicator.setarm(false);
+
+	});	
 	
 	
 	
@@ -314,7 +336,7 @@ $( document ).ready(function() {
 			var alti=  document.getElementById("hot_alti").value
 			var speed=  document.getElementById("hot_speed").value
 			var radius=  document.getElementById("hot_radius").value
-			if (document.getElementById("clockwise").value="顺")
+			if (document.getElementById("clockwise").value == "顺")
 				var clockwise = 1 
 			else
 				var clockwise = 0
@@ -361,13 +383,7 @@ $( document ).ready(function() {
 	
 	
 	
-        $("#is_rc").bind("click",function() {
-        if (typeof(my_Communicator) == 'undefined')
-            alert("Drone not Connected!");
-        else
-            my_Communicator.setrc(document.getElementById("is_rc").checked);
 
-    });	
 	
 	
 	
@@ -378,6 +394,16 @@ $( document ).ready(function() {
         else
             my_Communicator.setrefresh();
     });	
+	
+	
+	
+	
+		window.setInterval(showalert, 3000); 
+		function showalert() 
+		{ 
+		my_Communicator.setrefresh();
+		} 
+
 	
 
 	
