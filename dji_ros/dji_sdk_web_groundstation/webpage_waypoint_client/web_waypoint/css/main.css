@@ -98,6 +98,13 @@ body, html {
     height: 450px;
 }
 
+.central{
+    text-align:left;  
+    margin:0 auto;  
+    
+}
+
+
 
 .mui-switch {
   width: 52px;
