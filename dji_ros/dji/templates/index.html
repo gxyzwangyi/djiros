@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no,width=device-width" />
+
+	
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/pure.css">
+    <link rel="stylesheet" type="text/css"  href="css/marketing.css">
+    <link rel="stylesheet" type="text/css"  href="css/pricing.css">
+
+	<!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure.css">-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">	
+
+    <!--link rel="stylesheet" href="http://yoannmoinet.github.io/nipplejs/stylesheets/styles.css" media="screen" title="no title" charset="utf-8"-->
+    <!--link rel="stylesheet" href="http://yoannmoinet.github.io/nipplejs/stylesheets/github-light.css" media="screen" title="no title" charset="utf-8"-->
+
+	<!-- add rosbridge lib -->
+	<script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+	<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.md5.js"></script> 
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=at2cDIqVRAA3gbtfqii5GHFc"></script>
+	<script type="text/javascript" src="js/planner.js"></script>
+	<script type="text/javascript" src="js/wp_control.js"></script>
+	<script type="text/javascript" src="js/comm.js"></script>
+	
+
+	<title>Waypoint Test</title>
+</head>
+<body>
+	
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">DJI</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">doc</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">other</a></li>
+        </ul>
+    </div>
+</div>
+
+	
+    
+<div class="splash-container">
+	<div id="allmap"></div>
+</div>
+
+
+
+<div class="content-wrapper">
+    
+    
+    <div class="content">
+        <h2 class="content-head is-center">操作指南</h2>
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-rocket"></i>
+                    動力與視頻
+                </h3>
+                <p>
+					
+					<form>
+					<input id="up_value" type="text"  value="2" >
+					<input id="up" type="button" value="up">
+					</form>
+
+					<form>
+					<input id="down_value" type="text" value="2" >
+					<input id="down" type="button" value="down">
+					</form>
+
+					<form>
+					<input id="right_value" type="text" value="2" >
+					<input id="right" type="button" value="right">
+					</form>
+
+					<form>
+					<input id="left_value" type="text" value="2" >
+					<input id="left" type="button" value="left">
+					</form>
+
+					<form>
+					<input id="front_value" type="text" value="2"  >
+					<input id="front" type="button" value="front">
+					</form>
+
+					<form>
+					<input id="back_value" type="text" value="2"  >
+					<input id="back" type="button" value="back" >
+					</form>
+					
+					<form>
+					<input id="circle_value" type="text" value="2"  >
+					<input id="circle" type="button" value="circle">
+					</form>
+					
+
+					<form>
+					<input id="square_value" type="text" value="2"  >
+					<input id="square" type="button" value="square">
+					</form>
+				                    
+                    
+                    <form oninput="amount.value=rangeInput.value - 320">
+                        <label for="yaw_value">Yaw</label>
+                        <input type="range" id="yaw_value" name="rangeInput" data-type="yaw_value" step="1" value="0" max="640" />
+                        <output for="yaw_value" name="amount">0</output>
+                        <input id="yaw" type="button" value="yaw控制">
+                    </form>
+                    
+                    <form oninput="amount.value=rangeInput.value - 35">
+                        <label for="roll_value">Roll</label>
+                        <input type="range" id="roll_value" name="rangeInput" data-type="roll_value" step="1" value="0" max="70" />
+                        <output for="roll_value" name="amount">0</output>
+                        <input id="roll" type="button" value="roll控制">
+                    </form>          
+                    
+                    <form oninput="amount.value=rangeInput.value - 90">
+                        <label for="pitch_value">Pitch</label>
+                        <input type="range" id="pitch_value" name="rangeInput" data-type="pitch_value" step="1" value="0" max="120" />
+                        <output for="pitch_value" name="amount">0</output>
+                        <input id="pitch" type="button" value="pitch控制">
+                    </form> 
+                                           
+          
+                 
+                </p>
+            </div>
+			
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-mobile"></i>
+                    高級動力
+                </h3>
+                <p>
+
+                    <form>
+                    <input id="x_local" type="text" value="2"  >
+                    <input id="y_local" type="text" value="2"  >
+                    <input id="z_local" type="text" value="2"  >
+                    <br>
+                    <input id="local" type="button" value="local">
+                    </form>
+            
+                    <form>
+                    <input id="lati_value" type="text" value= >
+                    <input id="longi_value" type="text" value= >
+                    <input id="alti_value" type="text" value= >
+                    <br>
+                    <input id="global" type="button" value="global">
+                    </form>
+	
+                  
+                    <form oninput="amount.value=rangeInput.value - 320">
+                        <label for="y_yrp">Yaw</label>
+                        <input type="range" id="y_yrp" name="rangeInput" data-type="y_yrp" step="1" value="0" max="640" />
+                        <output for="y_yrp" name="amount">0</output>
+                    </form>
+                    
+                    <form oninput="amount.value=rangeInput.value - 35">
+                        <label for="r_yrp">roll</label>
+                        <input type="range" id="r_yrp" name="rangeInput" data-type="r_yrp" step="1" value="0" max="70" />
+                        <output for="r_yrp" name="amount">0</output>
+                    </form>          
+                    
+                    <form oninput="amount.value=rangeInput.value - 90 ">
+                        <label for="p_yrp">pitch</label>
+                        <input type="range" id="p_yrp" name="rangeInput" data-type="p_yrp" step="1" value="0" max="120" />
+                        <output for="p_yrp" name="amount">0</output>
+                    </form> 
+                    <input id="d_yrp" type="text" value="2"  >
+                        <br>
+                    <input id="yrp" type="button" value="yrp">
+                    
+    
+             </p>
+            </div>
+			
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-th-large"></i>
+                    控制基礎
+                </h3>
+                <p>
+					<button id="request">request</button>
+					<button id="release">release</button>
+					<br>
+					<button id="takeoff">takeoff</button>
+					<button id="land">landing</button>
+					<button id="gohome">gohome</button>      
+               		<br>
+ 					<button id="over">over the world</button>
+                      
+      			    <button id="arm">arm</button>
+ 					<button id="disarm">disarm</button>
+
+                    
+				</p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-check-square-o"></i>
+                    定點飛行
+                </h3>
+                <p>
+					<button id="start-plan">Start Planning</button> 
+					<button id="confirm-mission">Confirm Mission</button> 
+					<button id="reset-mission">Reset Mission</button> 
+					<button id="open-navmode">Open Navigation Mode</button> 
+					<button id="upload-mission">Upload Mission</button> 
+					<button id="start-mission">Start Mission</button> 
+					<button id="cancel-mission">Abort Mission</button> 
+					<button id="close-navmode">Close Navigation Mode</button> 
+
+				</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="content">
+        <h2 class="content-head is-center">操作指南</h2>
+
+    <div class="pricing-tables pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-rocket"></i>
+                        刷新状态
+                    </h3>
+                <p>
+                    
+                <div class="pricing-table pricing-table-free">
+                <div class="pricing-table-header">
+ 
+                    <span class="pricing-table-price">
+                        状态 <span>每十秒刷新</span>
+                    </span>
+                </div>
+
+                <ul id="drone-status" class="pricing-table-list">
+ 
+                </ul>
+
+                <button id="refresh" class="button-choose pure-button">刷新</button>
+                </div>
+                     
+                </p>
+            </div>
+                
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-rocket"></i>
+                        刷新状态
+                    </h3>
+                <p>
+                    
+                <div class="pricing-table pricing-table-biz">
+                <div class="pricing-table-header">
+ 
+                    <span class="pricing-table-price">
+                        状态 <span>每十秒刷新</span>
+                    </span>
+                </div>
+
+                <ul class="pricing-table-list" id="drone-status1">
+ 
+                </ul>
+
+                <button id="refresh1" class="button-choose pure-button">刷新</button>
+            </div>
+                     
+                  </p>
+            </div>         
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+            <div class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1-2">
+                <h3 class="content-subhead">
+                    <i class="fa fa-th-large"></i>
+                        控制基礎
+                </h3>
+                <p>
+                    <table class="pure-table pure-table-horizontal">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>经度</th>
+                                <th>纬度</th>
+                                <th>高度</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><input id="way1_lati" type="text" value= ></td>
+                                <td><input id="way1_longi" type="text" value= > </td>
+                                <td><input id="way1_alti" type="text" value= ></td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td><input id="way2_lati" type="text" value= ></td>
+                                <td><input id="way2_longi" type="text" value= ></td>
+                                <td><input id="way2_alti" type="text" value= > </td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td><input id="way3_lati" type="text" value= ></td>
+                                <td><input id="way3_longi" type="text" value= ></td>
+                                <td><input id="way3_alti" type="text" value= ></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="way_upload">waypoint_upload</button>
+
+                    <table class="pure-table pure-table-horizontal">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>经度</th>
+                                <th>纬度</th>
+                                <th>高度</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><input id="hot_lati" type="text" value= ></td>
+                                <td><input id="hot_longi" type="text" value= > </td>
+                                <td><input id="hot_alti" type="text" value= ></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                                <div class="pure-u-1 pure-u-md-1-4">
+                                    <label for="hot_radius">半徑</label>
+                                    <input id="hot_radius" class="pure-u-23-24" type="text">
+                                </div>
+
+                                <div class="pure-u-1 pure-u-md-1-4">
+                                    <label for="hot_speed">角速度</label>
+                                    <input id="hot_speed" class="pure-u-23-24" type="text">
+                                </div>
+                                
+                                <div class="pure-u-1 pure-u-md-1-4">
+                                    <label for="clockwise">轉向</label>
+                                    <br>
+                                    <select id="clockwise" class="pure-input-1-2">
+                                        <option>顺</option>
+                                        <option>逆</option>
+                                    </select>
+                                </div>
+                        
+                                <button id="hot_upload">hot_upload</button>
+                                <br>
+                                <button id="start">start</button>
+                                <button id="pause">pause</button>
+                                <button id="resume">resume</button>
+                                <button id="cancel">cancel</button>
+
+                </p>
+            </div>                            
+        </div>
+    </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="ribbon l-box-lrg pure-g">
+        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+            <img class="pure-img-responsive" width="300" src="http://192.168.99.121:8080/stream?topic=/dji_sdk/image_raw">
+
+            
+        </div>
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+            <p>
+            <div id="bottom">
+                <div id="monitor"></div>
+                <div id = "state-update"></div>
+                <div id = "event-update"></div>
+            </div>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="content">
+        
+        
+        
+        <div class="content-head is-center">
+        <h2>虚拟摇杆</h2>
+        <label for="is_rc" >模式选择</label>
+        <br>
+        <select id="is_rc" >
+            <option>F</option>
+            <option>P</option>
+            <option>A</option>
+        </select>        
+        
+        </div>
+        
+        
+        
+        <div class="pure-g">
+            
+            <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+                <div id="zone_joystick">
+                    <div id="debug">
+                        <ul>
+                            <li class="distance">yaw : <span class="data"></span></li>
+                            <li class="degree">degree : <span class="data"></span></li>
+                        </ul>
+                    </div>
+                    <div class="zone semi active"></div>
+                </div>
+            </div>
+
+
+
+            <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+                <div id="zone_joystick1">
+                    <div id="debug1">
+                        <ul>
+                            <li class="distance1">roll : <span class="data1"></span></li>
+                            <li class="degree1">pitch : <span class="data1"></span></li>
+                        </ul>
+                    </div>
+                    <div class="zone1 semi1 active1"></div>
+                </div>
+            </div>
+            
+            
+        </div>   
+    </div>
+
+
+
+</div>
+
+	
+
+		
+			<!--p style = "color:red">ERROR MESSAGE:</p> <p id = "error-msg" style = "color:red" ></p>
+
+		<!--div id = "uavControl">
+			Username: <input type="text" name="username"><br>
+			Password: <input type="password" name="password"><br>
+			<button id="login">Login</button><br>
+			<br>
+			<input type="file" name="firmware" accept=".bin">
+			<button id="update">Update Firmware</button><br>
+			<br>
+			Idle Speed: <input type="text" name="idleSpeed"><br>
+			<button id="setSpeed">Update Idle Speed</button><br>
+			<br>
+		</div-->
+        
+        
+        <script type="text/javascript" src="js/nipplejs.min.js"  ></script>
+        <script type="text/javascript" src="js/yao.js" ></script>
+        <script type="text/javascript" src="js/yao1.js" ></script>
+
+</body>
+</html>
