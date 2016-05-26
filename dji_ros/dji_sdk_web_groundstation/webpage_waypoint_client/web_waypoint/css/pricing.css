@@ -128,14 +128,14 @@ p {
 .pricing-table-price {
     font-size: 1em;
     margin: 0em 0 0;
-    font-weight: 30;
+    font-weight: 300;
 }
     .pricing-table-price span {
         display: block;
         text-transform: uppercase;
-        font-size: 0.2em;
+        font-size: 0.5em;
         padding-bottom: 0em;
-        font-weight: 40;
+        font-weight: 400;
         color: rgba(255, 255, 255, 0.5);
         *color: #fff;
     }

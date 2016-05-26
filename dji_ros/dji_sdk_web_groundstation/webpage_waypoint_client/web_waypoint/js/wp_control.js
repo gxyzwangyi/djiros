@@ -431,12 +431,91 @@ $( document ).ready(function() {
 	
 	
 
-		$("#refresh").bind("click",function() {
+	$("#refresh").bind("click",function() {
         if (typeof(my_Communicator) == 'undefined')
             alert("Drone not Connected!");
         else
             my_Communicator.setrefresh();
     });	
+	
+	$("#refresh1").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+
+	$("#refresh2").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh3").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh4").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh5").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh6").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh7").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh8").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh9").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh10").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });	
+	
+		$("#refresh11").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+            my_Communicator.setrefresh();
+    });		
+	
+	
 	
 	
 	

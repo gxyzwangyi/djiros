@@ -825,41 +825,65 @@ Communicator.prototype.setrefresh = function() {
     });
 
     goal.on('feedback', function(feedback) {
-        var str =
-
-            bianli(feedback.acceleration) + 
-           
-            bianli(feedback.attitude_quaternion) + 
-           
-            bianli(feedback.compass) + 
-           
-            bianli(feedback.flight_control_info) + 
-           
-            bianli(feedback.flight_status) + 
-           
-            bianli(feedback.gimbal) ; 
+        var str =   bianli(feedback.acceleration) ;
+        
+        var str1 =  bianli(feedback.attitude_quaternion);
+                    
+        var str2 =  bianli(feedback.compass) ;
+        
+        var str3 =  bianli(feedback.flight_control_info) ;
+        
+        var str4 =  bianli(feedback.flight_status) ;
+        
+        var str5 =  bianli(feedback.gimbal) ; 
   
-         var str1 =
-          
-            bianli(feedback.global_position) + 
+  
+  
+  
+         var str6 = bianli(feedback.global_position) ;
            
-            bianli(feedback.local_position) + 
+          var str7 =   bianli(feedback.local_position) ; 
            
-            bianli(feedback.power_status) + 
+         var str8 =    bianli(feedback.power_status) ;
           
-            bianli(feedback.rc_channels) + 
+          var str9 =   bianli(feedback.rc_channels) ;
 
-            bianli(feedback.velocity) + 
-           
-            bianli(feedback.odometry) + 
-           
-            bianli(feedback.time_stamp) ;
+          var str10 =   bianli(feedback.velocity) ;
+                      
+          var str11 =   bianli(feedback.time_stamp) ;
            
         $("#drone-status").empty();
-        
         $("#drone-status1").empty();
+        $("#drone-status2").empty();
+        $("#drone-status3").empty();
+        $("#drone-status4").empty();
+        $("#drone-status5").empty();
+        
+        $("#drone-status6").empty();
+        $("#drone-status7").empty();
+        $("#drone-status8").empty();
+        $("#drone-status9").empty();
+        $("#drone-status10").empty();
+        $("#drone-status11").empty();    
+        
+        
+        
+        
+        
+        
         $( str ).appendTo("#drone-status");
         $( str1 ).appendTo("#drone-status1");
+        $( str2 ).appendTo("#drone-status2");
+        $( str3 ).appendTo("#drone-status3");
+        $( str4 ).appendTo("#drone-status4");
+        $( str5 ).appendTo("#drone-status5");
+        
+        $( str6 ).appendTo("#drone-status6");
+        $( str7 ).appendTo("#drone-status7");
+        $( str8 ).appendTo("#drone-status8");
+        $( str9 ).appendTo("#drone-status9");
+        $( str10 ).appendTo("#drone-status10");
+        $( str11 ).appendTo("#drone-status11");
 
     });
 
@@ -873,7 +897,7 @@ function bianli(fb)
 {
     var all = "" 
     for(value in fb){
-        if (String(value) != "header") {
+        if (String(value) != "header" || String(value) != "ts") {
             if (typeof fb[value] === 'object') 
             {
                 all += bianli(fb[value])

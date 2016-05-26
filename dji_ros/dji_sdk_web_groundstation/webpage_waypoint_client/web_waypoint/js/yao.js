@@ -66,6 +66,7 @@
             el["degree"].innerHTML = throttle;
             var mode = 1552
 
+
             if (document.getElementById("is_rc").value == "A" )
             {
                 mode = 496
