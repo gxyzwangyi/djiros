@@ -77,6 +77,12 @@ dji_sdk::MissionWaypointTask waypoint_task;
 dji_sdk::MissionWaypoint 	 waypoint;
 dji_sdk::MissionHotpointTask hotpoint_task;
 
+dji_sdk::MissionWaypoint wp(float x,float y,float z);
+float max2(float x,float y);
+float min2(float x,float y);
+
+
+
 uint8_t cmdCode_ = 0;
 uint8_t stage_ = 0;
 uint64_t tid_ = 0;
@@ -738,6 +744,7 @@ float max2(float x,float y){
    }
     
 }
+
 float min2(float x,float y){
     if (x>=y){
         return y
