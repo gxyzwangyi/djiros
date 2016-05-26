@@ -77,6 +77,8 @@ dji_sdk::MissionWaypointTask waypoint_task;
 dji_sdk::MissionWaypoint 	 waypoint;
 dji_sdk::MissionHotpointTask hotpoint_task;
 
+dji_sdk::MissionWaypointTask waypoint_task1;
+dji_sdk::MissionWaypoint 	 waypoint1;
 dji_sdk::MissionWaypoint wp(float x,float y,float z);
 float max2(float x,float y);
 float min2(float x,float y);
@@ -681,14 +683,14 @@ void way(const dji_sdk_web_groundstation::WayPtr& msg) {
 
 void cover(const dji_sdk_web_groundstation::WayPtr& msg) {
 
-    waypoint_task.velocity_range = 10;
-    waypoint_task.idle_velocity = 3;
-    waypoint_task.action_on_finish = 0;
-    waypoint_task.mission_exec_times = 1;
-    waypoint_task.yaw_mode = 4;
-    waypoint_task.trace_mode = 0;
-    waypoint_task.action_on_rc_lost = 0;
-    waypoint_task.gimbal_pitch_mode = 0;
+    waypoint_task1.velocity_range = 10;
+    waypoint_task1.idle_velocity = 3;
+    waypoint_task1.action_on_finish = 0;
+    waypoint_task1.mission_exec_times = 1;
+    waypoint_task1.yaw_mode = 4;
+    waypoint_task1.trace_mode = 0;
+    waypoint_task1.action_on_rc_lost = 0;
+    waypoint_task1.gimbal_pitch_mode = 0;
 
     float max_lati = max2(max2(msg->way1_lati,msg->way2_lati),max2(msg->way3_lati,msg->way4_lati));
     float max_longi = max2(max2(msg->way1_longi,msg->way2_longi),max2(msg->way3_longi,msg->way4_longi));
@@ -703,20 +705,19 @@ void cover(const dji_sdk_web_groundstation::WayPtr& msg) {
     {
         for (float longi=min_longi;longi<max_longi;longi=longi+0.0001)
         {
-            waypoint_task.mission_waypoint.push_back(wp(lati,longi,a_alti));
+            waypoint_task1.mission_waypoint.push_back(wp(lati,longi,a_alti));
         }
 
     }
 
+    drone->mission_waypoint_upload(waypoint_task1);
 
-
+    sleep(2);
 //TODO
 
 
 
-    drone->mission_waypoint_upload(waypoint_task);
 
-    sleep(2);
 
 }
 

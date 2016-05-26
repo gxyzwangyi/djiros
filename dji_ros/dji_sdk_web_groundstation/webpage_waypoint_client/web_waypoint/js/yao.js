@@ -64,19 +64,21 @@
             var throttle = 1024+Math.sin(degree)*distance*66/5 ;
             el["distance"].innerHTML = yaw;
             el["degree"].innerHTML = throttle;
-            var mode = 496
-            if (document.getElementById("hot_radius").value == "A" )
-            {
-                mode = 1024
-            }
-            else if(document.getElementById("hot_radius").value == "P")
-            {
-                mode = 1552
-            }
-            else
+            var mode = 1552
+
+            if (document.getElementById("is_rc").value == "A" )
             {
                 mode = 496
             }
+            else if(document.getElementById("is_rc").value == "F")
+            {
+                mode = 1024
+            }
+            else
+            {
+                mode = 1552
+            }
+ 
             my_Communicator.setyt(yaw,throttle,mode);
 
         

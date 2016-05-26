@@ -56,7 +56,26 @@
             el["distance"].innerHTML = roll;
             el["degree"].innerHTML = pitch;
 
-            my_Communicator.setrp(roll,pitch);
+
+            var mode = 1552
+
+            if (document.getElementById("is_rc").value == "A" )
+            {
+                mode = 496
+            }
+            else if(document.getElementById("is_rc").value == "F")
+            {
+                mode = 1024
+            }
+            else
+            {
+                mode = 1552
+            }
+ 
+
+
+
+            my_Communicator.setrp(roll,pitch,mode);
 
         }
         setTimeout(function () {
