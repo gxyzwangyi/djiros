@@ -684,11 +684,11 @@ void cover(const dji_sdk_web_groundstation::WayPtr& msg) {
     waypoint_task.action_on_rc_lost = 0;
     waypoint_task.gimbal_pitch_mode = 0;
 
-    float max_lati = max(max(msg->way1_lati,msg->way2_lati),max(msg->way3_lati,msg->way4_lati))
-    float max_longi = max(max(msg->way1_longi,msg->way2_longi),max(msg->way3_longi,msg->way4_longi))
+    float max_lati = max2(max2(msg->way1_lati,msg->way2_lati),max2(msg->way3_lati,msg->way4_lati))
+    float max_longi = max2(max2(msg->way1_longi,msg->way2_longi),max2(msg->way3_longi,msg->way4_longi))
 
-    float min_lati = min(min(msg->way1_lati,msg->way2_lati),min(msg->way3_lati,msg->way4_lati))
-    float min_longi = min(min(msg->way1_longi,msg->way2_longi),min(msg->way3_longi,msg->way4_longi))
+    float min_lati = min2(min2(msg->way1_lati,msg->way2_lati),min2(msg->way3_lati,msg->way4_lati))
+    float min_longi = min2(min2(msg->way1_longi,msg->way2_longi),min2(msg->way3_longi,msg->way4_longi))
     
     float a_alti = (msg->way1_alti+msg->way2_alti+msg->way3_alti+msg->way4_alti)/4
     
@@ -729,12 +729,21 @@ dji_sdk::MissionWaypoint wp(float x,float y,float z){
     return waypoint_temp;
 }
 
-float max(float x,float y){
+float max2(float x,float y){
     if (x>=y){
         return x
     }
    else {
        return y
+   }
+    
+}
+float min2(float x,float y){
+    if (x>=y){
+        return y
+    }
+   else {
+       return x
    }
     
 }
