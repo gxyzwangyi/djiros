@@ -48,7 +48,7 @@ struct sRGB{
 	int g;
 	int b;
 };
-
+//yuv->rgb
 sRGB yuvTorgb(int Y, int U, int V)
 {
 	sRGB rgb;
@@ -61,6 +61,8 @@ sRGB yuvTorgb(int Y, int U, int V)
 	return rgb;
 }
 
+
+//NV12->RGB
 unsigned char * NV12ToRGB(unsigned char * src, unsigned char * rgb, int width, int height){
 	int numOfPixel = width * height;
 	int positionOfU = numOfPixel;
@@ -89,6 +91,8 @@ unsigned char * NV12ToRGB(unsigned char * src, unsigned char * rgb, int width, i
 	return rgb;
 }
 
+
+//YUV->BGB25  never used
 bool YUV420_To_BGR24(unsigned char *puc_y, unsigned char *puc_u, unsigned char *puc_v, unsigned char *puc_rgb, int width_y, int height_y)
 {
 	if (!puc_y || !puc_u || !puc_v || !puc_rgb)
@@ -148,6 +152,9 @@ bool YUV420_To_BGR24(unsigned char *puc_y, unsigned char *puc_u, unsigned char *
 	return true;
 }
 
+
+//YUV420->Ipl  never used
+
 IplImage* YUV420_To_IplImage(unsigned char* pYUV420, int width, int height)
 {
 	if (!pYUV420)
@@ -183,6 +190,8 @@ IplImage* YUV420_To_IplImage(unsigned char* pYUV420, int width, int height)
 	return image;
 }
 
+
+
 int main(int argc, char **argv)
 {
 	ros::init(argc,argv,"image_raw");
@@ -211,7 +220,7 @@ int main(int argc, char **argv)
 	time_t timep;
 	time(&timep);
 	
-	std::string path = "/home/ubuntu/VideoTest";
+	std::string path = "/home/ubuntu/Test";
 	std::string cctime =  asctime(localtime(&timep)) ;
 	std::string end = ".avi";
 	std::string result = path + cctime + end ;

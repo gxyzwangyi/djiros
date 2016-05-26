@@ -70,65 +70,65 @@
 					
 					<form>
 					<input id="up_value" type="text"  value="2" >
-					<input id="up" type="button" value="up">
+					<input id="up" type="button" value="上/米">
 					</form>
 
 					<form>
 					<input id="down_value" type="text" value="2" >
-					<input id="down" type="button" value="down">
+					<input id="down" type="button" value="下/米">
 					</form>
 
 					<form>
 					<input id="right_value" type="text" value="2" >
-					<input id="right" type="button" value="right">
+					<input id="right" type="button" value="右/米">
 					</form>
 
 					<form>
 					<input id="left_value" type="text" value="2" >
-					<input id="left" type="button" value="left">
+					<input id="left" type="button" value="左/米">
 					</form>
 
 					<form>
 					<input id="front_value" type="text" value="2"  >
-					<input id="front" type="button" value="front">
+					<input id="front" type="button" value="前/米">
 					</form>
 
 					<form>
 					<input id="back_value" type="text" value="2"  >
-					<input id="back" type="button" value="back" >
+					<input id="back" type="button" value="后/米" >
 					</form>
 					
 					<form>
 					<input id="circle_value" type="text" value="2"  >
-					<input id="circle" type="button" value="circle">
+					<input id="circle" type="button" value="圈/米">
 					</form>
 					
 
 					<form>
 					<input id="square_value" type="text" value="2"  >
-					<input id="square" type="button" value="square">
+					<input id="square" type="button" value="方/米">
 					</form>
 				                    
                     
                     <form oninput="amount.value=rangeInput.value - 320">
-                        <label for="yaw_value">Yaw</label>
+                        <label for="yaw_value">Y</label>
                         <input type="range" id="yaw_value" name="rangeInput" data-type="yaw_value" step="1" value="0" max="640" />
                         <output for="yaw_value" name="amount">0</output>
-                        <input id="yaw" type="button" value="yaw控制">
+                        <input id="yaw" type="button" value="Yaw/度">
                     </form>
                     
                     <form oninput="amount.value=rangeInput.value - 35">
-                        <label for="roll_value">Roll</label>
+                        <label for="roll_value">R</label>
                         <input type="range" id="roll_value" name="rangeInput" data-type="roll_value" step="1" value="0" max="70" />
                         <output for="roll_value" name="amount">0</output>
-                        <input id="roll" type="button" value="roll控制">
+                        <input id="roll" type="button" value="Roll/度">
                     </form>          
                     
                     <form oninput="amount.value=rangeInput.value - 90">
-                        <label for="pitch_value">Pitch</label>
+                        <label for="pitch_value">P</label>
                         <input type="range" id="pitch_value" name="rangeInput" data-type="pitch_value" step="1" value="0" max="120" />
                         <output for="pitch_value" name="amount">0</output>
-                        <input id="pitch" type="button" value="pitch控制">
+                        <input id="pitch" type="button" value="Pitch/度">
                     </form> 
                                            
           
@@ -148,7 +148,7 @@
                     <input id="y_local" type="text" value="2"  >
                     <input id="z_local" type="text" value="2"  >
                     <br>
-                    <input id="local" type="button" value="local">
+                    <input id="local" type="button" value="地点模式">
                     </form>
             
                     <form>
@@ -156,7 +156,7 @@
                     <input id="longi_value" type="text" value= >
                     <input id="alti_value" type="text" value= >
                     <br>
-                    <input id="global" type="button" value="global">
+                    <input id="global" type="button" value="经纬模式">
                     </form>
 	
                   
@@ -179,7 +179,7 @@
                     </form> 
                     <input id="d_yrp" type="text" value="2"  >
                         <br>
-                    <input id="yrp" type="button" value="yrp">
+                    <input id="yrp" type="button" value="转动/度">
                     
     
              </p>
@@ -191,17 +191,17 @@
                     控制基礎
                 </h3>
                 <p>
-					<button id="request">request</button>
-					<button id="release">release</button>
+					<button id="request">请求权限</button>
+					<button id="release">释放权限</button>
 					<br>
-					<button id="takeoff">takeoff</button>
-					<button id="land">landing</button>
-					<button id="gohome">gohome</button>      
+					<button id="takeoff">起飞</button>
+					<button id="land">垂直着陆</button>
+					<button id="gohome">返航</button>      
                		<br>
- 					<button id="over">over the world</button>
+ 					<button id="over">全景扫描</button>
                       
-      			    <button id="arm">arm</button>
- 					<button id="disarm">disarm</button>
+      			    <button id="arm">锁定</button>
+ 					<button id="disarm">解锁</button>
 
                     
 				</p>
@@ -329,9 +329,18 @@
                                 <td><input id="way3_longi" type="text" value= ></td>
                                 <td><input id="way3_alti" type="text" value= ></td>
                             </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><input id="way4_lati" type="text" value= ></td>
+                                <td><input id="way4_longi" type="text" value= ></td>
+                                <td><input id="way4_alti" type="text" value= ></td>
+                            </tr>                            
                         </tbody>
+                        
+                          
                     </table>
-                    <button id="way_upload">waypoint_upload</button>
+                    <button id="way_upload">多点侦测</button>
+                    <button id="over_upload">最快覆盖区域</button>
 
                     <table class="pure-table pure-table-horizontal">
                         <thead>
@@ -373,12 +382,12 @@
                                     </select>
                                 </div>
                         
-                                <button id="hot_upload">hot_upload</button>
+                                <button id="hot_upload">热点模式</button>
                                 <br>
-                                <button id="start">start</button>
-                                <button id="pause">pause</button>
-                                <button id="resume">resume</button>
-                                <button id="cancel">cancel</button>
+                                <button id="start">开始任务</button>
+                                <button id="pause">暂停任务</button>
+                                <button id="resume">继续任务</button>
+                                <button id="cancel">退出任务</button>
 
                 </p>
             </div>                            

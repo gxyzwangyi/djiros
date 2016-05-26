@@ -199,6 +199,13 @@ function Communicator(socket) {
         messageType : 'dji_sdk_web_groundstation/Way'
     });    
     
+    this.coverTopic = new ROSLIB.Topic({
+        ros : this.ros,
+        name : 'dji_sdk_web_groundstation/map_nav_srv/cover',
+        messageType : 'dji_sdk_web_groundstation/Way'
+    });    
+    
+    
      this.hotTopic = new ROSLIB.Topic({
         ros : this.ros,
         name : 'dji_sdk_web_groundstation/map_nav_srv/hot',
@@ -680,11 +687,41 @@ Communicator.prototype.setway = function(way) {
 
         way3_lati : parseFloat(way[2][0]),
         way3_longi : parseFloat(way[2][1]),
-        way3_alti : parseFloat(way[2][2])
+        way3_alti : parseFloat(way[2][2]),
+        
+        way4_lati : parseFloat(way[3][0]),
+        way4_longi : parseFloat(way[3][1]),
+        way4_alti : parseFloat(way[3][2])      
+        
     });
 
     console.log('way');
     this.wayTopic.publish(_msg);
+};
+
+
+Communicator.prototype.setcover = function(way) {
+    var _msg = new ROSLIB.Message({
+        way1_lati : parseFloat(way[0][0]),
+        way1_longi : parseFloat(way[0][1]),
+        way1_alti : parseFloat(way[0][2]),
+        
+        way2_lati : parseFloat(way[1][0]),
+        way2_longi : parseFloat(way[1][1]),
+        way2_alti : parseFloat(way[1][2]),
+
+        way3_lati : parseFloat(way[2][0]),
+        way3_longi : parseFloat(way[2][1]),
+        way3_alti : parseFloat(way[2][2]),
+        
+        way4_lati : parseFloat(way[3][0]),
+        way4_longi : parseFloat(way[3][1]),
+        way4_alti : parseFloat(way[3][2])      
+        
+    });
+
+    console.log('cover');
+    this.coverTopic.publish(_msg);
 };
 
 

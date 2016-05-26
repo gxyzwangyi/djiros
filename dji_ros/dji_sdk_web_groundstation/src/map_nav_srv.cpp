@@ -652,12 +652,96 @@ void way(const dji_sdk_web_groundstation::WayPtr& msg) {
     waypoint.has_action = 0;
 
     waypoint_task.mission_waypoint.push_back(waypoint);
+    
+    waypoint.latitude = msg->way4_lati;
+    waypoint.longitude = msg->way4_longi;
+    waypoint.altitude = msg->way4_alti;
+    waypoint.damping_distance = 0;
+    waypoint.target_yaw = 0;
+    waypoint.target_gimbal_pitch = 0;
+    waypoint.turn_mode = 0;
+    waypoint.has_action = 0;
+
+    waypoint_task.mission_waypoint.push_back(waypoint);
+
 
     drone->mission_waypoint_upload(waypoint_task);
 
     sleep(2);
 
 }
+
+
+
+void cover(const dji_sdk_web_groundstation::WayPtr& msg) {
+
+    waypoint_task.velocity_range = 10;
+    waypoint_task.idle_velocity = 3;
+    waypoint_task.action_on_finish = 0;
+    waypoint_task.mission_exec_times = 1;
+    waypoint_task.yaw_mode = 4;
+    waypoint_task.trace_mode = 0;
+    waypoint_task.action_on_rc_lost = 0;
+    waypoint_task.gimbal_pitch_mode = 0;
+
+    float max_lati = max(max(msg->way1_lati,msg->way2_lati),max(msg->way3_lati,msg->way4_lati))
+    float max_longi = max(max(msg->way1_longi,msg->way2_longi),max(msg->way3_longi,msg->way4_longi))
+
+    float min_lati = min(min(msg->way1_lati,msg->way2_lati),min(msg->way3_lati,msg->way4_lati))
+    float min_longi = min(min(msg->way1_longi,msg->way2_longi),min(msg->way3_longi,msg->way4_longi))
+    
+    float a_alti = (msg->way1_alti+msg->way2_alti+msg->way3_alti+msg->way4_alti)/4
+    
+    
+    for (float lati=min_lati;lati<max_lati;lati=lati+0.0001)
+    {
+        for (float longi=min_longi;longi<max_longi;longi=longi+0.0001)
+        {
+            waypoint_task.mission_waypoint.push_back(wp(lati,longi,a_alti));
+        }
+
+    }
+
+
+
+//TODO
+
+
+
+    drone->mission_waypoint_upload(waypoint_task);
+
+    sleep(2);
+
+}
+
+
+dji_sdk::MissionWaypoint wp(float x,float y,float z){
+    
+    dji_sdk::MissionWaypoint waypoint_temp;
+    waypoint_temp.latitude = x;
+    waypoint_temp.longitude = y;
+    waypoint_temp.altitude = z;
+    waypoint_temp.damping_distance = 0;
+    waypoint_temp.target_yaw = 0;
+    waypoint_temp.target_gimbal_pitch = 0;
+    waypoint_temp.turn_mode = 0;
+    waypoint_temp.has_action = 0;
+    return waypoint_temp;
+}
+
+float max(float x,float y){
+    if (x>=y){
+        return x
+    }
+   else {
+       return y
+   }
+    
+}
+
+
+
+
 
 
 
@@ -900,6 +984,7 @@ int main(int argc, char* argv[]) {
 
 
     ros::Subscriber sub_way = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/way", 1, way);
+    ros::Subscriber sub_cover = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/cover", 1, cover);
     ros::Subscriber sub_hot = nh.subscribe("dji_sdk_web_groundstation/map_nav_srv/hot", 1, hot);
 
 

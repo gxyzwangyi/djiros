@@ -309,10 +309,17 @@ $( document ).ready(function() {
             var way3_longi = document.getElementById("way3_longi").value
 			var way3_alti=  document.getElementById("way3_alti").value	
 		
+
+			var way4_lati = document.getElementById("way4_lati").value
+            var way4_longi = document.getElementById("way4_longi").value
+			var way4_alti=  document.getElementById("way4_alti").value	
+				
+		
 			var way_list=new Array();
 			way_list[0] = new Array(way1_lati,way1_longi,way1_alti);
 			way_list[1] = new Array(way2_lati,way2_longi,way2_alti);
 			way_list[2] = new Array(way3_lati,way3_longi,way3_alti);
+			way_list[3] = new Array(way4_lati,way4_longi,way4_alti);
 
 		
 
@@ -321,6 +328,42 @@ $( document ).ready(function() {
     });	
 	
 	
+
+	    $("#cover_upload").bind("click",function() {
+        if (typeof(my_Communicator) == 'undefined')
+            alert("Drone not Connected!");
+        else
+		
+			var way1_lati = document.getElementById("way1_lati").value
+            var way1_longi = document.getElementById("way1_longi").value
+			var way1_alti=  document.getElementById("way1_alti").value		
+		
+			var way2_lati = document.getElementById("way2_lati").value
+            var way2_longi = document.getElementById("way2_longi").value
+			var way2_alti=  document.getElementById("way2_alti").value		
+
+			var way3_lati = document.getElementById("way3_lati").value
+            var way3_longi = document.getElementById("way3_longi").value
+			var way3_alti=  document.getElementById("way3_alti").value	
+		
+
+			var way4_lati = document.getElementById("way4_lati").value
+            var way4_longi = document.getElementById("way4_longi").value
+			var way4_alti=  document.getElementById("way4_alti").value	
+				
+		
+			var way_list=new Array();
+			way_list[0] = new Array(way1_lati,way1_longi,way1_alti);
+			way_list[1] = new Array(way2_lati,way2_longi,way2_alti);
+			way_list[2] = new Array(way3_lati,way3_longi,way3_alti);
+			way_list[3] = new Array(way4_lati,way4_longi,way4_alti);
+
+		
+
+			my_Communicator.setcover(way_list);
+
+    });	
+
 	
 	
 	
