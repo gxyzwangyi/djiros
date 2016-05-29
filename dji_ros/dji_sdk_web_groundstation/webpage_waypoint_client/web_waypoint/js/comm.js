@@ -897,7 +897,7 @@ function bianli(fb)
 {
     var all = "" 
     for(value in fb){
-        if (String(value) != "header" || String(value) != "ts") {
+        if (String(value) != "header" && String(value) != "ts" ) {
             if (typeof fb[value] === 'object') 
             {
                 all += bianli(fb[value])
