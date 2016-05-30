@@ -1,5 +1,7 @@
 
-var dji_home= new BMap.Point(0.0001, 0.0001);
+var dji_home= new BMap.Point(31.1787772244,121.5918373799);
+
+
 
 $( document ).ready(function() {
 	my_socket = new WebSocket("ws://localhost:19871");
